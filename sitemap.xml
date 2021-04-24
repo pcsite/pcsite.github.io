@@ -4,7 +4,7 @@
     <url>
       <loc>https://pcsite.github.io/categories/</loc>
       
-      <lastmod>2018-08-29T00:00:00+00:00</lastmod>
+      <lastmod>2018-09-28T00:00:00+00:00</lastmod>
       
       
       
@@ -12,9 +12,19 @@
     </url>
   
     <url>
-      <loc>https://pcsite.github.io/posts/news/</loc>
+      <loc>https://pcsite.github.io/2018/creating-a-new-theme/</loc>
       
-      <lastmod>2018-08-29T00:00:00+00:00</lastmod>
+      <lastmod>2018-09-28T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://pcsite.github.io/tags/hugo/</loc>
+      
+      <lastmod>2018-09-28T00:00:00+00:00</lastmod>
       
       
       
@@ -24,7 +34,7 @@
     <url>
       <loc>https://pcsite.github.io/</loc>
       
-      <lastmod>2018-08-29T00:00:00+00:00</lastmod>
+      <lastmod>2018-09-28T00:00:00+00:00</lastmod>
       
       
       
@@ -33,6 +43,46 @@
   
     <url>
       <loc>https://pcsite.github.io/posts/</loc>
+      
+      <lastmod>2018-09-28T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://pcsite.github.io/tags/</loc>
+      
+      <lastmod>2018-09-28T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://pcsite.github.io/tags/theme/</loc>
+      
+      <lastmod>2018-09-28T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://pcsite.github.io/categories/uncategorized/</loc>
+      
+      <lastmod>2018-09-28T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://pcsite.github.io/posts/news/</loc>
       
       <lastmod>2018-08-29T00:00:00+00:00</lastmod>
       
@@ -152,36 +202,6 @@
     </url>
   
     <url>
-      <loc>https://pcsite.github.io/2014/creating-a-new-theme/</loc>
-      
-      <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://pcsite.github.io/tags/hugo/</loc>
-      
-      <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://pcsite.github.io/tags/</loc>
-      
-      <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
       <loc>https://pcsite.github.io/2014/test/</loc>
       
       <lastmod>2014-09-28T00:00:00+00:00</lastmod>
@@ -193,26 +213,6 @@
   
     <url>
       <loc>https://pcsite.github.io/2014/test_opy/</loc>
-      
-      <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://pcsite.github.io/tags/theme/</loc>
-      
-      <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://pcsite.github.io/categories/uncategorized/</loc>
       
       <lastmod>2014-09-28T00:00:00+00:00</lastmod>
       
