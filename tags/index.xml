@@ -2,71 +2,71 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on PengSite</title>
-    <link>/tags/</link>
+    <link>http://47.117.0.217/tags/</link>
     <description>Recent content in Tags on PengSite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 28 Sep 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 Sep 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://47.117.0.217/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo</title>
-      <link>/tags/hugo/</link>
+      <link>http://47.117.0.217/tags/hugo/</link>
       <pubDate>Fri, 28 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/hugo/</guid>
+      <guid>http://47.117.0.217/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Theme</title>
-      <link>/tags/theme/</link>
+      <link>http://47.117.0.217/tags/theme/</link>
       <pubDate>Fri, 28 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/theme/</guid>
+      <guid>http://47.117.0.217/tags/theme/</guid>
       <description></description>
     </item>
     
     <item>
       <title>development</title>
-      <link>/tags/development/</link>
+      <link>http://47.117.0.217/tags/development/</link>
       <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>/tags/development/</guid>
+      <guid>http://47.117.0.217/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>/tags/go/</link>
+      <link>http://47.117.0.217/tags/go/</link>
       <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>/tags/go/</guid>
+      <guid>http://47.117.0.217/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>/tags/golang/</link>
+      <link>http://47.117.0.217/tags/golang/</link>
       <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>/tags/golang/</guid>
+      <guid>http://47.117.0.217/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>templates</title>
-      <link>/tags/templates/</link>
+      <link>http://47.117.0.217/tags/templates/</link>
       <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>/tags/templates/</guid>
+      <guid>http://47.117.0.217/tags/templates/</guid>
       <description></description>
     </item>
     
     <item>
       <title>themes</title>
-      <link>/tags/themes/</link>
+      <link>http://47.117.0.217/tags/themes/</link>
       <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>/tags/themes/</guid>
+      <guid>http://47.117.0.217/tags/themes/</guid>
       <description></description>
     </item>
     

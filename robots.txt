@@ -63,4 +63,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: /sitemap.xml
+Sitemap: http://47.117.0.217/sitemap.xml
