@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="Covey.Liu">
+  
+  
+  
+  <link rel="prev" href="https://pcsite.github.io/2014/test/" />
+  <link rel="next" href="https://pcsite.github.io/2018/creating-a-new-theme/" />
+  <link rel="canonical" href="https://pcsite.github.io/2017/hugo/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Hugo搭建个人博客到GitHub Pages | PengSite
+       
+  </title>
+  <meta name="title" content="Hugo搭建个人博客到GitHub Pages | PengSite">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/pcsite.github.io\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Hugo搭建个人博客到GitHub Pages",
+    "headline" : "Hugo搭建个人博客到GitHub Pages",
+    "description" : "Windows下安装Hugo以及Git工具 到Github下载Hugo，下载对应的操作系统版本的Hugo文件。\n到Git网站下载对应的操作系统版本的Git文件。\n  下载完成之后解压缩，我直接解压到桌面blog文件夹下进行管理(不建议桌面)。然后添加环境变量；我的路径为:C:\\Users\\Administrator\\Desktop\\blog\\hugo;也就是把此路径加入环境变量。\n  添加环境变量的方法:设置-\u0026gt;系统-\u0026gt;关于-\u0026gt;高级系统设置-\u0026gt;环境变量-\u0026gt;path-\u0026gt;新建-\u0026gt;确定\n  检查一下是否安装成功：\ncmd键入命令: hugo version #出现相应版本号即为安装成功 # hugo v0.82.1-60618210 windows\/amd64 BuildDate=2021-04-20T11:02:50Z VendorInfo=gohugoio   用Hugo创建自己的博客 在hugo同名文件下使用Git命令快速生成站点:\n# 您也可以 hugo new site \/path\/to\/site # 比如希望生成到 \/path\/to\/site 路径 hugo new site myblog 这样就在 myblog 目录里生成了初始站点，cd myblog进入目录 ls 查看目录结构 ：\n ▸ archetypes\/ ▸ content\/ ▸ layouts\/ ▸ static\/ ▸ themes\/ config.toml 其中 content 文件夹存放博文，layouts 文件夹存放博客模版，比如博客的页面结构。static 文件夹存放前端文件和以后显示在博客中的图片，themes 存放主题文件，安装的主题都会存放在该文件夹中。config.toml 是博客的配置文件。\n  选择主题并下载安装 到hugo官网下载主题，下面是我比较喜欢的博客主题，比较简约:",
+    "inLanguage" : "zh-CN",
+    "author" : "PengSite",
+    "creator" : "PengSite",
+    "publisher": "PengSite",
+    "accountablePerson" : "PengSite",
+    "copyrightHolder" : "PengSite",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-09-28 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-09-28 00:00:00 \u002b0000 UTC",
+    "url" : "https:\/\/pcsite.github.io\/2017\/hugo\/",
+    "wordCount" : "110",
+    "keywords" : [ "Theme","Hugo", "PengSite"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://pcsite.github.io/">PengSite</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://pcsite.github.io/">PengSite</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Hugo搭建个人博客到GitHub Pages</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://pcsite.github.io/" rel="author">PengSite</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-09-28 itemprop="datePublished">September 28, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://pcsite.github.io/categories/uncategorized/"> Uncategorized </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <ol>
+<li>
+<h4 id="windows下安装hugo以及git工具">Windows下安装Hugo以及Git工具</h4>
+<p>到Github下载<a href="https://github.com/gohugoio/hugo/releases">Hugo</a>，下载对应的操作系统版本的Hugo文件。</p>
+<p>到<a href="https://git-scm.com/downloads">Git</a>网站下载对应的操作系统版本的Git文件。</p>
+<hr>
+<p><img src="/images/image-20210425101952039.png" alt="image-20210425101952039"></p>
+<hr>
+<p>下载完成之后解压缩，我直接解压到桌面blog文件夹下进行管理(不建议桌面)。然后添加环境变量；我的路径为:C:\Users\Administrator\Desktop\blog\hugo;也就是把此路径加入环境变量。</p>
+<hr>
+<p><img src="/images/image-20210425102547372.png" alt="image-20210425102547372"></p>
+<hr>
+<p>添加环境变量的方法:设置-&gt;系统-&gt;关于-&gt;高级系统设置-&gt;环境变量-&gt;path-&gt;新建-&gt;确定</p>
+<hr>
+<p><img src="/images/image-20210425103021455.png" alt="image-20210425103021455.png"></p>
+<hr>
+<p>检查一下是否安装成功：</p>
+<pre><code>cmd键入命令:
+hugo version
+#出现相应版本号即为安装成功
+# hugo v0.82.1-60618210 windows/amd64 BuildDate=2021-04-20T11:02:50Z VendorInfo=gohugoio
+</code></pre></li>
+<li>
+<h4 id="用hugo创建自己的博客">用Hugo创建自己的博客</h4>
+<p>在hugo同名文件下使用Git命令快速生成站点:</p>
+<pre><code># 您也可以 hugo new site /path/to/site  
+# 比如希望生成到 /path/to/site 路径
+hugo new site myblog
+   
+</code></pre><p><img src="/images/image-20210425105030894.png" alt="image-20210425105030894"></p>
+<p>这样就在 <code>myblog</code> 目录里生成了初始站点，<code>cd myblog</code>进入目录 <code>ls</code> 查看目录结构 ：</p>
+<pre><code>  ▸ archetypes/
+  ▸ content/
+  ▸ layouts/
+  ▸ static/
+  ▸ themes/
+    config.toml
+</code></pre><p>其中 content 文件夹存放博文，layouts 文件夹存放博客模版，比如博客的页面结构。static 文件夹存放前端文件和以后显示在博客中的图片，themes 存放主题文件，安装的主题都会存放在该文件夹中。config.toml 是博客的配置文件。</p>
+</li>
+<li>
+<h4 id="选择主题并下载安装">选择主题并下载安装</h4>
+<p>到<a href="https://themes.gohugo.io/">hugo</a>官网下载主题，下面是我比较喜欢的博客主题，比较简约:</p>
+<pre><code>https://github.com/liuzc/leaveit
+</code></pre><p>您可以直接下载到themes/文件夹下并解压，然后进入<code>LeaveIt/exampleSite</code>文件夹，复制<code>content</code>和<code>config.toml</code>文件到<code>myblog</code>下覆盖掉原本的<code>content</code>和<code>config.toml</code>；</p>
+<hr>
+<p><img src="/images/1.gif" alt="1"></p>
+<hr>
+<p>之后到本地上跑一下把</p>
+<pre><code>hugo server --buildDrafts -w
+</code></pre><p>输入http://localhost:1313/看一下吧</p>
+<p><img src="/images/image-20210425113222981.png" alt="image-20210425113222981"></p>
+<p>输入<code>http://localhost:1313/</code>可以看到页面啦，至此hugo本地搭建就已经完成了。</p>
+<p>接下来比较重要 : 回到<code>Git-&gt;Ctrl+C</code>停止hugo运行,并键入命令<code>hugo</code>;在<code>myblog</code>目录下就可以看到一个<code>public</code>文件，为下面同步到Github做准备。</p>
+<p><img src="/images/image-20210425113652683.png" alt="image-20210425113652683"></p>
+</li>
+<li>
+<h4 id="同步到-github">同步到 Github</h4>
+<ol>
+<li>
+<p>在Github上创建一个仓库，仓库的名字是<code>你的名字.github.io</code>之后点击<code>Create repository</code>创建完成。</p>
+</li>
+<li>
+<p>接下来把上述生成的public静态页同步到Github</p>
+<p>进入到public文件夹内，用Git命令终端键入一下命令(<!-- raw HTML omitted -->第一次使用Git需填入Github信息<!-- raw HTML omitted -->):</p>
+<pre><code>echo &quot;# 你的名字.github.io&quot; &gt;&gt; README.md
+git init
+git add .
+git commit -m &quot;first commit&quot;
+git branch -M main
+git remote add origin https://github.com/你的地址/你的地址.github.io.git
+git push -u origin main
+</code></pre><p>之后就完成了同步，如果在push过程中出现问题可以看下相关Git操作。</p>
+<p><img src="/images/image-20210425115840695.png" alt="image-20210425115840695"></p>
+</li>
+<li>
+<p>查看自己博客的地址</p>
+<p>点击<code>Settings-&gt;Pages</code>就可以看到自己的博客地址啦。</p>
+<p><img src="/images/image-20210425120012874.png" alt="image-20210425120012874"></p>
+</li>
+</ol>
+</li>
+<li>
+<h4 id="到此hugo博客部署到github就结束了">到此Hugo博客部署到Github就结束了。</h4>
+</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Covey.Liu </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://pcsite.github.io/2017/hugo/>https://pcsite.github.io/2017/hugo/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://pcsite.github.io/tags/theme/">
+                    #Theme</a></span>
+            
+            <span class="tag"><a href="https://pcsite.github.io/tags/hugo/">
+                    #Hugo</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://pcsite.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://pcsite.github.io/2014/test/" class="prev" rel="prev" title="test test"><i class="iconfont icon-left"></i>&nbsp;test test</a>
+         
+        
+        <a href="https://pcsite.github.io/2018/creating-a-new-theme/" class="next" rel="next" title="Creating a New Theme">Creating a New Theme&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2011 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://pcsite.github.io/">Covey.Liu</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
