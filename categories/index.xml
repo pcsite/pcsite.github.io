@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on PengSite</title>
-    <link>http://pengsite.top/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on PengSite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 28 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pengsite.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Uncategorized</title>
-      <link>http://pengsite.top/categories/uncategorized/</link>
+      <link>/categories/uncategorized/</link>
       <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://pengsite.top/categories/uncategorized/</guid>
+      <guid>/categories/uncategorized/</guid>
       <description></description>
     </item>
     
