@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="pengSite">
+  
+  
+  
+  
+  <link rel="next" href="/2017/hugo/" />
+  <link rel="canonical" href="/2017/stream/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Stream流详解与应用 | PengSite
+       
+  </title>
+  <meta name="title" content="Stream流详解与应用 | PengSite">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Stream流详解与应用",
+    "headline" : "Stream流详解与应用",
+    "description" : "Stream流详解与应用 1. 什么是 Stream？ ​\tStream（流）是一个来自数据源的元素队列并支持聚合操作 ​\t元素是特定类型的对象，形成一个队列。Java中的Stream并不会存储元素，而是按需计算。 ​\t流的来源：可以是集合，数组，I\/O channel， 产生器generator 等。 ​\t聚合操作：类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。\n2. Stream基础特征 ​\tPipelining: 中间操作都会返回流对象本身。这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。 ​\t内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做\t外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。\n3. Stream流的三类方法 1. 获取Steam流 : 可以理解成创建一条流水线，并把数据放到流水线上准备进行操作 2. 中间方法 : 可以理解成流水线上的操作，一次操作完毕之后，还可以继续进行其他操作 3. 是流水线上的最后一个操作，一个Stream流只能有一个终结方法  4. Stream流的获取方法   单列集合\n可以使用Collection接口中的默认方法stream(),生成流\ndefault Stream\u0026lt;E\u0026gt; stream()   双列集合\n间接的生成流 可以先通过keySet或者entrySet获取一个Set集合，再获取Stream流\n  数组\nArrays中的静态方法stream生成流",
+    "inLanguage" : "zh-CN",
+    "author" : "PengSite",
+    "creator" : "PengSite",
+    "publisher": "PengSite",
+    "accountablePerson" : "PengSite",
+    "copyrightHolder" : "PengSite",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-09-28 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-09-28 00:00:00 \u002b0000 UTC",
+    "url" : "\/2017\/stream\/",
+    "wordCount" : "722",
+    "keywords" : [ "java","stream", "PengSite"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Stream流详解与应用</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="/" rel="author">PengSite</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-09-28 itemprop="datePublished">September 28, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="/categories/uncategorized/"> Uncategorized </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h1 id="stream流详解与应用">Stream流详解与应用</h1>
+<h3 id="1-什么是-stream">1. 什么是 Stream？</h3>
+<p>​	Stream（流）是一个来自数据源的元素队列并支持聚合操作
+​	元素是特定类型的对象，形成一个队列。Java中的Stream并不会存储元素，而是按需计算。
+​	流的来源：可以是集合，数组，I/O channel， 产生器generator 等。
+​	聚合操作：类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。</p>
+<h3 id="2-stream基础特征">2. Stream基础特征</h3>
+<p>​	Pipelining: 中间操作都会返回流对象本身。这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。
+​	内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做	外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。</p>
+<h3 id="3-stream流的三类方法">3. Stream流的三类方法</h3>
+<pre><code>1. 获取Steam流 : 可以理解成创建一条流水线，并把数据放到流水线上准备进行操作
+2. 中间方法 : 可以理解成流水线上的操作，一次操作完毕之后，还可以继续进行其他操作
+3. 是流水线上的最后一个操作，一个Stream流只能有一个终结方法
+</code></pre>
+<h3 id="4-stream流的获取方法">4. Stream流的获取方法</h3>
+<ol>
+<li>
+<p>单列集合</p>
+<p>可以使用<code>Collection</code>接口中的默认方法<code>stream()</code>,生成流</p>
+<pre><code>default Stream&lt;E&gt; stream()
+</code></pre></li>
+<li>
+<p>双列集合</p>
+<p>间接的生成流
+可以先通过<code>keySet</code>或者<code>entrySet</code>获取一个Set集合，再获取Stream流</p>
+</li>
+<li>
+<p>数组</p>
+<p><code>Arrays</code>中的静态方法<code>stream</code>生成流</p>
+</li>
+<li>
+<p>同种数据类型的多个数据</p>
+<p>使用<code>Stream.of(T...values)</code>生成流   &mdash;形参为可变参数</p>
+</li>
+</ol>
+<h3 id="5-代码演示">5. 代码演示</h3>
+<h4 id="1-单列集合">1. 单列集合</h4>
+<pre><code>//ArrayList是单列集合其中的实现类，所以可以直接使用
+//可以使用Collection接口中的默认方法stream(),生成流
+//default Stream&lt;E&gt; stream()
+ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add(&quot;aaa&quot;);
+list.add(&quot;bbb&quot;);
+list.add(&quot;ccc&quot;);
+list.add(&quot;ddd&quot;);
+
+Stream&lt;String&gt; stream = list.stream();
+stream.forEach(s-&gt; System.out.println(s));
+</code></pre><p>输出结果为：</p>
+<pre><code>aaa
+bbb
+ccc
+ddd
+</code></pre><p>也可以直接<code>'.'</code>的方式直接写：</p>
+<pre><code>list.stream().forEach(s-&gt; System.out.println(s));
+</code></pre><h4 id="21-双列集合keyset实现">2.1 双列集合(KeySet实现)</h4>
+<pre><code>//不可以直接获取流，可以先通过keySet或者entrySet获取一个Set集合，再获取Stream流
+//keySet:先获取所有的键放到Set中，再把Set集合中的键放到Stream中
+
+HashMap&lt;String,Integer&gt; hm = new HashMap&lt;&gt;();
+hm.put(&quot;北京&quot;,1);
+hm.put(&quot;上海&quot;,2);
+hm.put(&quot;深圳&quot;,3);
+hm.put(&quot;合肥&quot;,4);
+
+hm.keySet().stream().forEach(s-&gt; System.out.println(s));
+</code></pre><p>输出结果为：</p>
+<pre><code>上海
+合肥
+北京
+深圳
+</code></pre><h4 id="22-双列集合entryset实现">2.2 双列集合(entrySet实现)</h4>
+<pre><code>//不可以直接获取流，可以先通过keySet或者entrySet获取一个Set集合，再获取Stream流
+//entrySet先获取所有的键值对对象放到Set中,再把Set中的键值对放到Stream流中
+
+HashMap&lt;String,Integer&gt; hm = new HashMap&lt;&gt;();
+hm.put(&quot;北京&quot;,1);
+hm.put(&quot;上海&quot;,2);
+hm.put(&quot;深圳&quot;,3);
+hm.put(&quot;合肥&quot;,4);
+
+hm.entrySet().stream().forEach(s-&gt; System.out.println(s));
+</code></pre><p>输出结果为：</p>
+<pre><code>上海=2
+合肥=4
+北京=1
+深圳=3
+</code></pre><h4 id="3-数组">3. 数组</h4>
+<pre><code>int[] arr = {1,2,3,4,5};
+Arrays.stream(arr).forEach(s-&gt; System.out.print(s+&quot; &quot;));
+</code></pre><p>输出结果为：</p>
+<pre><code>1 2 3 4 5
+</code></pre><h4 id="4-同种数据类型的多个数据">4. 同种数据类型的多个数据</h4>
+<pre><code>//同种数据类型的多个数据
+//形参为可变参数
+Stream.of(1,2,3,4,5).forEach(s-&gt; System.out.print(s+&quot; &quot;));
+</code></pre><p>输出结果为：</p>
+<pre><code>1 2 3 4 5
+</code></pre><h3 id="6-stream流常见的中间方法">6. Stream流常见的中间方法</h3>
+<pre><code>1. `Stream&lt;T&gt; filter(Predicate Predicate)`:用于对流中的数据进行过滤 ---参数是一个`Predicate`接口
+     `Predicate`接口中就一个test方法：
+     `boolean test(T t)`:对给定的参数进行判断，返回一个布尔值
+
+#### 6.1 代码演示
+
+​	filter方法获取流中的每一个数据
+​    而test方法中的s,就一次表示流中的每一个数据
+​    我们只要在test方法中对s进行判断就可以了
+​    如果判断的结果为true,则当前数据保留
+​    如果为false,则当前数据就不要
+</code></pre>
+<p>​
+​
+​	```
+​	 ArrayList<!-- raw HTML omitted --> list = new ArrayList&lt;&gt;();
+​	        list.add(&ldquo;张三丰&rdquo;);
+​	        list.add(&ldquo;张无忌&rdquo;);
+​	        list.add(&ldquo;张翠山&rdquo;);
+​	        list.add(&ldquo;王二麻&rdquo;);
+​	        list.add(&ldquo;张良&rdquo;);
+​	        list.add(&ldquo;谢广坤&rdquo;);
+​</p>
+<pre><code>        //匿名内部类实现
+        list.stream().filter(
+                new Predicate&lt;String&gt;() {
+                    @Override
+                    public boolean test(String s) {
+                        boolean result = s.startsWith(&quot;张&quot;);
+                        return result;
+
+                    }
+                }
+        ).forEach(s-&gt; System.out.println(s));
+
+        //Lanbda实现
+        list.stream().filter(
+                (String s)-&gt;{
+                    boolean result = s.startsWith(&quot;张&quot;);
+                    return result;
+                }
+        ).forEach(s-&gt; System.out.println(s));
+
+        //Lanbda简写
+        list.stream().filter(s-&gt;s.startsWith(&quot;张&quot;)).forEach(s-&gt; System.out.println(s));
+```
+
+输出结果为：
+
+```
+张三丰
+张无忌
+张翠山
+张良
+```
+</code></pre>
+<p>​
+​</p>
+<ol start="2">
+<li>
+<p><code>Stream&lt;T&gt; limit(long maxSize)</code>:截取指定参数个数的数据</p>
+<p>保留前面<code>long maxSize</code>个数据</p>
+</li>
+<li>
+<p><code>Stream&lt;T&gt; skip(long n)</code>:跳过指定参数个数的数据</p>
+<p>去除前面<code>long n</code>个保留后面</p>
+</li>
+<li>
+<p><code>static&lt;T&gt; Stream&lt;T&gt;concat(Stream a,Stream b)</code>:合并a和b两个流为一个流</p>
+</li>
+<li>
+<p><code>Stream&lt;T&gt; distinct()</code>:去除流中重复的元素。依赖(hashCode和equals方法)</p>
+<h4 id="62--代码演示">6.2  代码演示</h4>
+<pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+        list.add(&quot;张三丰&quot;);
+        list.add(&quot;张无忌&quot;);
+        list.add(&quot;张翠山&quot;);
+        list.add(&quot;王二麻&quot;);
+        list.add(&quot;张良&quot;);
+        list.add(&quot;谢广坤&quot;);
+        list.add(&quot;谢广坤&quot;);
+        list.add(&quot;谢广坤&quot;);
+        list.add(&quot;谢广坤&quot;);
+    
+        // 1. `Stream&lt;T&gt; limit(long maxSize)`:截取指定参数个数的数据
+        // 保留前面`long maxSize`个数据
+        list.stream().limit(2).forEach(s-&gt; System.out.println(s));
+        System.out.println(&quot;-----------------------------------&quot;);
+        // 2. `Stream&lt;T&gt; skip(long n)`:跳过指定参数个数的数据
+        //去除前面保留后面
+        list.stream().skip(3).forEach(s-&gt; System.out.println(s));
+        System.out.println(&quot;----------------------------------&quot;);
+        // 3. `static&lt;T&gt; Stream&lt;T&gt;concat(Stream a,Stream b)`:合并a和b两个流为一个流
+        ArrayList&lt;String&gt; list1 = new ArrayList&lt;&gt;();
+        list1.add(&quot;我是第二个Stream流&quot;);
+    
+        //第一个Stream流
+        Stream&lt;String&gt; stream1 = list.stream();
+        //第二个Stream流
+        Stream&lt;String&gt; stream2 = list1.stream();
+        Stream&lt;String&gt; stream3 = Stream.concat(stream1, stream2);
+        stream3.forEach(s-&gt; System.out.println(s));
+        System.out.println(&quot;--------下面为简写--------&quot;);
+        //简写方式
+        Stream.concat(list.stream(),list1.stream()).forEach(s -&gt; 				System.out.println(s));
+        System.out.println(&quot;-----------------------------------&quot;);
+        // 4. `Stream&lt;T&gt; distinct()`:去除流中重复的元素。依赖(hashCode和equals方法)
+        list.stream().distinct().forEach(s -&gt; System.out.println(s));
+</code></pre><p>输出结果为：</p>
+<pre><code>张三丰
+张无忌
+-----------------------------------
+王二麻
+张良
+谢广坤
+谢广坤
+谢广坤
+谢广坤
+----------------------------------
+张三丰
+张无忌
+张翠山
+王二麻
+张良
+谢广坤
+谢广坤
+谢广坤
+谢广坤
+我是第二个Stream流
+--------下面为简写--------
+张三丰
+张无忌
+张翠山
+王二麻
+张良
+谢广坤
+谢广坤
+谢广坤
+谢广坤
+我是第二个Stream流
+-----------------------------------
+张三丰
+张无忌
+张翠山
+王二麻
+张良
+谢广坤
+</code></pre></li>
+</ol>
+<h3 id="7-stream流常见的终结操作方法">7. Stream流常见的终结操作方法</h3>
+<ol>
+<li>
+<p><code>forEach(Consumer action)</code>:对此流的每一个元素执行操作</p>
+<p><code>Consumer</code>接口中的方法  &mdash; <code>void accept(T t)</code>:对给定的参数执行此操作</p>
+<h4 id="71-代码演示">7.1 代码演示</h4>
+<pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+        list.add(&quot;张三丰&quot;);
+        list.add(&quot;张无忌&quot;);
+        list.add(&quot;张翠山&quot;);
+        list.add(&quot;王二麻&quot;);
+        list.add(&quot;张良&quot;);
+        list.add(&quot;谢广坤&quot;);
+     
+        //`forEach(Consumer action)`:对此流的每一个元素执行操作
+     
+        //`Consumer`接口中的方法  --- `void accept(T t)`:对给定的参数执行此操作
+     
+        //在forEach方法的地产，会循环获取到流中的每一个数据
+     
+        //并循环调用accept方法,并把每一个数据传递给accept方法
+     
+        //s就依次表示了流中的每一个数据
+     
+        //我们只要accept方法中，写上处理的业务逻辑即可
+     
+        list.stream().forEach(
+                new Consumer&lt;String&gt;() {
+                    @Override
+                    public void accept(String s) {
+                        System.out.println(s);
+                    }
+                }
+        );
+        System.out.println(&quot;--------------&quot;);
+        //用lambda表达式的简化格式
+        list.stream().forEach(
+                (String s)-&gt;{
+                    System.out.println(s);
+                }
+        );
+        System.out.println(&quot;--------------&quot;);
+        //简化lambda
+        list.stream().forEach(s -&gt; System.out.println(s));
+</code></pre><p>输出结果为：</p>
+<pre><code>张三丰
+张无忌
+张翠山
+王二麻
+张良
+谢广坤
+--------------
+张三丰
+张无忌
+张翠山
+王二麻
+张良
+谢广坤
+--------------
+张三丰
+张无忌
+张翠山
+王二麻
+张良
+谢广坤
+</code></pre></li>
+<li>
+<p><code>long count()</code>:返回此流中的元素数</p>
+<h4 id="72-代码演示">7.2 代码演示</h4>
+<pre><code>//long count() : 返回此流中的元素数
+long count = list.stream().count();
+System.out.println(count);
+</code></pre><p>输出结果为：</p>
+<pre><code>6
+</code></pre></li>
+</ol>
+<h3 id="8-stream流的收集操作">8. Stream流的收集操作</h3>
+<p>​		在Stream流中无法直接修改集合、数组等数据源中的数据</p>
+<h4 id="81-代码演示">8.1 代码演示</h4>
+<pre><code>				/**
+         * 定义一个集合,并添加：1，2，3，4，5，6，7，8，9，10
+         * 将集合中的奇数删除，只保留偶数
+         * 遍历集合得到2，4，6，8，10
+         */
+        //定一个集合
+        ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+        //for循环添加元素,可以用List.of
+        for (int i = 1; i &lt;= 10 ; i++) {
+            list.add(i);
+        }
+        //stream流操作
+        list.stream().filter(number -&gt; number%2==0).forEach(number -&gt; 	System.out.println(number));
+        System.out.println(&quot;-------------------------&quot;);
+        //遍历集合
+        for (Integer integer : list) {
+            System.out.println(integer);
+        }
+</code></pre><p>输出结果为：</p>
+<pre><code>2
+4
+6
+8
+10
+-------------------------
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</code></pre><p>根据代码演示可以总结出:在Stream流中无法直接修改集合、数组等数据源中的数据</p>
+<p>那么使用Stream流之后，怎么把数据收集起来了？</p>
+<p>Stream流中提供了<code>collect(Collector&lt;? super T,A,R&gt; collector)</code>方法，其参数数是一个<code>Collector</code>接口。</p>
+<ul>
+<li>
+<p>常用方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R collect(Collector collector)</td>
+<td>把结果收集到集合中</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>工具类Collectors提供了具体的收集方式</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public static <!-- raw HTML omitted --> Collector toList()</td>
+<td style="text-align:left">把元素收集到List集合中</td>
+</tr>
+<tr>
+<td>public static <!-- raw HTML omitted --> Collector toSet()</td>
+<td style="text-align:left">把元素收集到Set集合中</td>
+</tr>
+<tr>
+<td>public static  Collector toMap(Function keyMapper,Function valueMapper)</td>
+<td style="text-align:left">把元素收集到Map集合中</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="82-代码演示toset">8.2 代码演示（toSet）</h4>
+<pre><code>ArrayList&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
+for (int i = 1; i &lt;=10; i++) {
+	list.add(i);
+}
+//filter()负责过滤数据
+//collect()负责收集数据，不负责创建容器，不添加数据到容器中
+//Collectors.toSet()在底层创建Set集合，并把数据添加到集合
+		
+Set&lt;Integer&gt; set = list.stream().filter(number -&gt;number % 2 ==0).collect(Collectors.toSet());
+System.out.println(set);
+</code></pre><p>输出结果为:</p>
+<pre><code>[2, 4, 6, 8, 10]
+</code></pre><h4 id="83-代码演示tomap">8.3 代码演示（toMap）</h4>
+<pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
+		list.add(&quot;zhangsan,23&quot;);
+		list.add(&quot;lisi,24&quot;);
+		list.add(&quot;wangwu,25&quot;);
+		
+		Map&lt;String, Integer&gt; map = list.stream().filter(
+					s-&gt;{String[] split = s.split(&quot;,&quot;);
+					int age = Integer.parseInt(split[1]);
+					return age &gt;= 24;
+				}
+				//Collertors.toMap创建一个map集合并将数据添加到集合中
+				//第一个lambda表达式就是如何获取到Map中的建
+				//第二个lambda表达式就是如何获取到Map中的值
+				).collect(Collectors.toMap(
+					s-&gt;s.split(&quot;,&quot;)[0],s-&gt;Integer.parseInt(s.split(&quot;,&quot;)[1])));
+		System.out.println(map);
+</code></pre><p>输出结果为：</p>
+<pre><code>{lisi=24, wangwu=25}
+</code></pre><h3 id="9-stream流的练习">9. Stream流的练习</h3>
+<p>​		要求：</p>
+<p>现在有两个ArrayList集合，分别存储6名男演员和6名女演员，要求完成如下操作:</p>
+<ul>
+<li>
+<p>男演员只要名字为3个字的前两人</p>
+</li>
+<li>
+<p>女演员只要性杨的，并且不要第一个</p>
+</li>
+<li>
+<p>把过滤后的男演员姓名和女演员姓名合并到一起</p>
+</li>
+<li>
+<p>把上一步操作后的元素作为构造方法的参数创建演员对象，遍历数据</p>
+</li>
+<li>
+<p>演员类Actor，里面有一个成员变量，一个带参构造方法，以及成员变量对应的get/set方法</p>
+<h4 id="91-代码演示">9.1 代码演示</h4>
+<pre><code>      ArrayList&lt;String&gt; manList = new ArrayList&lt;String&gt;();
+      manList.add(&quot;张无忌&quot;);
+      manList.add(&quot;张三&quot;);
+      manList.add(&quot;刘备&quot;);
+      manList.add(&quot;郑成功&quot;);
+      manList.add(&quot;徐晃&quot;);
+      manList.add(&quot;王三春&quot;);
+  		
+      ArrayList&lt;String&gt; womanList = new ArrayList&lt;String&gt;();
+      womanList.add(&quot;郑合&quot;);
+      womanList.add(&quot;杨千金&quot;);
+      womanList.add(&quot;杨贵妃&quot;);
+      womanList.add(&quot;关银屏&quot;);
+      womanList.add(&quot;孙尚香&quot;);
+      womanList.add(&quot;妲己&quot;);
+      womanList.add(&quot;钟无艳&quot;);
+  		
+      //男演员只要名字为3个字的前两人
+      Stream&lt;String&gt; stream1 = manList.stream().filter(name-&gt;name.length()==3).limit(2);
+      //女演员只要性杨的，并且不要第一个
+      Stream&lt;String&gt; stream2 = womanList.stream().filter(name1-&gt;name1.startsWith(&quot;杨&quot;)).skip(1);
+      //把过滤后的男演员姓名和女演员姓名合并到一起
+      Stream.concat(stream1,stream2).forEach(name-&gt;{
+          Actor actor = new Actor(name);
+          System.out.println(actor);
+      });
+</code></pre><p>输出结果为:</p>
+<pre><code>Actor [name=张无忌]
+Actor [name=郑成功]
+Actor [name=杨贵妃]
+</code></pre></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>pengSite </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=/2017/stream/>/2017/stream/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="/tags/java/">
+                    #java</a></span>
+            
+            <span class="tag"><a href="/tags/stream/">
+                    #stream</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+         
+        
+        <a href="/2017/hugo/" class="next" rel="next" title="Hugo搭建个人博客到GitHub Pages">Hugo搭建个人博客到GitHub Pages&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="/">pengSite</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
