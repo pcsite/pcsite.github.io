@@ -6,20 +6,11 @@
     <description>Recent content in Tags on PengSite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 28 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Hugo</title>
-      <link>/tags/hugo/</link>
-      <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Sat, 30 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>java</title>
       <link>/tags/java/</link>
-      <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 30 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/java/</guid>
       <description></description>
@@ -28,9 +19,18 @@
     <item>
       <title>stream</title>
       <link>/tags/stream/</link>
-      <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 30 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/stream/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>/tags/hugo/</link>
+      <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/hugo/</guid>
       <description></description>
     </item>
     
