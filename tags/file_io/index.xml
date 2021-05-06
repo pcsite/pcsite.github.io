@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>File_io on PengSite</title>
+    <link>/tags/file_io/</link>
+    <description>Recent content in File_io on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 06 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/file_io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>File与IO详解</title>
+      <link>/2017/stream/</link>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/stream/</guid>
+      <description>File和IO详解 1. IO流是什么?  可以将数据从本地文件中读取出来 可以将数据从内存保存到本地文件  2. File类是什么?  在读写数据时告诉虚拟机要操作的(文件/文件夹)在哪 对(文件/文件夹)本身进行操作，包括创建、删除等  3. File类的介绍和构造方法  File类介绍  它是文件和目录路径名的抽象表示 文件和目录可以通过File封装成对象 File封装的对象仅仅是一个路径名。它可以是存在的，也可以是不存在的。      File类构造方法
+   方法名 说明     File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例   File(String parent, String child) 从父路径名字符串和子路径名字符串创建新的 File实例   File(File parent, String child) 从父抽象路径名和子路径名字符串创建新的 File实例      代码演示
+ //File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。 String path = &amp;quot;C:\\itheima\\a.</description>
+    </item>
+    
+  </channel>
+</rss>

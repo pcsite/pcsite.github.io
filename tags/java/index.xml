@@ -6,13 +6,24 @@
     <description>Recent content in java on PengSite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 30 Sep 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Stream流详解与应用</title>
+      <title>File与IO详解</title>
       <link>/2017/stream/</link>
-      <pubDate>Sat, 30 Sep 2017 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/stream/</guid>
+      <description>File和IO详解 1. IO流是什么?  可以将数据从本地文件中读取出来 可以将数据从内存保存到本地文件  2. File类是什么?  在读写数据时告诉虚拟机要操作的(文件/文件夹)在哪 对(文件/文件夹)本身进行操作，包括创建、删除等  3. File类的介绍和构造方法  File类介绍  它是文件和目录路径名的抽象表示 文件和目录可以通过File封装成对象 File封装的对象仅仅是一个路径名。它可以是存在的，也可以是不存在的。      File类构造方法
+   方法名 说明     File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例   File(String parent, String child) 从父路径名字符串和子路径名字符串创建新的 File实例   File(File parent, String child) 从父抽象路径名和子路径名字符串创建新的 File实例      代码演示
+ //File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。 String path = &amp;quot;C:\\itheima\\a.</description>
+    </item>
+    
+    <item>
+      <title>Stream流详解与应用</title>
+      <link>/2017/file_io/</link>
+      <pubDate>Sat, 30 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/file_io/</guid>
       <description>Stream流详解与应用 1. 什么是 Stream？ ​	Stream（流）是一个来自数据源的元素队列并支持聚合操作 ​	元素是特定类型的对象，形成一个队列。Java中的Stream并不会存储元素，而是按需计算。 ​	流的来源：可以是集合，数组，I/O channel， 产生器generator 等。 ​	聚合操作：类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。
 2. Stream基础特征 ​	Pipelining: 中间操作都会返回流对象本身。这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。 ​	内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做	外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。
 3. Stream流的三类方法 1. 获取Steam流 : 可以理解成创建一条流水线，并把数据放到流水线上准备进行操作 2. 中间方法 : 可以理解成流水线上的操作，一次操作完毕之后，还可以继续进行其他操作 3. 是流水线上的最后一个操作，一个Stream流只能有一个终结方法  4. Stream流的获取方法   单列集合

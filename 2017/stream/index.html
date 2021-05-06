@@ -9,7 +9,7 @@
   
   
   
-  <link rel="prev" href="/2017/hugo/" />
+  <link rel="prev" href="/2017/file_io/" />
   
   <link rel="canonical" href="/2017/stream/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           Stream流详解与应用 | PengSite
+           File与IO详解 | PengSite
        
   </title>
-  <meta name="title" content="Stream流详解与应用 | PengSite">
+  <meta name="title" content="File与IO详解 | PengSite">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,9 +44,9 @@
          "@id": "\/"
     },
     "articleSection" : "posts",
-    "name" : "Stream流详解与应用",
-    "headline" : "Stream流详解与应用",
-    "description" : "Stream流详解与应用 1. 什么是 Stream？ ​\tStream（流）是一个来自数据源的元素队列并支持聚合操作 ​\t元素是特定类型的对象，形成一个队列。Java中的Stream并不会存储元素，而是按需计算。 ​\t流的来源：可以是集合，数组，I\/O channel， 产生器generator 等。 ​\t聚合操作：类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。\n2. Stream基础特征 ​\tPipelining: 中间操作都会返回流对象本身。这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。 ​\t内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做\t外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。\n3. Stream流的三类方法 1. 获取Steam流 : 可以理解成创建一条流水线，并把数据放到流水线上准备进行操作 2. 中间方法 : 可以理解成流水线上的操作，一次操作完毕之后，还可以继续进行其他操作 3. 是流水线上的最后一个操作，一个Stream流只能有一个终结方法  4. Stream流的获取方法   单列集合\n可以使用Collection接口中的默认方法stream(),生成流\ndefault Stream\u0026lt;E\u0026gt; stream()   双列集合\n间接的生成流 可以先通过keySet或者entrySet获取一个Set集合，再获取Stream流\n  数组\nArrays中的静态方法stream生成流",
+    "name" : "File与IO详解",
+    "headline" : "File与IO详解",
+    "description" : "File和IO详解 1. IO流是什么?  可以将数据从本地文件中读取出来 可以将数据从内存保存到本地文件  2. File类是什么?  在读写数据时告诉虚拟机要操作的(文件\/文件夹)在哪 对(文件\/文件夹)本身进行操作，包括创建、删除等  3. File类的介绍和构造方法  File类介绍  它是文件和目录路径名的抽象表示 文件和目录可以通过File封装成对象 File封装的对象仅仅是一个路径名。它可以是存在的，也可以是不存在的。      File类构造方法\n   方法名 说明     File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例   File(String parent, String child) 从父路径名字符串和子路径名字符串创建新的 File实例   File(File parent, String child) 从父抽象路径名和子路径名字符串创建新的 File实例      代码演示\n \/\/File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。 String path = \u0026quot;C:\\\\itheima\\\\a.",
     "inLanguage" : "zh-CN",
     "author" : "PengSite",
     "creator" : "PengSite",
@@ -54,11 +54,11 @@
     "accountablePerson" : "PengSite",
     "copyrightHolder" : "PengSite",
     "copyrightYear" : "2017",
-    "datePublished": "2017-09-30 00:00:00 \u002b0000 UTC",
-    "dateModified" : "2017-09-30 00:00:00 \u002b0000 UTC",
+    "datePublished": "2017-10-06 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-10-06 00:00:00 \u002b0000 UTC",
     "url" : "\/2017\/stream\/",
-    "wordCount" : "722",
-    "keywords" : [ "java","stream", "PengSite"]
+    "wordCount" : "1691",
+    "keywords" : [ "java","File_io", "PengSite"]
 }
 </script>
 
@@ -120,11 +120,11 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Stream流详解与应用</h1>
+        <h1 class="post-title" itemprop="name headline">File与IO详解</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="/" rel="author">PengSite</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2017-09-30 itemprop="datePublished">September 30, 2017</time>
+                on <time datetime=2017-10-06 itemprop="datePublished">October 6, 2017</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
@@ -150,374 +150,89 @@
           
           
 
-          <h1 id="stream流详解与应用">Stream流详解与应用</h1>
-<h3 id="1-什么是-stream">1. 什么是 Stream？</h3>
-<p>​	Stream（流）是一个来自数据源的元素队列并支持聚合操作
-​	元素是特定类型的对象，形成一个队列。Java中的Stream并不会存储元素，而是按需计算。
-​	流的来源：可以是集合，数组，I/O channel， 产生器generator 等。
-​	聚合操作：类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。</p>
-<h3 id="2-stream基础特征">2. Stream基础特征</h3>
-<p>​	Pipelining: 中间操作都会返回流对象本身。这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。
-​	内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做	外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。</p>
-<h3 id="3-stream流的三类方法">3. Stream流的三类方法</h3>
-<pre><code>1. 获取Steam流 : 可以理解成创建一条流水线，并把数据放到流水线上准备进行操作
-2. 中间方法 : 可以理解成流水线上的操作，一次操作完毕之后，还可以继续进行其他操作
-3. 是流水线上的最后一个操作，一个Stream流只能有一个终结方法
-</code></pre>
-<h3 id="4-stream流的获取方法">4. Stream流的获取方法</h3>
-<ol>
-<li>
-<p>单列集合</p>
-<p>可以使用<code>Collection</code>接口中的默认方法<code>stream()</code>,生成流</p>
-<pre><code>default Stream&lt;E&gt; stream()
-</code></pre></li>
-<li>
-<p>双列集合</p>
-<p>间接的生成流
-可以先通过<code>keySet</code>或者<code>entrySet</code>获取一个Set集合，再获取Stream流</p>
+          <h1 id="file和io详解">File和IO详解</h1>
+<h4 id="1-io流是什么">1. IO流是什么?</h4>
+<ul>
+<li>可以将数据从本地文件中读取出来</li>
+<li>可以将数据从内存保存到本地文件</li>
+</ul>
+<h4 id="2-file类是什么">2. File类是什么?</h4>
+<ul>
+<li>在读写数据时告诉虚拟机要操作的(文件/文件夹)在哪</li>
+<li>对(文件/文件夹)本身进行操作，包括创建、删除等</li>
+</ul>
+<h4 id="3-file类的介绍和构造方法">3. File类的介绍和构造方法</h4>
+<ul>
+<li>File类介绍
+<ul>
+<li>它是文件和目录路径名的抽象表示</li>
+<li>文件和目录可以通过File封装成对象</li>
+<li>File封装的对象仅仅是一个路径名。它可以是存在的，也可以是不存在的。</li>
+</ul>
 </li>
-<li>
-<p>数组</p>
-<p><code>Arrays</code>中的静态方法<code>stream</code>生成流</p>
-</li>
-<li>
-<p>同种数据类型的多个数据</p>
-<p>使用<code>Stream.of(T...values)</code>生成流   &mdash;形参为可变参数</p>
-</li>
-</ol>
-<h3 id="5-代码演示">5. 代码演示</h3>
-<h4 id="1-单列集合">1. 单列集合</h4>
-<pre><code>//ArrayList是单列集合其中的实现类，所以可以直接使用
-//可以使用Collection接口中的默认方法stream(),生成流
-//default Stream&lt;E&gt; stream()
-ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
-list.add(&quot;aaa&quot;);
-list.add(&quot;bbb&quot;);
-list.add(&quot;ccc&quot;);
-list.add(&quot;ddd&quot;);
-
-Stream&lt;String&gt; stream = list.stream();
-stream.forEach(s-&gt; System.out.println(s));
-</code></pre><p>输出结果为：</p>
-<pre><code>aaa
-bbb
-ccc
-ddd
-</code></pre><p>也可以直接<code>'.'</code>的方式直接写：</p>
-<pre><code>list.stream().forEach(s-&gt; System.out.println(s));
-</code></pre><h4 id="21-双列集合keyset实现">2.1 双列集合(KeySet实现)</h4>
-<pre><code>//不可以直接获取流，可以先通过keySet或者entrySet获取一个Set集合，再获取Stream流
-//keySet:先获取所有的键放到Set中，再把Set集合中的键放到Stream中
-
-HashMap&lt;String,Integer&gt; hm = new HashMap&lt;&gt;();
-hm.put(&quot;北京&quot;,1);
-hm.put(&quot;上海&quot;,2);
-hm.put(&quot;深圳&quot;,3);
-hm.put(&quot;合肥&quot;,4);
-
-hm.keySet().stream().forEach(s-&gt; System.out.println(s));
-</code></pre><p>输出结果为：</p>
-<pre><code>上海
-合肥
-北京
-深圳
-</code></pre><h4 id="22-双列集合entryset实现">2.2 双列集合(entrySet实现)</h4>
-<pre><code>//不可以直接获取流，可以先通过keySet或者entrySet获取一个Set集合，再获取Stream流
-//entrySet先获取所有的键值对对象放到Set中,再把Set中的键值对放到Stream流中
-
-HashMap&lt;String,Integer&gt; hm = new HashMap&lt;&gt;();
-hm.put(&quot;北京&quot;,1);
-hm.put(&quot;上海&quot;,2);
-hm.put(&quot;深圳&quot;,3);
-hm.put(&quot;合肥&quot;,4);
-
-hm.entrySet().stream().forEach(s-&gt; System.out.println(s));
-</code></pre><p>输出结果为：</p>
-<pre><code>上海=2
-合肥=4
-北京=1
-深圳=3
-</code></pre><h4 id="3-数组">3. 数组</h4>
-<pre><code>int[] arr = {1,2,3,4,5};
-Arrays.stream(arr).forEach(s-&gt; System.out.print(s+&quot; &quot;));
-</code></pre><p>输出结果为：</p>
-<pre><code>1 2 3 4 5
-</code></pre><h4 id="4-同种数据类型的多个数据">4. 同种数据类型的多个数据</h4>
-<pre><code>//同种数据类型的多个数据
-//形参为可变参数
-Stream.of(1,2,3,4,5).forEach(s-&gt; System.out.print(s+&quot; &quot;));
-</code></pre><p>输出结果为：</p>
-<pre><code>1 2 3 4 5
-</code></pre><h3 id="6-stream流常见的中间方法">6. Stream流常见的中间方法</h3>
-<pre><code>1. `Stream&lt;T&gt; filter(Predicate Predicate)`:用于对流中的数据进行过滤 ---参数是一个`Predicate`接口
-     `Predicate`接口中就一个test方法：
-     `boolean test(T t)`:对给定的参数进行判断，返回一个布尔值
-
-#### 6.1 代码演示
-
-​	filter方法获取流中的每一个数据
-​    而test方法中的s,就一次表示流中的每一个数据
-​    我们只要在test方法中对s进行判断就可以了
-​    如果判断的结果为true,则当前数据保留
-​    如果为false,则当前数据就不要
-</code></pre>
-<p>​
-​
-​	```
-​	 ArrayList<!-- raw HTML omitted --> list = new ArrayList&lt;&gt;();
-​	        list.add(&ldquo;张三丰&rdquo;);
-​	        list.add(&ldquo;张无忌&rdquo;);
-​	        list.add(&ldquo;张翠山&rdquo;);
-​	        list.add(&ldquo;王二麻&rdquo;);
-​	        list.add(&ldquo;张良&rdquo;);
-​	        list.add(&ldquo;谢广坤&rdquo;);
-​</p>
-<pre><code>        //匿名内部类实现
-        list.stream().filter(
-                new Predicate&lt;String&gt;() {
-                    @Override
-                    public boolean test(String s) {
-                        boolean result = s.startsWith(&quot;张&quot;);
-                        return result;
-
-                    }
-                }
-        ).forEach(s-&gt; System.out.println(s));
-
-        //Lanbda实现
-        list.stream().filter(
-                (String s)-&gt;{
-                    boolean result = s.startsWith(&quot;张&quot;);
-                    return result;
-                }
-        ).forEach(s-&gt; System.out.println(s));
-
-        //Lanbda简写
-        list.stream().filter(s-&gt;s.startsWith(&quot;张&quot;)).forEach(s-&gt; System.out.println(s));
-```
-
-输出结果为：
-
-```
-张三丰
-张无忌
-张翠山
-张良
-```
-</code></pre>
-<p>​
-​</p>
-<ol start="2">
-<li>
-<p><code>Stream&lt;T&gt; limit(long maxSize)</code>:截取指定参数个数的数据</p>
-<p>保留前面<code>long maxSize</code>个数据</p>
-</li>
-<li>
-<p><code>Stream&lt;T&gt; skip(long n)</code>:跳过指定参数个数的数据</p>
-<p>去除前面<code>long n</code>个保留后面</p>
-</li>
-<li>
-<p><code>static&lt;T&gt; Stream&lt;T&gt;concat(Stream a,Stream b)</code>:合并a和b两个流为一个流</p>
-</li>
-<li>
-<p><code>Stream&lt;T&gt; distinct()</code>:去除流中重复的元素。依赖(hashCode和equals方法)</p>
-<h4 id="62--代码演示">6.2  代码演示</h4>
-<pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
-        list.add(&quot;张三丰&quot;);
-        list.add(&quot;张无忌&quot;);
-        list.add(&quot;张翠山&quot;);
-        list.add(&quot;王二麻&quot;);
-        list.add(&quot;张良&quot;);
-        list.add(&quot;谢广坤&quot;);
-        list.add(&quot;谢广坤&quot;);
-        list.add(&quot;谢广坤&quot;);
-        list.add(&quot;谢广坤&quot;);
-    
-        // 1. `Stream&lt;T&gt; limit(long maxSize)`:截取指定参数个数的数据
-        // 保留前面`long maxSize`个数据
-        list.stream().limit(2).forEach(s-&gt; System.out.println(s));
-        System.out.println(&quot;-----------------------------------&quot;);
-        // 2. `Stream&lt;T&gt; skip(long n)`:跳过指定参数个数的数据
-        //去除前面保留后面
-        list.stream().skip(3).forEach(s-&gt; System.out.println(s));
-        System.out.println(&quot;----------------------------------&quot;);
-        // 3. `static&lt;T&gt; Stream&lt;T&gt;concat(Stream a,Stream b)`:合并a和b两个流为一个流
-        ArrayList&lt;String&gt; list1 = new ArrayList&lt;&gt;();
-        list1.add(&quot;我是第二个Stream流&quot;);
-    
-        //第一个Stream流
-        Stream&lt;String&gt; stream1 = list.stream();
-        //第二个Stream流
-        Stream&lt;String&gt; stream2 = list1.stream();
-        Stream&lt;String&gt; stream3 = Stream.concat(stream1, stream2);
-        stream3.forEach(s-&gt; System.out.println(s));
-        System.out.println(&quot;--------下面为简写--------&quot;);
-        //简写方式
-        Stream.concat(list.stream(),list1.stream()).forEach(s -&gt; 				System.out.println(s));
-        System.out.println(&quot;-----------------------------------&quot;);
-        // 4. `Stream&lt;T&gt; distinct()`:去除流中重复的元素。依赖(hashCode和equals方法)
-        list.stream().distinct().forEach(s -&gt; System.out.println(s));
-</code></pre><p>输出结果为：</p>
-<pre><code>张三丰
-张无忌
------------------------------------
-王二麻
-张良
-谢广坤
-谢广坤
-谢广坤
-谢广坤
-----------------------------------
-张三丰
-张无忌
-张翠山
-王二麻
-张良
-谢广坤
-谢广坤
-谢广坤
-谢广坤
-我是第二个Stream流
---------下面为简写--------
-张三丰
-张无忌
-张翠山
-王二麻
-张良
-谢广坤
-谢广坤
-谢广坤
-谢广坤
-我是第二个Stream流
------------------------------------
-张三丰
-张无忌
-张翠山
-王二麻
-张良
-谢广坤
-</code></pre></li>
-</ol>
-<h3 id="7-stream流常见的终结操作方法">7. Stream流常见的终结操作方法</h3>
-<ol>
-<li>
-<p><code>forEach(Consumer action)</code>:对此流的每一个元素执行操作</p>
-<p><code>Consumer</code>接口中的方法  &mdash; <code>void accept(T t)</code>:对给定的参数执行此操作</p>
-<h4 id="71-代码演示">7.1 代码演示</h4>
-<pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
-        list.add(&quot;张三丰&quot;);
-        list.add(&quot;张无忌&quot;);
-        list.add(&quot;张翠山&quot;);
-        list.add(&quot;王二麻&quot;);
-        list.add(&quot;张良&quot;);
-        list.add(&quot;谢广坤&quot;);
-     
-        //`forEach(Consumer action)`:对此流的每一个元素执行操作
-     
-        //`Consumer`接口中的方法  --- `void accept(T t)`:对给定的参数执行此操作
-     
-        //在forEach方法的地产，会循环获取到流中的每一个数据
-     
-        //并循环调用accept方法,并把每一个数据传递给accept方法
-     
-        //s就依次表示了流中的每一个数据
-     
-        //我们只要accept方法中，写上处理的业务逻辑即可
-     
-        list.stream().forEach(
-                new Consumer&lt;String&gt;() {
-                    @Override
-                    public void accept(String s) {
-                        System.out.println(s);
-                    }
-                }
-        );
-        System.out.println(&quot;--------------&quot;);
-        //用lambda表达式的简化格式
-        list.stream().forEach(
-                (String s)-&gt;{
-                    System.out.println(s);
-                }
-        );
-        System.out.println(&quot;--------------&quot;);
-        //简化lambda
-        list.stream().forEach(s -&gt; System.out.println(s));
-</code></pre><p>输出结果为：</p>
-<pre><code>张三丰
-张无忌
-张翠山
-王二麻
-张良
-谢广坤
---------------
-张三丰
-张无忌
-张翠山
-王二麻
-张良
-谢广坤
---------------
-张三丰
-张无忌
-张翠山
-王二麻
-张良
-谢广坤
-</code></pre></li>
-<li>
-<p><code>long count()</code>:返回此流中的元素数</p>
-<h4 id="72-代码演示">7.2 代码演示</h4>
-<pre><code>//long count() : 返回此流中的元素数
-long count = list.stream().count();
-System.out.println(count);
-</code></pre><p>输出结果为：</p>
-<pre><code>6
-</code></pre></li>
-</ol>
-<h3 id="8-stream流的收集操作">8. Stream流的收集操作</h3>
-<p>​		在Stream流中无法直接修改集合、数组等数据源中的数据</p>
-<h4 id="81-代码演示">8.1 代码演示</h4>
-<pre><code>				/**
-         * 定义一个集合,并添加：1，2，3，4，5，6，7，8，9，10
-         * 将集合中的奇数删除，只保留偶数
-         * 遍历集合得到2，4，6，8，10
-         */
-        //定一个集合
-        ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-        //for循环添加元素,可以用List.of
-        for (int i = 1; i &lt;= 10 ; i++) {
-            list.add(i);
-        }
-        //stream流操作
-        list.stream().filter(number -&gt; number%2==0).forEach(number -&gt; 	System.out.println(number));
-        System.out.println(&quot;-------------------------&quot;);
-        //遍历集合
-        for (Integer integer : list) {
-            System.out.println(integer);
-        }
-</code></pre><p>输出结果为：</p>
-<pre><code>2
-4
-6
-8
-10
--------------------------
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</code></pre><p>根据代码演示可以总结出:在Stream流中无法直接修改集合、数组等数据源中的数据</p>
-<p>那么使用Stream流之后，怎么把数据收集起来了？</p>
-<p>Stream流中提供了<code>collect(Collector&lt;? super T,A,R&gt; collector)</code>方法，其参数数是一个<code>Collector</code>接口。</p>
+</ul>
 <ul>
 <li>
-<p>常用方法</p>
+<p>File类构造方法</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>File(String pathname)</code></td>
+<td>通过将给定的路径名字符串转换为抽象路径名来创建新的 <code>File</code>实例</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>File(String parent,  String child)</code></td>
+<td>从父路径名字符串和子路径名字符串创建新的 <code>File</code>实例</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>File(File parent, String child)</code></td>
+<td>从父抽象路径名和子路径名字符串创建新的 <code>File</code>实例</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>      //File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。
+      String path = &quot;C:\\itheima\\a.txt&quot;;
+      //把字符串表示形式的路径变成File对象，为了使用File类里面的方法
+      File file = new File(path);
+  		
+      //File(String parent, String child) 从父路径名字符串和子路径名字符串创建新的 File实例。  
+      String path1 = &quot;C:\\itheima&quot;;
+      String path2 = &quot;a.txt&quot;;
+      //把两个路径进行拼接
+      File file1 = new File(path1,path2);
+      System.out.println(file1);  // C:\itheima\a.txt
+  		
+      //File(File parent, String child) 从父抽象路径名和子路径名字符串创建新的 File实例。
+      File file2 = new File(&quot;C:\\itheima&quot;);
+      String path3 = &quot;a.txt&quot;;
+      File file3 = new File(file2, path3);
+      System.out.println(file3); // C:\itheima\a.txt
+</code></pre></li>
+<li>
+<p>绝对路径和相对路径</p>
+<ul>
+<li>
+<p>绝对路径：从盘符开始</p>
+<pre><code>File file1 = new File(&quot;D:\\itheima\\a.txt&quot;);
+</code></pre></li>
+<li>
+<p>相对路径：相对当前项目下的路径</p>
+<pre><code>File file2 = new File(&quot;a.txt&quot;);
+File file3 = new File(&quot;模块名\\a.txt&quot;);
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>File类创建</p>
 <table>
 <thead>
 <tr>
@@ -527,119 +242,1276 @@ System.out.println(count);
 </thead>
 <tbody>
 <tr>
-<td>R collect(Collector collector)</td>
-<td>把结果收集到集合中</td>
+<td>public boolean createNewFile()</td>
+<td>创建一个新的空的文件</td>
+</tr>
+<tr>
+<td>public boolean mkdir()</td>
+<td>创建一个单级文件夹</td>
+</tr>
+<tr>
+<td>public boolean mkdirs()</td>
+<td>创建一个多级文件夹</td>
 </tr>
 </tbody>
 </table>
+<ul>
+<li><code>createNewFile()</code>
+<ul>
+<li>如果文件存在，那么创建失败，返回false</li>
+<li>如果文件不存在，那么创建成功，返回true</li>
+<li>创建文件的时候，文件所在的文件夹必须要存在</li>
+<li><code>createNewFile()</code>方法不管调用者有没有后缀名，只能创建文件</li>
+</ul>
+</li>
+<li><code>mkdir()</code>
+<ul>
+<li>只能创建单级文件夹</li>
+<li>如果文件夹存在，那么创建失败，返回false</li>
+<li>不管调用者有没有后缀名，只能创建单级文件夹</li>
+</ul>
+</li>
+<li><code>mkdirs()</code>
+<ul>
+<li>可以创建单级文件夹和多级文件夹</li>
+<li>如果文件夹存在，那么创建失败，返回false</li>
+</ul>
+</li>
+</ul>
 </li>
 <li>
-<p>工具类Collectors提供了具体的收集方式</p>
+<p>File删除方法</p>
 <table>
 <thead>
 <tr>
 <th>方法名</th>
-<th style="text-align:left">说明</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>public static <!-- raw HTML omitted --> Collector toList()</td>
-<td style="text-align:left">把元素收集到List集合中</td>
+<td><code>delete()</code></td>
+<td>删除由此抽象路径名表示的文件或目录</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>delete()</code>
+<ul>
+<li>删除不走回收站的，没法在回收站还原</li>
+<li>可以删除文件也可以删除空文件夹</li>
+<li>如果删除的是文件则直接删除，如果删除的是文件夹，只能删除空文件夹</li>
+<li>如果要删除一个有内容的文件夹，要先进入到这个文件夹，把里面的内容全部删除完毕，才能删除这个文件夹</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>File判断和获取功能</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public boolean isDirectory()</td>
+<td>测试此抽象路径名表示的File是否为目录</td>
 </tr>
 <tr>
-<td>public static <!-- raw HTML omitted --> Collector toSet()</td>
-<td style="text-align:left">把元素收集到Set集合中</td>
+<td>public boolean isFile()</td>
+<td>测试此抽象路径名表示的File是否为文件</td>
 </tr>
 <tr>
-<td>public static  Collector toMap(Function keyMapper,Function valueMapper)</td>
-<td style="text-align:left">把元素收集到Map集合中</td>
+<td>public boolean exists()</td>
+<td>测试此抽象路径名表示的File是否存在</td>
+</tr>
+<tr>
+<td>public boolean getName()</td>
+<td>返回由此抽象路径名表示的文件或目录的名称</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>getName()</code>
+<ul>
+<li>如果调用者是文件，那么获取的是文件名和后缀名</li>
+<li>如果调用者是文件夹，那么获取的是文件夹的名字</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>File类高级获取功能</p>
+<ul>
+<li><code>listFiles()</code>:进入文件夹，获取这个文件夹里面所有的文件和文件夹的File对象，并把这些File对象都放在一个数组中返回(包括隐藏文件和隐藏文件夹都可以获取)</li>
+<li>当调用者不存在时，返回null</li>
+<li>当调用者是一个文件时，返回null</li>
+<li>当调用者是一个空文件夹时，返回一个长度为0的数组</li>
+<li>当调用者是一个有内容的文件夹时，将里面所有文件和文件夹的路径放在File数组中返回</li>
+<li>当调用者是一个有隐藏文件或文件夹时，将里面所有文件和文件夹的路径放在File数组中返回，包括隐藏内容</li>
+<li>当调用者是一个需要权限才能进入的文件夹时，返回null</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public File[] listFiles()</td>
+<td>返回此抽象路径名表示的目录中的文件和目录的File对象数组</td>
 </tr>
 </tbody>
 </table>
 </li>
 </ul>
-<h4 id="82-代码演示toset">8.2 代码演示（toSet）</h4>
-<pre><code>ArrayList&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
-for (int i = 1; i &lt;=10; i++) {
-	list.add(i);
-}
-//filter()负责过滤数据
-//collect()负责收集数据，不负责创建容器，不添加数据到容器中
-//Collectors.toSet()在底层创建Set集合，并把数据添加到集合
-		
-Set&lt;Integer&gt; set = list.stream().filter(number -&gt;number % 2 ==0).collect(Collectors.toSet());
-System.out.println(set);
-</code></pre><p>输出结果为:</p>
-<pre><code>[2, 4, 6, 8, 10]
-</code></pre><h4 id="83-代码演示tomap">8.3 代码演示（toMap）</h4>
-<pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
-		list.add(&quot;zhangsan,23&quot;);
-		list.add(&quot;lisi,24&quot;);
-		list.add(&quot;wangwu,25&quot;);
-		
-		Map&lt;String, Integer&gt; map = list.stream().filter(
-					s-&gt;{String[] split = s.split(&quot;,&quot;);
-					int age = Integer.parseInt(split[1]);
-					return age &gt;= 24;
-				}
-				//Collertors.toMap创建一个map集合并将数据添加到集合中
-				//第一个lambda表达式就是如何获取到Map中的建
-				//第二个lambda表达式就是如何获取到Map中的值
-				).collect(Collectors.toMap(
-					s-&gt;s.split(&quot;,&quot;)[0],s-&gt;Integer.parseInt(s.split(&quot;,&quot;)[1])));
-		System.out.println(map);
-</code></pre><p>输出结果为：</p>
-<pre><code>{lisi=24, wangwu=25}
-</code></pre><h3 id="9-stream流的练习">9. Stream流的练习</h3>
-<p>​		要求：</p>
-<p>现在有两个ArrayList集合，分别存储6名男演员和6名女演员，要求完成如下操作:</p>
+<h4 id="4-代码演示-----删除有内容的多层级文件夹">4. 代码演示 &mdash; 删除有内容的多层级文件夹</h4>
+<pre><code>	public static void main(String[] args) throws IOException {
+		File src = new File(&quot;C:\\Users\\Administrator\\Desktop\\src&quot;);
+		deleteDir(src);
+	}
+
+	private static void deleteDir(File src) {
+		//先删掉这个文件夹里面所有的内容
+		//方法在方法体中自己调用自己
+		//得到文件夹里面所有内容的File对象到File数组
+		File[] listFiles = src.listFiles();
+		//遍历数组得到文件夹里面每一个文件和文件夹的File对象
+		for (File file : listFiles) {
+			//如果File对象是一个文件，那么直接删除
+			if (file.isFile()) {
+				file.delete();
+			}else {
+				// 递归调用方法
+				deleteDir(file);
+			}
+			
+		}
+		//最后在删除这个文件夹
+		src.delete();
+</code></pre><h4 id="5-io流">5. IO流</h4>
 <ul>
 <li>
-<p>男演员只要名字为3个字的前两人</p>
+<p>IO流的作用</p>
+<ul>
+<li>将数据写到文件中，实现数据永久化存储</li>
+<li>读取文件中已经存在的数据</li>
+<li><code>I</code>：表示intput，是数据从硬盘进内存的过程，称之为读</li>
+<li><code>O</code>：表示output，是数据从内存到硬盘的过程，称之为写</li>
+</ul>
 </li>
 <li>
-<p>女演员只要性杨的，并且不要第一个</p>
+<p>在数据传输的过程中，是谁在读？是谁在写？这个参照物是谁？</p>
+<ul>
+<li>IO的数据传输，可以看做是一种数据的流动，按照流动的方向，以内存为参照物，进行读写操作</li>
+<li>也就是：内存在读，内存在写</li>
+</ul>
 </li>
 <li>
-<p>把过滤后的男演员姓名和女演员姓名合并到一起</p>
+<p>IO流的分类</p>
+<ul>
+<li>按流向分
+<ul>
+<li>输入流</li>
+<li>输出流</li>
+</ul>
+</li>
+<li>按数据类型分
+<ul>
+<li>字节流
+<ul>
+<li>操作所有类型的文件</li>
+</ul>
+</li>
+<li>字符流
+<ul>
+<li>只能操作纯文本文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-字节流">6. 字节流</h4>
+<ul>
+<li>
+<p>字节流写数据的步骤</p>
+<ul>
+<li>
+<p>创建字节输出流对象</p>
+<ul>
+<li>
+<p><code>FileOutputStream(File file)</code> &mdash; 创建文件输出流以写入由指定的 File对象表示的文件</p>
 </li>
 <li>
-<p>把上一步操作后的元素作为构造方法的参数创建演员对象，遍历数据</p>
+<p><code>FileOutputStream(String name) </code>   &mdash; 创建文件输出流以指定的名称写入文件</p>
 </li>
 <li>
-<p>演员类Actor，里面有一个成员变量，一个带参构造方法，以及成员变量对应的get/set方法</p>
-<h4 id="91-代码演示">9.1 代码演示</h4>
-<pre><code>      ArrayList&lt;String&gt; manList = new ArrayList&lt;String&gt;();
-      manList.add(&quot;张无忌&quot;);
-      manList.add(&quot;张三&quot;);
-      manList.add(&quot;刘备&quot;);
-      manList.add(&quot;郑成功&quot;);
-      manList.add(&quot;徐晃&quot;);
-      manList.add(&quot;王三春&quot;);
+<p>如果文件不存在，会自动创建文件</p>
+</li>
+<li>
+<p>如果文件存在，会把文件清空</p>
+<p>例:</p>
+<pre><code>FileOutputStream fos = new
+FileOutputStream(&quot;C:\\Users\\Administrator\\Desktop\\io\\a.txt&quot;);
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>写数据</p>
+<ul>
+<li>传递整数，实际是传递码表的对应的字符</li>
+</ul>
+<pre><code>fos.write(97);
+</code></pre></li>
+<li>
+<p>释放资源</p>
+<ul>
+<li>告诉操作系统，我现在已经不适用这个资源了</li>
+</ul>
+<pre><code>fos.close();
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>字节流写数据的3种方式</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>void write(int b)</td>
+<td>一次写一个字节数据</td>
+</tr>
+<tr>
+<td>void write(byte[] b)</td>
+<td>一次写一个字节数组数据</td>
+</tr>
+<tr>
+<td>void write(byte[] b,int off,int len)</td>
+<td>一次写一个字节数组的部分数据</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>代码演示写入方式</p>
+<ul>
+<li><code>void write(byte[] b,int off,int len)</code></li>
+<li><code>off</code>：开始的索引位置，<code>len</code>：个数</li>
+</ul>
+<pre><code>      FileOutputStream fos = new FileOutputStream(&quot;src\\a.txt&quot;);
   		
-      ArrayList&lt;String&gt; womanList = new ArrayList&lt;String&gt;();
-      womanList.add(&quot;郑合&quot;);
-      womanList.add(&quot;杨千金&quot;);
-      womanList.add(&quot;杨贵妃&quot;);
-      womanList.add(&quot;关银屏&quot;);
-      womanList.add(&quot;孙尚香&quot;);
-      womanList.add(&quot;妲己&quot;);
-      womanList.add(&quot;钟无艳&quot;);
+      byte[] bys = {97,98,99,100,101,102,103,104};
+      fos.write(bys,1,4);
   		
-      //男演员只要名字为3个字的前两人
-      Stream&lt;String&gt; stream1 = manList.stream().filter(name-&gt;name.length()==3).limit(2);
-      //女演员只要性杨的，并且不要第一个
-      Stream&lt;String&gt; stream2 = womanList.stream().filter(name1-&gt;name1.startsWith(&quot;杨&quot;)).skip(1);
-      //把过滤后的男演员姓名和女演员姓名合并到一起
-      Stream.concat(stream1,stream2).forEach(name-&gt;{
-          Actor actor = new Actor(name);
-          System.out.println(actor);
-      });
-</code></pre><p>输出结果为:</p>
-<pre><code>Actor [name=张无忌]
-Actor [name=郑成功]
-Actor [name=杨贵妃]
+      fos.close();
+</code></pre><ul>
+<li><code>void write(byte[] b)</code></li>
+</ul>
+<pre><code>      FileOutputStream fos = new FileOutputStream(&quot;src\\a.txt&quot;);
+  		
+      byte[] bys = {97,98,99};
+      fos.write(bys);
+  		
+      fos.close();
+</code></pre></li>
+<li>
+<p>字节流写数据实现换行</p>
+<ul>
+<li>写完数据后，加换行符
+<ul>
+<li>windows : <code>\r\n</code></li>
+<li>linux : <code>\n</code></li>
+<li>mac : <code>\r</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>字节流写数据实现追加写入</p>
+<ul>
+<li><code>FileOutputStream(File file,  boolean append)</code> &mdash; 创建文件输出流以指定的名称写入文件，如果第二个参数为true，不会清空文件里面的内容</li>
+</ul>
+</li>
+<li>
+<p>字节流写数据加try&hellip;catch异常处理 &mdash; finally</p>
+<ul>
+<li>
+<p>异常处理标准格式：<code>try...catch...finally</code></p>
+</li>
+<li>
+<p>在异常处理时提供finally块来执行所有清除操作，比如说IO流中的释放资源</p>
+</li>
+<li>
+<p>被finally控制的语句一定会执行，除非JVM退出</p>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(&quot;src\\a.txt&quot;);
+            fos.write(97);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            //finally语句里面的代码，一定会被执行
+            if(fos!=null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>字节流写数据的步骤</p>
+<ul>
+<li>
+<p>创建字节输入流对象</p>
+</li>
+<li>
+<p><code>FileInputStream fis = new FileInputStream(&quot;src\\a.txt&quot;);</code></p>
+<pre><code>	public static void main(String[] args) throws IOException {
+        //如果文件存在，那么就不会报错
+        //如果文件不存在，那么就直接报错
+        FileInputStream fis = new FileInputStream(&quot;src\\a.txt&quot;);
+        //一次读取一个字节，返回值就是本次读到的那个字节对应码表的值
+        //想得到具体的数字就需要强制转换
+        int read = fis.read();
+    		
+        System.out.println(read);
+        //释放资源
+        fis.close();
+    
+	}
+</code></pre></li>
+<li>
+<p>读数据</p>
+<ul>
+<li>
+<p><code>fis.read();</code> &mdash; 一次读取一个字节</p>
+</li>
+<li>
+<p>一次读取多个字节</p>
+<pre><code>	public static void main(String[] args) throws IOException {
+      //如果文件存在，那么就不会报错
+      //如果文件不存在，那么就直接报错
+      FileInputStream fis = new FileInputStream(&quot;src\\a.txt&quot;);
+      //一次读取一个字节，返回值就是本次读到的那个字节对应码表的值
+      //想得到具体的数字就需要强制转换
+      int b;
+      while((b = fis.read())!=-1) {
+          System.out.println((char)b);
+      }
+      //释放资源
+      fis.close();
+      
+	}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>释放资源  &mdash;  <code>fis.close();</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>字节流拷贝文件_定义数组拷贝</p>
+<ul>
+<li>
+<p>实例代码：</p>
+<pre><code>    public static void main(String[] args) throws IOException {
+            //创建输入对象
+        FileInputStream fis = new FileInputStream(&quot;/Users/pc/Desktop/sucai/嘿嘿嘿.avi&quot;);
+        //创建输出对象
+        FileOutputStream fos = new FileOutputStream(&quot;src/a.avi&quot;);
+                //定义一个字节数组
+        byte [] bytes = new byte[1024];
+        int len;
+        //循环读取文件内容
+        while ((len = fis.read(bytes))!=-1){
+            fos.write(bytes,0,len);
+        }
+        fis.close();
+        fos.close();
+    }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>字节流拷贝文件_字节缓冲流</p>
+<ul>
+<li>
+<p><code>BufferedIntPutStream</code>:字节缓冲输入流</p>
+</li>
+<li>
+<p><code>BufferedOutPutStream</code>:字节缓冲输出流</p>
+</li>
+<li>
+<p>构造方法:</p>
+<ul>
+<li>字节缓冲输出流：<code>BufferedOutPutStream(OutputStream out)</code></li>
+<li>字节缓冲输入流：<code>BufferedIntPutStream(IntPutStream in)</code></li>
+</ul>
+</li>
+<li>
+<p>为什么构造方法需要的是字节流，而不是具体的文件或者路径呢？</p>
+<ul>
+<li>
+<p>字节缓冲流仅仅提供缓冲区，而真正的读写数据还得依靠基本的字节流对象进行操作</p>
+<pre><code>    public static void main(String[] args) throws IOException {
+        //用字节缓冲流拷贝一个文件
+        //创建一个字节缓冲输入流
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(&quot;src//a.avi&quot;));
+        //创建一个字节缓冲输出流
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(&quot;src//copy.avi&quot;));
+              
+        int b;
+        while ((b= bis.read())!=-1){
+            bos.write(b);
+        }
+        bis.close();
+        bos.close();
+    }
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>字节缓冲流结合数组进行拷贝</p>
+<ul>
+<li>
+<p>实例代码</p>
+<pre><code>    public static void main(String[] args) throws IOException {
+        //用字节缓冲流拷贝一个文件
+        //创建一个字节缓冲输入流
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(&quot;src//a.avi&quot;));
+        //创建一个字节缓冲输出流
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(&quot;src//copy.avi&quot;));
+    
+        byte [] bytes = new byte[1024];
+        int len;
+        while ((len= bis.read(bytes))!=-1){
+            bos.write(bytes,0,len);
+        }
+        bis.close();
+        bos.close();
+    }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>字节流读取中文乱码的问题</p>
+<ul>
+<li>字节流读中文，每次只能读取一部分所以就出现了乱码</li>
+</ul>
+</li>
+<li>
+<p>字符串中的编码解码问题</p>
+<ul>
+<li>
+<p>编码</p>
+<ul>
+<li>
+<p><code>byte[] getBytes()</code> :使用平台默认字符集将该String编码为一系列字节，将结果存储到新的字节数组中</p>
+</li>
+<li>
+<p>实例代码</p>
+<pre><code>// `byte[] getBytes()` :使用平台默认字符集将该String编码为一系列字节，将结果存储到新的字节数组中
+String s = &quot;我爱上海&quot;;
+byte[] bytes1 = s.getBytes(StandardCharsets.UTF_8);
+System.out.println(Arrays.toString(bytes1));
+</code></pre></li>
+<li>
+<p><code>byte[] getBytes(String charSetName)</code>:使用指定的字符集将该String编码为一系列字节，将结果存储到新的字节数组中。</p>
+</li>
+<li>
+<p>实例代码</p>
+<pre><code>// `byte[] getBytes(String charSetName)`:使用指定的字符集将该String编码为一系列字节，将结果存储到新的字节数组中。
+byte[] bytes2 =  s.getBytes(&quot;UTF-8&quot;);
+System.out.println(Arrays.toString(bytes2));
+byte[] bytes3 =  s.getBytes(&quot;GBK&quot;);
+System.out.println(Arrays.toString(bytes3));
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>解码</p>
+<ul>
+<li>
+<p><code>String(byte[] bytes)</code>:通过使用平台的默认字符集解码指定的字节数组来构造新的String</p>
+</li>
+<li>
+<p>实例代码</p>
+<pre><code>// `String(byte[] bytes)`:通过使用平台的默认字符集解码指定的字节数组来构造新的String
+byte[] bytes4 = {-26, -120, -111, -25, -120, -79, -28, -72, -118, -26, -75, -73};
+byte[] bytes5 = {-50, -46, -80, -82, -55, -49, -70, -93};
+      
+String s1 = new String(bytes4);
+System.out.println(s1);
+</code></pre></li>
+<li>
+<p><code>String(byte[] bytes,String chaeSetName)</code>:通过指定的字符集解码指定的字节数组来构造新的String</p>
+</li>
+<li>
+<p>实例代码</p>
+<pre><code>// `String(byte[] bytes,String chaeSetName)`:通过指定的字符集解码指定的字节数组来构造新的String
+String s2 = new String(bytes5,&quot;gbk&quot;);
+System.out.println(s2);
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>字符流读取中文的过程</p>
+<ul>
+<li>字符流 = 字节流+编码表</li>
+<li>想要进行拷贝，一律使用字节流或者字节缓冲流</li>
+<li>想要把文本文件中的数据读到内存中，请使用字符输入流，想要把内存中的数据写到文本文件中，请使用字符输出流</li>
+<li>GBK码表一个中文两个字节，UTF-8编码格式一个中文三个字节</li>
+</ul>
+</li>
+<li>
+<p>字符流写数据</p>
+<ul>
+<li>
+<p>创建字符输出流对象</p>
+</li>
+<li>
+<p>注意事项</p>
+<ul>
+<li>如果文件不存在就创建，但是要保证父级路径存在。</li>
+<li>如果文件存在就清空</li>
+</ul>
+<pre><code>//FileWriter fw = new FileWriter(new File(&quot;src//a.txt&quot;));
+FileWriter fw2 = new FileWriter(&quot;src//a.txt&quot;);
+</code></pre></li>
+<li>
+<p>写数据</p>
+</li>
+<li>
+<p>注意事项</p>
+<ul>
+<li>写出int类型的整数，实际写出的是整数在码表上对应的字母</li>
+<li>写出字符串数据，是吧字符串本身写出</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>void write(int c)</td>
+<td>写一个字符</td>
+</tr>
+<tr>
+<td>void write(char[] cbuf)</td>
+<td>写出一个字符数组</td>
+</tr>
+<tr>
+<td>void write(char[] cbuf,int off,int len)</td>
+<td>写出字符数组的一部分</td>
+</tr>
+<tr>
+<td>void write(String str)</td>
+<td>写一个字符串</td>
+</tr>
+<tr>
+<td>void write(String str,int off,int len)</td>
+<td>写一个字符串的一部分</td>
+</tr>
+</tbody>
+</table>
+<pre><code>public static void main(String[] args) throws IOException {
+                //FileWriter fw = new FileWriter(new File(&quot;src//a.txt&quot;));
+        FileWriter fw2 = new FileWriter(&quot;src//a.txt&quot;);
+        /*
+        fw2.write(97);
+        fw2.write(98);
+        fw2.write(99);
+        */
+    
+        /*
+        char[] chars = {97,98,99,100,101};
+        fw2.write(chars);
+        */
+    
+        /*
+        char[] chars = {97,98,99,100,101};
+        fw2.write(chars,0,2);
+        */
+    
+        /*
+        String s = &quot;上海abc&quot;;
+        fw2.write(s);
+        */
+    
+        fw2.write(s,0,4);
+    
+        fw2.close();
+    
+    }
+</code></pre></li>
+<li>
+<p>释放资源</p>
+</li>
+<li>
+<p>每次使用完流必须要释放资源</p>
+<pre><code>fw2.close();
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>字符流的flush和close方法</p>
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flush()</td>
+<td>刷新流，还可以继续写数据</td>
+</tr>
+<tr>
+<td>close()</td>
+<td>关闭流，释放资源，但是在关闭之前会先刷新流，一旦关闭，就不能再写数据</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>字符流的读取数据</p>
+<ul>
+<li>
+<p>一次读取一个字符</p>
+<pre><code>                //创建字符输入流对象        FileReader fr = new FileReader(new File(&quot;src//a.txt&quot;));        FileReader fr2 = new FileReader(&quot;src//a.txt&quot;);        //一次读取一个字符        int ch;        while ((ch = fr2.read())!=-1){            System.out.println((char)ch);        }        //释放资源        fr2.close();
+</code></pre></li>
+<li>
+<p>一次读取多个字符</p>
+<pre><code>   public static void main(String[] args) throws IOException {
+        //创建字符输入流对象
+        FileReader fr = new FileReader(new File(&quot;src//a.txt&quot;));
+        FileReader fr2 = new FileReader(&quot;src//a.txt&quot;);
+        //一次读取多个字符
+        //创建数组
+        char [] chars = new char[1024];
+        int len;
+        while ((len = fr2.read(chars))!=-1){
+            System.out.println(new String(chars,0,len));
+        }
+        //释放资源
+        fr2.close();
+    }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>案例</p>
+<ul>
+<li>
+<p>将用户键盘录入的用户名和密码保存到本地实现永久化存储</p>
+</li>
+<li>
+<p>要求用户名和密码独占一行</p>
+<pre><code>   public static void main(String[] args) throws IOException {
+    
+        //键盘录入用户名和密码
+        Scanner sc = new Scanner(System.in);
+        System.out.println(&quot;请输入用户名!&quot;);
+        String username = sc.next();
+        System.out.println(&quot;请输入密码!&quot;);
+        String pwd = sc.next();
+    
+        //将录入的数据保存到本地
+        FileWriter fw = new FileWriter(&quot;src//a.txt&quot;);
+        //将数据写入本地文件
+        fw.write(username);
+        //表示换行
+        fw.write(&quot;\r&quot;);
+        fw.write(pwd);
+        //刷新流
+        fw.flush();
+        fw.close();
+    }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>字符缓冲流</p>
+<ul>
+<li>
+<p><code>BufferedWriter</code>:可以将数据高效的写出</p>
+</li>
+<li>
+<p>特有方法</p>
+<ul>
+<li>
+<p><code>void newLine()</code>:写一行分隔符，行分隔符字符串由系统属性定义</p>
+<pre><code>   public static void main(String[] args) throws IOException {
+        //创建字符缓冲输出流对象
+        BufferedWriter bw = new BufferedWriter(new FileWriter(&quot;src//a.txt&quot;));
+        bw.write(&quot;我爱上海&quot;);
+        //跨平台换行
+        bw.newLine();
+        bw.write(&quot;我爱祖国&quot;);
+        //跨平台换行
+        bw.newLine();
+        bw.write(&quot;--------&quot;);
+        //刷新流
+        bw.flush();
+        bw.close();
+    }
+</code></pre></li>
+</ul>
+<pre><code>    public static void main(String[] args) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(&quot;src//a.txt&quot;));
+        char [] chars = {97,98,99,100,101};
+        bw.write(chars);
+        bw.close();
+    }
+</code></pre></li>
+<li>
+<p><code>BufferedReader</code>:可以将数据高效的读取到内存</p>
+</li>
+<li>
+<p>特有方法</p>
+<ul>
+<li>
+<p><code>public String readLine()</code>:读一行文字，结果包含行的内容的字符串，不包括任何行终止字符，如果流的结尾已经到达，则为null</p>
+<pre><code>   public static void main(String[] args) throws IOException {
+        //创建字符缓冲输入流对象
+        BufferedReader br = new BufferedReader(new FileReader(&quot;src//a.txt&quot;));
+        //读取数据
+        //可以读取一整行数据，读到换行为止
+        //但是不会读取回车换行符
+        String s;
+        while ((s = br.readLine())!=null){
+            System.out.println(s);
+        }
+      
+        br.close();
+      
+    }
+</code></pre></li>
+</ul>
+<pre><code>       //字符缓冲输入流
+        BufferedReader br = new BufferedReader(new FileReader(&quot;src//a.txt&quot;));
+    
+        //读取数据
+        char [] chars = new char[1024];
+        int len;
+        while((len = br.read(chars)) != -1){
+            System.out.println(new String(chars,0,len));
+        }
+    
+        br.close();
+</code></pre></li>
+<li>
+<p><code>BufferedWreter(Writer out)</code></p>
+</li>
+<li>
+<p><code>BufferedReader(Reader in)</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>案例</p>
+<ul>
+<li>
+<p>读取文件中的数据，排序后再次写到本地文件</p>
+<pre><code>     public static void main(String[] args) throws IOException {
+        //创建字符缓冲输入流对象
+        BufferedReader br = new BufferedReader(new FileReader(&quot;src//a.txt&quot;));
+        String line = br.readLine();
+        System.out.println(&quot;读到的数据为:&quot;+line);
+        br.close();
+        //按照空格切割line
+        String[] split = line.split(&quot; &quot;);
+        //创建一个int数组存放数据
+        //把字符串类型的数组变成int类型
+        int[] a = new int[split.length];
+        //遍历split数组，可以进行类型转换
+        for (int i = 0; i &lt; split.length; i++) {
+            String s = split[i];
+            int i1 = Integer.parseInt(s);
+            a[i] = i1;
+        }
+        //进行排序
+        Arrays.sort(a);
+        System.out.println(Arrays.toString(a));
+        //写出
+        BufferedWriter bw = new BufferedWriter(new FileWriter(&quot;src//a.txt&quot;));
+        for (int i = 0; i &lt; a.length; i++) {
+            bw.write(a[i]+&quot; &quot;);
+            bw.flush();
+        }
+        //释放资源
+        bw.close();
+    }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>转换流</p>
+<ul>
+<li>
+<p><code>InputStreamReader</code>:是从字节流到字符流的桥梁</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InputStreamReader(InputStream in)</code></td>
+<td>创建一个使用默认字符集的InputStreamReader。</td>
+</tr>
+<tr>
+<td><code>InputStreamReader(InputStream in, String charsetName)</code></td>
+<td>创建一个使用命名字符集的InputStreamReader。</td>
+</tr>
+<tr>
+<td><code>InputStreamReader(InputStream in, Charset cs)</code></td>
+<td>创建一个使用给定字符集的InputStreamReader。</td>
+</tr>
+<tr>
+<td><code>InputStreamReader(InputStream in, CharsetDecoder dec)</code></td>
+<td>创建一个使用给定字符集解码器的InputStreamReader。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>OutputStreamWriter</code>:是从字符流到字节流的桥梁</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OutputStreamWriter(OutputStream out)</code></td>
+<td>创建一个使用默认字符编码的OutputStreamWriter</td>
+</tr>
+<tr>
+<td><code>OutputStreamWriter(OutputStream out, String charsetName)</code></td>
+<td>创建一个使用命名字符集的OutputStreamWriter。</td>
+</tr>
+<tr>
+<td><code>OutputStreamWriter(OutputStream out, Charset cs)</code></td>
+<td>创建一个使用给定字符集的OutputStreamWriter。</td>
+</tr>
+<tr>
+<td><code>OutputStreamWriter(OutputStream out, CharsetEncoder enc)</code></td>
+<td>创建一个使用给定字符集编码器的OutputStreamWriter。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>对象操作流</p>
+<ul>
+<li>把对象以字节的形式写到本地文件</li>
+</ul>
+</li>
+<li>
+<p>对象操作输出流</p>
+<ul>
+<li>
+<p>对象序列化流：就是将对象写到本地文件中，或者在网络中传输对象</p>
+</li>
+<li>
+<p><code>ObjectOutputStream</code></p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>protected ``ObjectOutputStream()</code></td>
+<td>为完全重新实现ObjectOutputStream的子类提供一种方法，不必分配刚刚被ObjectOutputStream实现使用的私有数据</td>
+</tr>
+<tr>
+<td><code>ObjectOutputStream(OutputStream out)</code></td>
+<td>创建一个写入指定的OutputStream的ObjectOutputStream。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>Serializable</code>接口</p>
+<ul>
+<li>
+<p>是一个标记性接口，里面没有任何的抽象方法，只要是一个类实现了这个<code>Serializable</code>接口，那么就表示这个类的对象可以被序列化</p>
+<pre><code>public User implements serializable{}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><code>serialversionUID</code>:序列号</p>
+<ul>
+<li>
+<p>如果我们自己没有定义，那么虚拟机会根据类中的信息会自动的计算出一个序列号</p>
+</li>
+<li>
+<p>如果我们修改了类中的信息，那么虚拟机会再一次计算出一个序列号</p>
+</li>
+<li>
+<p>解决办法：</p>
+<ul>
+<li>
+<p>不让虚拟机自动计算，我们自己手动给出，而且这个值不变</p>
+<pre><code>private static final long serialVersionUID = 1l;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>对象操作输入流</p>
+<ul>
+<li>
+<p>对象反序列化流：把写到本地文件中的对象读到内存中，或者接受网络中传输的对象</p>
+</li>
+<li>
+<p><code>ObjectInputStream</code></p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>protected ``ObjectInputStream()</code></td>
+<td>为完全重新实现ObjectInputStream的子类提供一种方法，不必分配刚刚被ObjectInputStream实现使用的私有数据。</td>
+</tr>
+<tr>
+<td><code>ObjectInputStream(InputStream in)</code></td>
+<td>创建从指定的InputStream读取的ObjectInputStream。</td>
+</tr>
+</tbody>
+</table>
+<pre><code>public static void main(String[] args) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(&quot;C:\\Users\\Administrator\\Desktop\\a.txt&quot;));
+        User user = (User) ois.readObject();
+        System.out.println(user);
+        ois.close();
+	}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>serialVersionUID</p>
+<ul>
+<li>用对象序列化流序列化了一个对象后，假如我们修改了对象所属的类文件，读取数据会不会出问题呢？
+<ul>
+<li>会出问题，会抛出InvalidClassException异常</li>
+</ul>
+</li>
+<li>如果出问题了，如何解决呢？
+<ul>
+<li>重新序列化</li>
+<li>给对象所属的类加一个serialVersionUID
+<ul>
+<li>private static final long serialVersionUID = 42L;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>transient</p>
+<ul>
+<li>如果一个对象中的某个成员变量的值不想被序列化，又该如何实现呢？
+<ul>
+<li>给该成员变量加transient关键字修饰，该关键字标记的成员变量不参与序列化过程</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>示例代码</p>
+<p>学生类</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span> <span style="color:#66d9ef">implements</span> Serializable <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> serialVersionUID <span style="color:#f92672">=</span> 42L<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+<span style="color:#75715e">//    private int age;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">transient</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
+  
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">}</span>
+  
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+  
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> name<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+  
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+  
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAge</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> age<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+  
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setAge</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> age<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+  
+<span style="color:#75715e">//    @Override
+</span><span style="color:#75715e">//    public String toString() {
+</span><span style="color:#75715e">//        return &#34;Student{&#34; +
+</span><span style="color:#75715e">//                &#34;name=&#39;&#34; + name + &#39;\&#39;&#39; +
+</span><span style="color:#75715e">//                &#34;, age=&#34; + age +
+</span><span style="color:#75715e">//                &#39;}&#39;;
+</span><span style="color:#75715e">//    }
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>测试类</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ObjectStreamDemo</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
+<span style="color:#75715e">//        write();
+</span><span style="color:#75715e"></span>        read<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+  
+    <span style="color:#75715e">//反序列化
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">read</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
+        ObjectInputStream ois <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectInputStream<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;myOtherStream\\oos.txt&#34;</span><span style="color:#f92672">));</span>
+        Object obj <span style="color:#f92672">=</span> ois<span style="color:#f92672">.</span><span style="color:#a6e22e">readObject</span><span style="color:#f92672">();</span>
+        Student s <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Student<span style="color:#f92672">)</span> obj<span style="color:#f92672">;</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span> <span style="color:#f92672">+</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">getAge</span><span style="color:#f92672">());</span>
+        ois<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+  
+    <span style="color:#75715e">//序列化
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">write</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        ObjectOutputStream oos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectOutputStream<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;myOtherStream\\oos.txt&#34;</span><span style="color:#f92672">));</span>
+        Student s <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;佟丽娅&#34;</span><span style="color:#f92672">,</span> 30<span style="color:#f92672">);</span>
+        oos<span style="color:#f92672">.</span><span style="color:#a6e22e">writeObject</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+        oos<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>案例：用对象操作流读写多个对象</p>
+<ul>
+<li>
+<p>需求：创建多个javabean类对象写到文件中，再次读取到内存</p>
+<pre><code>    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Student st1 = new Student(&quot;zhangsan&quot;,&quot;23&quot;);
+        Student st2 = new Student(&quot;lisi&quot;,&quot;24&quot;);
+        Student st3 = new Student(&quot;wangwu&quot;,&quot;25&quot;);
+        Student st4 = new Student(&quot;zhaoliu&quot;,&quot;26&quot;);
+    
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(&quot;src//a.txt&quot;));
+    
+        oos.writeObject(st1);
+        oos.writeObject(st2);
+        oos.writeObject(st3);
+        oos.writeObject(st4);
+    
+        oos.close();
+    
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(&quot;src//a.txt&quot;));
+        while (true){
+            try {
+                Object o = ois.readObject();
+                System.out.println(o);
+            } catch (EOFException e) {
+               break;
+            }
+        }
+        ois.close();
+    }
+</code></pre><p>第二种读取容器的方法</p>
+<pre><code>    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Student st1 = new Student(&quot;zhangsan&quot;,&quot;23&quot;);
+        Student st2 = new Student(&quot;lisi&quot;,&quot;24&quot;);
+        Student st3 = new Student(&quot;wangwu&quot;,&quot;25&quot;);
+        Student st4 = new Student(&quot;zhaoliu&quot;,&quot;26&quot;);
+    
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(&quot;src//a.txt&quot;));
+    
+        ArrayList&lt;Student&gt; list = new ArrayList&lt;&gt;();
+        list.add(st1);
+        list.add(st2);
+        list.add(st3);
+        list.add(st4);
+    
+        oos.writeObject(list);
+    
+        oos.close();
+    
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(&quot;src//a.txt&quot;));
+        Object o = ois.readObject();
+        System.out.println(o);
+        ois.close();
+    }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Properties</p>
+<ul>
+<li>是一个Map体系的集合类</li>
+<li>Properties中有跟IO相关的方法</li>
+<li>键值对的数据类型基本都定义为字符串</li>
+</ul>
+</li>
+<li>
+<p>Properties作为Map集合的使用</p>
+<pre><code>    public static void main(String[] args) {
+        Properties properties = new Properties();
+        //增
+        properties.put(&quot;小龙女&quot;,&quot;尹志平&quot;);
+        properties.put(&quot;郭靖&quot;,&quot;黄蓉&quot;);
+        properties.put(&quot;杨过&quot;,&quot;杨康&quot;);
+        System.out.println(properties);
+        //删
+        properties.remove(&quot;杨过&quot;);
+        System.out.println(properties);
+        //改
+        properties.put(&quot;郭靖&quot;,&quot;张无忌&quot;);
+        System.out.println(properties);
+        //查
+        Object xiao = properties.get(&quot;小龙女&quot;);
+        System.out.println(xiao);
+        //第一种遍历
+        Set&lt;Object&gt; keys = properties.keySet();
+        for (Object key : keys) {
+            Object value = properties.get(key);
+            System.out.println(value+&quot; &quot;+key);
+        }
+        System.out.println(&quot;========&quot;);
+        //第二种遍历
+        Set&lt;Map.Entry&lt;Object, Object&gt;&gt; entries = properties.entrySet();
+        for (Map.Entry&lt;Object, Object&gt; entry : entries) {
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            System.out.println(key+&quot; &quot;+value);
+        }
+    }
+</code></pre></li>
+<li>
+<p>Properties特有方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object setProperties(String key,String value)</td>
+<td>设置集合的键和值，都是String类型,底层调用Hashtable方法put</td>
+</tr>
+<tr>
+<td>String getProperty(String key)</td>
+<td>使用此属性列表中指定的键搜索属性</td>
+</tr>
+<tr>
+<td>Set<!-- raw HTML omitted -->stringPropertiesNames()</td>
+<td>从该属性列表中返回一个不可修改的键集，其中键及其对应的值是字符串</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Properties和IO流结合的方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>void load(InputStream inStream)</td>
+<td>从输入字节流读取属性列表(键和元素对)</td>
+</tr>
+<tr>
+<td>void load(Reader reader)</td>
+<td>从输入字符流读取属性列表(键和元素对)</td>
+</tr>
+<tr>
+<td>Void store(OutputStream out,String comments)</td>
+<td>将此属性列表(键和元素对)写入此Properties表中，以适合于使用load(InputStream)方法的格式写入输出字节流</td>
+</tr>
+<tr>
+<td>Void store(Write write,String comments)</td>
+<td>将此属性列表(键和元素对)写入此Properties表中，以适合于使用load(reader)方法的格式写入输出字符流</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>实例代码</p>
+<pre><code>    public static void main(String[] args) throws IOException {
+        //void load(Reader reader)
+        //将本地文件中的键值对数据读取到集合中
+        Properties prop = new Properties();
+        FileReader fr = new FileReader(&quot;src//prop.Properties&quot;);
+        //调用完load之后，文件中的键值对数据就已经在集合中了
+        prop.load(fr);
+  
+        fr.close();
+        System.out.println(prop);
+  
+    }
+</code></pre><pre><code>    public static void main(String[] args) throws IOException {
+        Properties porp = new Properties();
+        porp.put(&quot;zhangsan&quot;,&quot;123&quot;);
+        porp.put(&quot;lisi&quot;,&quot;456&quot;);
+        porp.put(&quot;wangwu&quot;,&quot;789&quot;);
+        FileWriter fw = new FileWriter(&quot;src//prop.Properties&quot;);
+        porp.store(fw,null);
+        fw.close();
+    }
 </code></pre></li>
 </ul>
 
@@ -675,8 +1547,8 @@ Actor [name=杨贵妃]
             <span class="tag"><a href="/tags/java/">
                     #java</a></span>
             
-            <span class="tag"><a href="/tags/stream/">
-                    #stream</a></span>
+            <span class="tag"><a href="/tags/file_io/">
+                    #File_io</a></span>
             
             </section>
         
@@ -688,7 +1560,7 @@ Actor [name=杨贵妃]
 
     <div class="post-nav">
         
-        <a href="/2017/hugo/" class="prev" rel="prev" title="Hugo搭建个人博客到GitHub Pages"><i class="iconfont icon-left"></i>&nbsp;Hugo搭建个人博客到GitHub Pages</a>
+        <a href="/2017/file_io/" class="prev" rel="prev" title="Stream流详解与应用"><i class="iconfont icon-left"></i>&nbsp;Stream流详解与应用</a>
          
         
     </div>
