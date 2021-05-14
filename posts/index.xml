@@ -6,7 +6,29 @@
     <description>Recent content in Posts on PengSite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 06 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java多线程知识总结</title>
+      <link>/2017/duoxianc/</link>
+      <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/duoxianc/</guid>
+      <description>多线程   概念：是指从软件或者硬件上实现多个线程并发执行的技术
+  具有多线程能力的计算机因有硬件支持而能够在同一时间执行多个线程，提升性能。
+  并行：在同一时刻，有多个指令在多个CPU上同时执行
+  并发：在同一时刻，有多个指令在单个CPU上交替执行
+  进程：是正在运行的软件
+ 独立性：进程是一个能独立运行的基本单位，同时也是系统分配资源和调度的独立单位 动态性：进程的实质是程序的一次执行过程，进程是动态产生，动态消亡 并发性：任何进程都可以同其它进程一起并发执行    线程：是进程中的单个顺序控制流，是一条执行路径
+ 单线程：一个进程如果只有一条执行路径，则称为单线程程序 多线程：一个进程如果有多条执行路径，则称为多线程程序    多线程的实现方案
+  继承Thread类的方式进行实现
+  定义一个类MyThread继承Thread类
+  在MyThread类中重写run()方法
+  创建MyThread类的对象
+  启动线程
+  代码实现
+public class MyThread extends Thread{ @Override public void run() { for (int i = 0; i &amp;lt; 100; i++) { System.out.println(&amp;quot;线程开启了&amp;quot;+i); } } } 测试类：</description>
+    </item>
+    
     <item>
       <title>File与IO详解</title>
       <link>/2017/stream/</link>
