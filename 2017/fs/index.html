@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="pengSite">
+  
+  
+  
+  <link rel="prev" href="/2017/jiazaiqi/" />
+  <link rel="next" href="/2017/mj/" />
+  <link rel="canonical" href="/2017/fs/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           java反射 | PengSite
+       
+  </title>
+  <meta name="title" content="java反射 | PengSite">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "\/"
+    },
+    "articleSection" : "posts",
+    "name" : "java反射",
+    "headline" : "java反射",
+    "description" : "反射   反射的概念 （java反射机制）\n 是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法 对于任意一个对象，都能够调用它的任意属性和方法 这种动态获取信息以及动态调用对象方法的功能成为java语言的反射机制    利用反射可以无视修饰符获取类里面所有的属性和方法\n  选获取配置文件中的信息，动态获取信息并创建对象和调用方法\n  获取Class对象\n  Class.forName(\u0026ldquo;全类名\u0026rdquo;);\n  类名.class\n  对象.getClass();\n  代码演示\npublic class ReflectDemo1 { public static void main(String[] args) throws ClassNotFoundException { \/\/Class类中的静态方法forname(\u0026quot;全类名\u0026quot;) 包名\u002b类名 Class clazz = Class.forName(\u0026quot;com.heima.classloader1.Student\u0026quot;); System.out.println(clazz); \/\/通过.class属性来获取 Class clazz1 = Student.class; System.out.println(clazz1); \/\/同过对象调用getClass() Student student = new Student(); Class clazz2 = student.getClass(); System.out.println(clazz2); } }     反射-获取Constructor对象 获取构造方法",
+    "inLanguage" : "zh-CN",
+    "author" : "PengSite",
+    "creator" : "PengSite",
+    "publisher": "PengSite",
+    "accountablePerson" : "PengSite",
+    "copyrightHolder" : "PengSite",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-10-18 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-10-18 00:00:00 \u002b0000 UTC",
+    "url" : "\/2017\/fs\/",
+    "wordCount" : "696",
+    "keywords" : [ "java","反射", "PengSite"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java反射</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="/" rel="author">PengSite</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-10-18 itemprop="datePublished">October 18, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="/categories/uncategorized/"> Uncategorized </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h3 id="反射">反射</h3>
+<ul>
+<li>
+<p>反射的概念 （java反射机制）</p>
+<ul>
+<li>是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法</li>
+<li>对于任意一个对象，都能够调用它的任意属性和方法</li>
+<li>这种动态获取信息以及动态调用对象方法的功能成为java语言的反射机制</li>
+</ul>
+</li>
+<li>
+<p>利用反射可以无视修饰符获取类里面所有的属性和方法</p>
+</li>
+<li>
+<p>选获取配置文件中的信息，动态获取信息并创建对象和调用方法</p>
+</li>
+<li>
+<p>获取Class对象</p>
+<ul>
+<li>
+<p>Class.forName(&ldquo;全类名&rdquo;);</p>
+</li>
+<li>
+<p>类名.class</p>
+</li>
+<li>
+<p>对象.getClass();</p>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>public class ReflectDemo1 {
+	public static void main(String[] args) throws ClassNotFoundException {
+        //Class类中的静态方法forname(&quot;全类名&quot;)  包名+类名
+        Class clazz = Class.forName(&quot;com.heima.classloader1.Student&quot;);
+        System.out.println(clazz);
+    		
+        //通过.class属性来获取
+        Class clazz1 = Student.class;
+        System.out.println(clazz1);
+    		
+        //同过对象调用getClass()
+        Student student = new Student();
+        Class clazz2 = student.getClass();
+        System.out.println(clazz2);
+	}
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>反射-获取Constructor对象  获取构造方法</p>
+<ul>
+<li>
+<p><code>Constructor&lt;?&gt;[] getConstructors()</code>：返回所有公共构造方法对象的数组</p>
+</li>
+<li>
+<p><code>Constructor&lt;?&gt;[] getDeclaredConstructors()</code>：返回所有构造方法对象的数组</p>
+</li>
+<li>
+<p><code>Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)</code>：返回单个公共构造方法对象</p>
+</li>
+<li>
+<p><code>Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)</code>：返回单个构造方法对象</p>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>public class ReflectDemo {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException {
+        //method1();
+        //method2();
+        //method3();
+        //Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)：返回单个构造方法对象
+        //获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect.Student&quot;);
+        Constructor declaredConstructor = aClass.getDeclaredConstructor(String.class);
+        System.out.println(declaredConstructor);
+    }
+    
+    private static void method3() throws ClassNotFoundException, NoSuchMethodException {
+        //Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)：返回单个公共构造方法对象
+        //获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect.Student&quot;);
+        //小括号中的参数一定要跟构造方法的形参保持一致
+        Constructor constructor = aClass.getConstructor();
+        System.out.println(constructor);
+    
+        Constructor constructor1 = aClass.getConstructor(String.class, int.class);
+        System.out.println(constructor1);
+    }
+    
+    private static void method2() throws ClassNotFoundException {
+        //Constructor&lt;?&gt;[] getDeclaredConstructors()：返回所有构造方法对象的数组
+        //获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect.Student&quot;);
+        Constructor[] declaredConstructors = aClass.getDeclaredConstructors();
+        for (Constructor declaredConstructor : declaredConstructors) {
+            System.out.println(declaredConstructor);
+        }
+    }
+    
+    private static void method1() throws ClassNotFoundException {
+        //Constructor&lt;?&gt; [] getConstructors()：返回所有公共构造方法对象的数组
+        //获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect.Student&quot;);
+        Constructor[] constructors = aClass.getConstructors();
+        for (Constructor constructor : constructors) {
+            System.out.println(constructor);
+        }
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Constructor类中用于创建对象的方法</p>
+<ul>
+<li>
+<p><code>T newInstance(Object... initargs)</code>：根据指定的构造方法创建对象</p>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>public class ReflectDemo {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        //T newInstance (Object... initargs);根据指定的构造方法创建对象
+        //1.获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect1.Student&quot;);
+        Constructor constructor = aClass.getConstructor(String.class, int.class);
+        Student student = (Student) constructor.newInstance(&quot;zhangsan&quot;, 23);
+        System.out.println(student);
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<pre><code>public class ReflectDemo {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        //method1();
+        //T newInstance (Object... initargs);根据指定的构造方法创建对象
+        //1.获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect1.Student&quot;);
+        Constructor declaredConstructor = aClass.getDeclaredConstructor(String.class);
+        //被private修饰的成员，不能直接使用
+        //如果用反射强行获取并使用，需要临时取消访问检查
+        declaredConstructor.setAccessible(true);
+        Student student = (Student) declaredConstructor.newInstance(&quot;zhangsan&quot;);
+        System.out.println(student);
+    }
+  
+    private static void method1() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        //T newInstance (Object... initargs);根据指定的构造方法创建对象
+        //1.获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect1.Student&quot;);
+        Constructor constructor = aClass.getConstructor(String.class, int.class);
+        Student student = (Student) constructor.newInstance(&quot;zhangsan&quot;, 23);
+        System.out.println(student);
+    }
+}
+</code></pre></li>
+<li>
+<p>反射获取成员变量&mdash;步骤</p>
+<ul>
+<li>
+<p>获得Class对象</p>
+</li>
+<li>
+<p>获得Field对象</p>
+<ul>
+<li>
+<p>Field[] getFields()：返回所有公共成员变量对象的数组</p>
+<pre><code>    private static void method1() throws ClassNotFoundException {
+        //获得Class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect2.Student&quot;);
+        //获得Field对象
+        //Field[] getFields()：返回所有公共成员变量对象的数组
+        Field[] fields = aClass.getFields();
+        for (Field field : fields) {
+            System.out.println(field);
+        }
+    }
+</code></pre></li>
+<li>
+<p>Field[] getDeclaredFields()：返回所有成员变量对象的数组</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException {
+        //获得Class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect2.Student&quot;);
+        //获得Field对象
+        //Field[] getDeclaredFields()：返回所有成员变量对象的数组
+        Field[] declaredFields = aClass.getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            System.out.println(declaredField);
+        }
+    }
+</code></pre></li>
+<li>
+<p>Field getField(String name)：返回单个公共成员变量对象</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException {
+        //获得Class对象
+        //想要获取的成员变量必须是真实存在的
+        //必须是public修饰的
+        Class aClass = Class.forName(&quot;com.heima.myreflect2.Student&quot;);
+        //获得Field对象
+        //Field getField(String name)：返回单个公共成员变量对象
+        Field name = aClass.getField(&quot;name&quot;);
+        System.out.println(name);
+    }
+</code></pre></li>
+<li>
+<p>Field getDeclaredField(String name)：返回单个成员变量对象</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException {
+        //获得Class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect2.Student&quot;);
+        //获得Field对象
+        //Field getDeclaredField(String name)：返回单个成员变量对象
+        Field money = aClass.getDeclaredField(&quot;money&quot;);
+        System.out.println(money);
+    }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>赋值或者获取值</p>
+<ul>
+<li>
+<p>void	set(Object obj,Object value)：给指定对象的成员变量赋值</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+        //void	set(Object obj,Object value)：给指定对象的成员变量赋值
+        //1.获取对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect2.Student&quot;);
+        //2.获取name这个Field对象
+        Field field = aClass.getField(&quot;name&quot;);
+        //3.利用set方法进行赋值
+        //3.1创建一个Student对象
+        Student student = (Student) aClass.newInstance();
+        //指定对象进行赋值
+        field.set(student,&quot;zhangsan&quot;);
+        System.out.println(student);
+    }
+</code></pre></li>
+<li>
+<p>Object  get(Object obj)：返回指定对象的Field的值</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+        //method1();
+        //Object  get(Object obj)：返回指定对象的Field的值
+        //1.获取对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect2.Student&quot;);
+        //2.获取成员变量Field对象
+        Field felid = aClass.getDeclaredField(&quot;money&quot;);
+        //3.取消访问检查
+        felid.setAccessible(true);
+        //4.调用get方法获取值
+        //4.1创建对象
+        Student student = (Student) aClass.newInstance();
+        //4.2获取指定对象的money的值
+        Object o = felid.get(student);
+        System.out.println(o);
+    }
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>获取成员方法并运行 &mdash; 步骤</p>
+<ul>
+<li>
+<p>获得calss对象</p>
+</li>
+<li>
+<p>获得Method对象</p>
+<ul>
+<li>
+<p>Method[] getMethods()：返回所有公共成员方法对象的数组，包括继承的</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException {
+        //获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect3.Student&quot;);
+        //Method[] getMethods()：返回所有公共成员方法对象的数组，包括继承的
+        Method[] methods = aClass.getMethods();
+        for (Method method : methods) {
+            System.out.println(method);
+        }
+    }
+</code></pre></li>
+<li>
+<p>Method[] getDeclaredMethods()：返回所有成员方法对象的数组，不包括继承的</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException {
+        //获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect3.Student&quot;);
+        //Method[] getDeclaredMethods()：返回所有成员方法对象的数组，不包括继承的
+        Method[] declaredMethods = aClass.getDeclaredMethods();
+        for (Method declaredMethod : declaredMethods) {
+            System.out.println(declaredMethod);
+        }
+    }
+</code></pre></li>
+<li>
+<p>Method getMethod(String name,Class&lt;?&gt;&hellip;parameterTypes)：返回单个公共成员方法对象</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException {
+        //获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect3.Student&quot;);
+        //Method getMethod(String name,Class&lt;?&gt;...parameterTypes)：返回单个公共成员方法对象
+        Method function1 = aClass.getMethod(&quot;function1&quot;, null);
+        System.out.println(function1);
+    }
+</code></pre><pre><code>    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException {
+        //获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect3.Student&quot;);
+        //Method getMethod(String name,Class&lt;?&gt;...parameterTypes)：返回单个公共成员方法对象
+        Method function2 = aClass.getMethod(&quot;function2&quot;, String.class);
+        System.out.println(function2);
+    }
+</code></pre></li>
+<li>
+<p>Method getDeclaredMethod(String name,Class&lt;?&gt;&hellip;parameterTypes)：返回单个成员方法对象</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException {
+        //获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect3.Student&quot;);
+        //Method getDeclaredMethod(String name,Class&lt;?&gt;...parameterTypes)：返回单个成员方法对象
+        Method show = aClass.getDeclaredMethod(&quot;show&quot;);
+        System.out.println(show);
+    }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>运行方法</p>
+<ul>
+<li>
+<p>Object invoke(Object obj,Object args)：运行方法</p>
+<ul>
+<li>
+<p>参数一：用obj对象调用该方法</p>
+</li>
+<li>
+<p>参数二：调用方法传递的参数(如果没有就不写)</p>
+</li>
+<li>
+<p>返回值，方法的返回值(如果没有就不写)</p>
+<pre><code>    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        //Object invoke(Object obj,Object args)：运行方法
+        //参数一：用obj对象调用该方法
+        //参数二：调用方法传递的参数(如果没有就不写)
+        //返回值，方法的返回值(如果没有就不写)
+        
+        //1.获取class对象
+        Class aClass = Class.forName(&quot;com.heima.myreflect4.Student&quot;);
+        //2.获取里面的Method对象
+        Method method = aClass.getDeclaredMethod(&quot;function4&quot;, String.class);
+        //3.运行function4方法
+        //3.创建方法调用者
+        Student student = (Student) aClass.newInstance();
+        Object result = method.invoke(student, &quot;zhangsan&quot;);
+        System.out.println(result);
+    }
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>pengSite </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=/2017/fs/>/2017/fs/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="/tags/java/">
+                    #java</a></span>
+            
+            <span class="tag"><a href="/tags/%E5%8F%8D%E5%B0%84/">
+                    #反射</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="/2017/jiazaiqi/" class="prev" rel="prev" title="java类加载器"><i class="iconfont icon-left"></i>&nbsp;java类加载器</a>
+         
+        
+        <a href="/2017/mj/" class="next" rel="next" title="java枚举">java枚举&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="/">pengSite</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

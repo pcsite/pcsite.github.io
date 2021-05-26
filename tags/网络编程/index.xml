@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网络编程 on PengSite</title>
+    <link>/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</link>
+    <description>Recent content in 网络编程 on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 12 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java网络编程</title>
+      <link>/2017/wlbc/</link>
+      <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/wlbc/</guid>
+      <description>网络编程   网络编程概述
+ 在网络通信协议下，不同计算机上运行的程序，可以进行数据传输    网络编程三要素
+ IP地址  设备在网络中的地址，是唯一的标识   端口  应用程序在设备中的唯一标识 端口号：用两个字节表示的整数，它的取值范围是0~65535，其中0~1023之间的端口号用于一些知名的网络服务或者应用，我们自己使用1024以上的端口号就可以了 一个端口号只能被一个应用程序使用   协议  数据在网络中传输的规则，常见的协议有UDP协议和TCP协议 UDP协议  用户数据报协议 UDP是面向无连接通信协议 速度快，有大小限制一次最多发送64K，数据不安全，易丢失数据     TCP协议  传输控制协议 TCP协议是面向连接的通信协议，速度慢，没有大小限制，数据安全      IP概述
+ 全称&amp;quot;互联网协议地址&amp;quot;，也称为IP地址，是分配给上网设备的数字标签，常见的IP分类为:ipv4和ipv6    IPv4 : 32bit(4字节) &amp;mdash; 点分十进制表示法
+  IPv6 : 采用128bit，每16个字节一组，一共分为8组 &amp;mdash; 冒分十六进制表示法
+  IP地址常见命令
+ ipconfig:查看本机IP地址 ping IP地址:检查网络是否连通    InetAddress的使用</description>
+    </item>
+    
+  </channel>
+</rss>

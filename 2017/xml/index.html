@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="pengSite">
+  
+  
+  
+  <link rel="prev" href="/2017/mj/" />
+  <link rel="next" href="/2017/dycs/" />
+  <link rel="canonical" href="/2017/xml/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           XML | PengSite
+       
+  </title>
+  <meta name="title" content="XML | PengSite">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "\/"
+    },
+    "articleSection" : "posts",
+    "name" : "XML",
+    "headline" : "XML",
+    "description" : "XML   XML概述\n XML的全程为(EXtensible Markup Language),是一种可扩展的标记语言 标记语言：通过标签来描述数据的一门语言(标签有时候也称其为元素) 可扩展：标签的名字是可以自己定义的 XML文件是由很多标签组成的，而标签名是可以自定义的 作用  用于进行存储数据和传输数据 作为软件的配置文件      XML标签规则\n 标签由一对尖括号和合法标识符组成 \u0026mdash; \u0026lt;\u0026gt; 标签必须成对出现 特殊的标签可以不成对，但是必须有结束标记 \u0026lt;address\/\u0026gt; 标签中可以定义属性，属性和标签名用空格隔开，属性值必须用引号引起来 标签需要正确的嵌套    XML语法规则\n XML文件的后缀名为：xml 文档声明必须是第一行第一列  \u0026lt;?xml version = \u0026quot;1.0\u0026quot; encoding = \u0026quot;UTF-8\u0026quot; standalone = \u0026quot;yes\u0026quot; ?\u0026gt; version：该属性必须存在 encoding：该属性不是必须的 \u0026mdash; 打开当前xml文件的时候应该是使用什么字符编码表 standalone：该属性不是必须的，描述XML文件是否依赖其他的XML文件，取值为yes\/no      必须存在一个跟标签，有且只能有一个\n  XML文件中可以定义注释信息\n  XML文件可以存在以下特殊字符：\n \u0026amp;lt:\t\u0026lt;\t小于 \u0026amp;gt: \u0026gt; 大于 \u0026amp;amp: \u0026amp; 和号 \u0026amp;apos: \u0027 单引号 \u0026amp;quot: \u0026quot; 引号    XML文件中可以存在CDATA区",
+    "inLanguage" : "zh-CN",
+    "author" : "PengSite",
+    "creator" : "PengSite",
+    "publisher": "PengSite",
+    "accountablePerson" : "PengSite",
+    "copyrightHolder" : "PengSite",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-10-24 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-10-24 00:00:00 \u002b0000 UTC",
+    "url" : "\/2017\/xml\/",
+    "wordCount" : "556",
+    "keywords" : [ "java","XML", "PengSite"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">XML</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="/" rel="author">PengSite</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-10-24 itemprop="datePublished">October 24, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="/categories/uncategorized/"> Uncategorized </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h3 id="xml">XML</h3>
+<ul>
+<li>
+<p>XML概述</p>
+<ul>
+<li>XML的全程为(EXtensible Markup Language),是一种可扩展的标记语言</li>
+<li>标记语言：通过标签来描述数据的一门语言(标签有时候也称其为元素)</li>
+<li>可扩展：标签的名字是可以自己定义的</li>
+<li>XML文件是由很多标签组成的，而标签名是可以自定义的</li>
+<li>作用
+<ul>
+<li>用于进行存储数据和传输数据</li>
+<li>作为软件的配置文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>XML标签规则</p>
+<ul>
+<li>标签由一对尖括号和合法标识符组成  &mdash;  <code>&lt;&gt;</code></li>
+<li>标签必须成对出现</li>
+<li>特殊的标签可以不成对，但是必须有结束标记  <code>&lt;address/&gt;</code></li>
+<li>标签中可以定义属性，属性和标签名用空格隔开，属性值必须用引号引起来</li>
+<li>标签需要正确的嵌套</li>
+</ul>
+</li>
+<li>
+<p>XML语法规则</p>
+<ul>
+<li>XML文件的后缀名为：xml</li>
+<li>文档声明必须是第一行第一列
+<ul>
+<li><code>&lt;?xml version = &quot;1.0&quot; encoding = &quot;UTF-8&quot; standalone = &quot;yes&quot; ?&gt;</code></li>
+<li>version：该属性必须存在</li>
+<li>encoding：该属性不是必须的 &mdash;  打开当前xml文件的时候应该是使用什么字符编码表</li>
+<li>standalone：该属性不是必须的，描述XML文件是否依赖其他的XML文件，取值为yes/no</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>必须存在一个跟标签，有且只能有一个</p>
+</li>
+<li>
+<p>XML文件中可以定义注释信息</p>
+</li>
+<li>
+<p>XML文件可以存在以下特殊字符：</p>
+<ul>
+<li>&amp;lt:	&lt;	小于</li>
+<li>&amp;gt:   &gt;   大于</li>
+<li>&amp;amp:  &amp;  和号</li>
+<li>&amp;apos:  '    单引号</li>
+<li>&amp;quot:  &quot;    引号</li>
+</ul>
+</li>
+<li>
+<p>XML文件中可以存在CDATA区</p>
+<ul>
+<li><code>&lt;![CDATA[...内容...]]&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>解析XML文件</p>
+<ul>
+<li>就是从xml中获取到数据</li>
+<li>常见的解析思想
+<ul>
+<li>DOM文档对象模型：就是把文档的各个组成部分看做对应的对象</li>
+<li>会把XML文件全部加载到内存，在内存中形成一个树形结构，在获取对应的值</li>
+</ul>
+</li>
+<li>Document对象：整个xml文档</li>
+<li>Element对象：所以标签</li>
+<li>Attribute对象：所有属性</li>
+<li>Text对象：所有文本内容</li>
+</ul>
+</li>
+<li>
+<p>常见解析工具</p>
+<ul>
+<li>JAXP：SUN公司提供的一套XML解析的API</li>
+<li>JDOM：开源组织提供的一套XML的解析的API-jdom</li>
+<li>DOM4J：开源组织提供了一套XML的解析的API-dom4j</li>
+<li>pull：主要应用在Android手机端解析XML</li>
+</ul>
+</li>
+<li>
+<p>练习</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding= &quot;UTF-8&quot; ?&gt;
+&lt;!--注释的内容--&gt;
+&lt;!--本xml文件用来描述多个学生信息--&gt;
+&lt;student&gt;
+    &lt;!--第一个学生信息--&gt;
+    &lt;student id=&quot;1&quot;&gt;
+        &lt;name&gt;张三&lt;/name&gt;
+        &lt;age&gt;23&lt;/age&gt;
+        &lt;info&gt;学生&amp;lt;&amp;gt;的信息&lt;/info&gt;
+        &lt;message&gt;&lt;![CDATA[&lt;&lt;&lt;&lt;&lt;  &gt;&gt;&gt;&gt;&gt;&gt;]]&gt;&lt;/message&gt;
+    &lt;/student&gt;
+    &lt;!--第二个学生信息--&gt;
+    &lt;student id=&quot;2&quot;&gt;
+        &lt;name&gt;李四&lt;/name&gt;
+        &lt;age&gt;24&lt;/age&gt;
+    &lt;/student&gt;
+  
+&lt;/student&gt;
+</code></pre><ul>
+<li>
+<p>需求</p>
+</li>
+<li>
+<p>解析这个xml文件</p>
+</li>
+<li>
+<p>将解析到的数据封装到学生对象中</p>
+</li>
+<li>
+<p>将学生对象存储到ArrayList集合中</p>
+</li>
+<li>
+<p>遍历集合</p>
+</li>
+<li>
+<p>代码演示</p>
+</li>
+<li>
+<p><code>Student类</code></p>
+<pre><code>public class Student {
+    private String id;
+    private String name;
+    private int age;
+    
+    public Student() {
+    }
+    
+    public Student(String id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+    
+    public String getId() {
+        return id;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setAge(int age) {
+        this.age = age;
+    }
+    
+    @Override
+    public String toString() {
+        return &quot;Student{&quot; +
+                &quot;id='&quot; + id + '\'' +
+                &quot;, name='&quot; + name + '\'' +
+                &quot;, age=&quot; + age +
+                '}';
+    }
+}
+</code></pre></li>
+<li>
+<p><code>student.xml</code></p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding= &quot;UTF-8&quot; ?&gt;
+&lt;!--注释的内容--&gt;
+&lt;!--本xml文件用来描述多个学生信息--&gt;
+&lt;student&gt;
+    &lt;!--第一个学生信息--&gt;
+    &lt;student id=&quot;1&quot;&gt;
+        &lt;name&gt;张三&lt;/name&gt;
+        &lt;age&gt;23&lt;/age&gt;
+        &lt;info&gt;学生&amp;lt;&amp;gt;的信息&lt;/info&gt;
+        &lt;message&gt;&lt;![CDATA[&lt;&lt;&lt;&lt;&lt;  &gt;&gt;&gt;&gt;&gt;&gt;]]&gt;&lt;/message&gt;
+    &lt;/student&gt;
+    &lt;!--第二个学生信息--&gt;
+    &lt;student id=&quot;2&quot;&gt;
+        &lt;name&gt;李四&lt;/name&gt;
+        &lt;age&gt;24&lt;/age&gt;
+    &lt;/student&gt;
+    
+&lt;/student&gt;
+</code></pre></li>
+<li>
+<p><code>xmlparse类</code></p>
+<pre><code>public class XmlParse {
+    public static void main(String[] args) throws DocumentException {
+        //1.获取一个解析器对象
+        SAXReader reader = new SAXReader();
+        //2.利用解析器把xml文件加载到内存中，并返回一个文档对象
+        Document document = reader.read(new File(&quot;xml//student.xml&quot;));
+        //3.获取跟标签
+        Element rootElement = document.getRootElement();
+        //4.通过跟标签获取student标签
+        //elements():可以获取调用者所有的子标签，会把这些标签放到一个集合中并返回
+        //elements(&quot;标签名&quot;)：可以获取调用者所有的指定的子标签，会把这些子标签放到集合并返回
+        List&lt;Element&gt; elements = rootElement.elements(&quot;student&quot;);
+        //用来放学生对象
+        ArrayList&lt;Student&gt; list = new ArrayList&lt;&gt;();
+        //5.遍历集合，得到每一个student标签
+        for (Element element : elements) {
+            //element依次表示每一个student标签
+            //获取id这个属性
+            Attribute attribute = element.attribute(&quot;id&quot;);
+            //获取id属性的值
+            String id = attribute.getValue();
+            //获取name标签
+            //element(&quot;标签名&quot;)：获取调用者指定的子标签
+            Element nameElement = element.element(&quot;name&quot;);
+            //获取标签的标签体内容
+            String name = nameElement.getText();
+            //获取age标签
+            Element ageElement = element.element(&quot;age&quot;);
+            String age = ageElement.getText();
+    
+            Student s = new Student(id,name,Integer.parseInt(age));
+            list.add(s);
+        }
+        for (Student student : list) {
+            System.out.println(student);
+        }
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>文档约束</p>
+<ul>
+<li>
+<p>什么是约束：用来限定xml文件中可以使用的标签以及属性</p>
+</li>
+<li>
+<p>DTD约束</p>
+<ul>
+<li>
+<p>创建一个文件，这个文件的后缀名为.dtd。</p>
+</li>
+<li>
+<p>看xml文件中使用了哪些元素</p>
+</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>判断元素是简单元素还是复杂元素</p>
+<ul>
+<li>简单元素：没有子元素 <code>&lt;!ELEMENT name #PCDATA&gt;</code></li>
+<li>复杂元素：有子元素的元素  <code>&lt;!ELEMENT persons (person)&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>引入DTD</p>
+<ul>
+<li>
+<p>引入本地dtd</p>
+<p><code>&lt;!DOCTYPE 根元素名称  SYSTEM 'DTD文件的路径'</code></p>
+</li>
+<li>
+<p>person.xml类</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE persons SYSTEM 'persondtd.dtd'&gt;
+&lt;persons&gt;
+    &lt;person&gt;
+        &lt;name&gt;张三&lt;/name&gt;
+        &lt;age&gt;23&lt;/age&gt;
+    &lt;/person&gt;
+&lt;/persons&gt;
+</code></pre></li>
+<li>
+<p>Persondtd.dtd类</p>
+<pre><code>&lt;!ELEMENT persons (person)&gt;
+&lt;!ELEMENT person (name,age)&gt;
+&lt;!ELEMENT name (#PCDATA)&gt;
+&lt;!ELEMENT age (#PCDATA)&gt;
+</code></pre></li>
+<li>
+<p>在xml文件内部引入</p>
+<p><code>&lt;!DOCTYPE 根元素名称 [dtd文件内容]</code></p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE persons [
+        &lt;!ELEMENT persons (person)&gt;
+        &lt;!ELEMENT person (name,age)&gt;
+        &lt;!ELEMENT name (#PCDATA)&gt;
+        &lt;!ELEMENT age (#PCDATA)&gt;
+        ]&gt;
+&lt;persons&gt;
+    &lt;person&gt;
+        &lt;name&gt;张三&lt;/name&gt;
+        &lt;age&gt;23&lt;/age&gt;
+    &lt;/person&gt;
+&lt;/persons&gt;
+</code></pre></li>
+<li>
+<p>引入网络dtd</p>
+<p><code>&lt;!DOCTYPE 根元素的名称 PUBLIC &quot;DTD文件名称&quot; &quot;DTD文档的URL&quot;</code></p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE persons PUBLIC &quot;dtd文件的名称&quot; &quot;dtd文档的URL&quot;&gt;
+&lt;persons&gt;
+    &lt;person&gt;
+        &lt;name&gt;张三&lt;/name&gt;
+        &lt;age&gt;23&lt;/age&gt;
+    &lt;/person&gt;
+&lt;/persons&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DTD语法规则</p>
+<ul>
+<li>
+<p>定义一个元素的格式为：<code>&lt;!ELEMENT 元素名称 元素类型</code></p>
+</li>
+<li>
+<p>定义一个属性的格式为：<code>&lt;!ATTLIST 元素名称 属性名称 属性的类型 属性的约束&gt;</code></p>
+<ul>
+<li>
+<p>属性的类型</p>
+<p>CDATA类型：普通的字符串</p>
+</li>
+<li>
+<p>属性的约束</p>
+<ul>
+<li>#REQUIRED：必须的</li>
+<li>#IMPLIED：属性不是必须的</li>
+<li>#FIXED value：属性值是固定的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>简单元素</p>
+<ul>
+<li>EMPTY：表示标签体为空</li>
+<li>ANY：表示标签体可以为空也可以不为空</li>
+<li>PCDATA：表示该元素的内容部分为字符串</li>
+</ul>
+</li>
+<li>
+<p>复杂元素</p>
+<ul>
+<li>直接写子元素名称</li>
+<li>多个子元素可以使用&quot;,&ldquo;或者&rdquo;|&ldquo;隔开</li>
+<li>&ldquo;,&ldquo;表示定义子元素的顺序</li>
+<li>&ldquo;|&ldquo;表示子元素只能出现任意一个</li>
+<li>&ldquo;?&ldquo;表示子元素出现零次或一次</li>
+<li>&ldquo;+&ldquo;表示子元素出现一次或多次</li>
+<li>&ldquo;*&ldquo;表示子元素出现零次或多次</li>
+<li>如果不写则表示出现一次</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>schema约束与dtd的区别</p>
+<ul>
+<li>schema约束文件也是一个xml文件，符合xml的语法，这个问价的后缀名.xsd</li>
+<li>一个xml中可以引用多个schema约束文件，多个schema使用名称空间区分（名称空间类似java包名）</li>
+<li>dtd里面元素类型的取值比较单一常见的是PCDATA类型，但是在schema里面可以支持很多个数据类型</li>
+<li>schema语法更加的复杂</li>
+<li>schema文件用来约束一个xml文件，同时也被别的文件约束着</li>
+</ul>
+</li>
+<li>
+<p>schema约束</p>
+<ul>
+<li>
+<p>写schema约束步骤</p>
+</li>
+<li>
+<p>创建一个文件，这个文件的后缀名为.xsd</p>
+</li>
+<li>
+<p>定义文档声明</p>
+</li>
+<li>
+<p>schema文件的根标签为：<code>&lt;schema&gt;</code></p>
+</li>
+<li>
+<p>在<code>&lt;schema&gt;</code>中定义属性：xmlns=http://www.w3.org/2001/XMLSchema</p>
+</li>
+<li>
+<p>在<code>&lt;schema&gt;</code>中定义属性：targetNamespace=唯一的url地址；指定当前这个schema文件的名称空间</p>
+</li>
+<li>
+<p>在<code>&lt;schema&gt;</code>中定义属性：elementFormDefault=&ldquo;qualified&rdquo;</p>
+</li>
+<li>
+<p>通过element定义元素</p>
+</li>
+<li>
+<p>判断当前元素是简单元素还是复杂元素</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;persons&gt;
+    &lt;person&gt;
+        &lt;name&gt;张三&lt;/name&gt;
+        &lt;age&gt;23&lt;/age&gt;
+    &lt;/person&gt;
+&lt;/persons&gt;
+</code></pre><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;schema xmlns=&quot;http://www.w3.org/2001/XMLSchema&quot;
+        targetNamespace=&quot;http:www.baidu.com/javase&quot;
+        elementFormDefault=&quot;qualified&quot;
+&gt;
+    &lt;!--定义persons复杂元素--&gt;
+    &lt;element name=&quot;persons&quot;&gt;
+        &lt;complexType&gt;
+            &lt;sequence&gt;
+                &lt;!--定义person复杂元素--&gt;
+                &lt;element name=&quot;person&quot;&gt;
+                    &lt;complexType&gt;
+                        &lt;sequence&gt;
+                            &lt;!--定义name和age简单元素--&gt;
+                            &lt;element name=&quot;name&quot; type=&quot;string&quot;&gt;&lt;/element&gt;
+                            &lt;element name=&quot;age&quot; type=&quot;string&quot;&gt;&lt;/element&gt;
+                        &lt;/sequence&gt;
+                    &lt;/complexType&gt;
+                &lt;/element&gt;
+            &lt;/sequence&gt;
+        &lt;/complexType&gt;
+    &lt;/element&gt;
+      
+&lt;/schema&gt;
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>引入schema约束文件步骤</p>
+<ul>
+<li>
+<p>在根标签上定义属性:xmlns=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance%22">http://www.w3.org/2001/XMLSchema-instance&quot;</a></p>
+</li>
+<li>
+<p>通过xmlns引入约束文件的名称空间</p>
+</li>
+<li>
+<p>给某一个xmlns属性添加一个标识，用于区分不同的名称空间</p>
+<ul>
+<li>格式为：xmlns：标识=&ldquo;名称空间地址&rdquo;；标识可以是任意的，但是一般取值都是xsi</li>
+</ul>
+</li>
+<li>
+<p>通过xsi:sxhemaLocation指定名称空间所对应的约束文件路径</p>
+<ul>
+<li>格式为：xsi:schemaLocation=&ldquo;名称空间url文件路径&rdquo;</li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;persons
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlna=&quot;http:www.baidu.com/javase&quot;
+    xsi:schemaLocation=&quot;http:www.baidu.com/javase person.xsd&quot;
+&gt;
+    &lt;person&gt;
+        &lt;name&gt;张三&lt;/name&gt;
+        &lt;age&gt;23&lt;/age&gt;
+    &lt;/person&gt;
+&lt;/persons&gt;
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Schema定义属性</p>
+<ul>
+<li><code>&lt;attribute name=&quot;id&quot; typr=&quot;string&quot; use=&quot;required&quot;&gt;&lt;/attribute&gt;</code></li>
+<li>required必须的</li>
+<li>optional可选的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>pengSite </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=/2017/xml/>/2017/xml/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="/tags/java/">
+                    #java</a></span>
+            
+            <span class="tag"><a href="/tags/xml/">
+                    #XML</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="/2017/mj/" class="prev" rel="prev" title="java枚举"><i class="iconfont icon-left"></i>&nbsp;java枚举</a>
+         
+        
+        <a href="/2017/dycs/" class="next" rel="next" title="java单元测试">java单元测试&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="/">pengSite</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

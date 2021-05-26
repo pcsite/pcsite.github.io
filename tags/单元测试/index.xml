@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>单元测试 on PengSite</title>
+    <link>/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
+    <description>Recent content in 单元测试 on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 27 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java单元测试</title>
+      <link>/2017/dycs/</link>
+      <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/dycs/</guid>
+      <description>单元测试   以前的测试方式
+ 我们都是将代码全部写完再进行测试，其实这样并不是很好，在以后的工作的时候，都是写完一部分代码，就测试一部分。这样代码中的问题可以得到及时的修复，也避免了由于代码过多，从而无法准确定位到错误的代码    Junit概述
+ 是一个java编程语言的单元测试工具，JUnit是一个非常重要的测试工具 JUnit是一个开放源代码的测试工具 提高注解来识别测试方法 JUnit测试可以让你编写代码更快，并能提高质量 JUnit优雅简洁，没那么复杂，花费时间较少 JUnit在一个条中显示进度，如果运行良好则是绿色，如果运行失败则是红色    JUnit使用的基本流程
+  将junit的jar包导入到工程中
+  编写测试方法该测试方法必须是公共的无参数无返回值的非静态方法
+  在测试方法上使用@Test注解标注该方法是一个测试方法
+  选中测试方法右键通过junit运行该方法
+  代码演示
+public class JunitDemo1 { public static void main(String[] args) { } @Test public void add(){ int a = 10; int b = 20; int sum = a+b; System.out.println(sum); } }     常用注解介绍</description>
+    </item>
+    
+  </channel>
+</rss>

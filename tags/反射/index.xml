@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>反射 on PengSite</title>
+    <link>/tags/%E5%8F%8D%E5%B0%84/</link>
+    <description>Recent content in 反射 on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 18 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%8F%8D%E5%B0%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java反射</title>
+      <link>/2017/fs/</link>
+      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/fs/</guid>
+      <description>反射   反射的概念 （java反射机制）
+ 是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法 对于任意一个对象，都能够调用它的任意属性和方法 这种动态获取信息以及动态调用对象方法的功能成为java语言的反射机制    利用反射可以无视修饰符获取类里面所有的属性和方法
+  选获取配置文件中的信息，动态获取信息并创建对象和调用方法
+  获取Class对象
+  Class.forName(&amp;ldquo;全类名&amp;rdquo;);
+  类名.class
+  对象.getClass();
+  代码演示
+public class ReflectDemo1 { public static void main(String[] args) throws ClassNotFoundException { //Class类中的静态方法forname(&amp;quot;全类名&amp;quot;) 包名+类名 Class clazz = Class.forName(&amp;quot;com.heima.classloader1.Student&amp;quot;); System.out.println(clazz); //通过.class属性来获取 Class clazz1 = Student.class; System.out.println(clazz1); //同过对象调用getClass() Student student = new Student(); Class clazz2 = student.getClass(); System.out.println(clazz2); } }     反射-获取Constructor对象 获取构造方法</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on PengSite</title>
+    <link>/tags/linux/</link>
+    <description>Recent content in Linux on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux系统与设置命令</title>
+      <link>/2017/linuxxit/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/linuxxit/</guid>
+      <description>Linux系统与设置命令   Centos文件和目录
+ etc：系统中的配置文件 usr/bin：系统预设执行文件的放置目录 usr/sbin：系统预设执行文件的复制目录 usr：系统预设执行文件的放置目录 var：/var/log程序运行日志的存放目录    系统与设置命令
+  切换root账号：su root
+  账号管理
+ 创建用户：useradd(选项)用户名 用户口令：passwd(选项)用户名 修改用户：usermod 选项 用户名 删除用户：userdel(选项)用户名    用户组
+ 创建用户组：groupadd (选项) 用户组名 修改用户组：groupmod (选项) 用户组名 查询用户所属组：groups 用户组名 删除用户组：groupdel 用户组名    管理用户组内成员
+ 语法：gpasswd (可选项) 组名 gpasswd是Linux下的管理工具，用于将一个用户添加到组或者从组中删除  -a：添加用户到组 -d：从组删除用户 -A：指定管理员 -M：指定组成员和-A的用途差不多 -r：删除密码 -R：限制用户登入组，只有组中的成员才可以用newgrp加入该组      日期管理
+ date[参数选项] 参数选项  -d&amp;lt;字符串&amp;gt;：显示字符串所指的日期与时间，字符串前后必须加上双引号 -s&amp;lt;字符串&amp;gt;：根据字符串来设置日期与时间，字符串前后必须加上双引号 -u：显示GMT（CST北京时间） &amp;ndash;help：在线帮助 &amp;ndash;version：显示版本信息      显示用户</description>
+    </item>
+    
+  </channel>
+</rss>

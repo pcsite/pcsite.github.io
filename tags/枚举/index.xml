@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>枚举 on PengSite</title>
+    <link>/tags/%E6%9E%9A%E4%B8%BE/</link>
+    <description>Recent content in 枚举 on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 21 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E6%9E%9A%E4%B8%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java枚举</title>
+      <link>/2017/mj/</link>
+      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/mj/</guid>
+      <description>枚举   是将变量的值一一列出来，变量的值只限于列举出来的值得范围内
+  为了间接的表示一些固定的值，java就给我们提供了枚举
+  枚举的格式
+  定义枚举类需要用到关键字enum
+public enum s{ 枚举1，枚举2，枚举3; }   练习
+  定义一个枚举类，用来表示春、夏、春、冬这四个固定值
+public enum Season { SPRING,SUMMER,AUTUMN,WINTER; }   枚举的特点
+  所有枚举类都是Enum的子类
+  我们可以通过&amp;quot;枚举类名.枚举项名称&amp;quot;去访问指定的枚举项
+  每一个枚举项其实就是该枚举的一个对象
+  枚举也是一个类，也可以去定义成员变量
+  枚举类的第一行上必须是枚举项，最后一个枚举项后的分号是可以省略的，但是如果枚举类有其他的东西，这个分号就不能省略，建议不要省略
+  枚举类可以有构造器，但是必须是private的，他默认也是private的，枚举项的用法比较特殊：枚举(&amp;quot;&amp;quot;);
+  枚举类也可以有抽象方法，但是枚举项必须重写该方法
+  测试类
+public class EnumDemo { public static void main(String[] args) { //所有枚举类都是Enum的子类 //我们可以通过&amp;quot;枚举类名.枚举项名称&amp;quot;去访问指定的枚举项 System.out.println(Season.AUTUMN); System.</description>
+    </item>
+    
+  </channel>
+</rss>

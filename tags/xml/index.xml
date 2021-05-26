@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XML on PengSite</title>
+    <link>/tags/xml/</link>
+    <description>Recent content in XML on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 24 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/xml/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>XML</title>
+      <link>/2017/xml/</link>
+      <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/xml/</guid>
+      <description>XML   XML概述
+ XML的全程为(EXtensible Markup Language),是一种可扩展的标记语言 标记语言：通过标签来描述数据的一门语言(标签有时候也称其为元素) 可扩展：标签的名字是可以自己定义的 XML文件是由很多标签组成的，而标签名是可以自定义的 作用  用于进行存储数据和传输数据 作为软件的配置文件      XML标签规则
+ 标签由一对尖括号和合法标识符组成 &amp;mdash; &amp;lt;&amp;gt; 标签必须成对出现 特殊的标签可以不成对，但是必须有结束标记 &amp;lt;address/&amp;gt; 标签中可以定义属性，属性和标签名用空格隔开，属性值必须用引号引起来 标签需要正确的嵌套    XML语法规则
+ XML文件的后缀名为：xml 文档声明必须是第一行第一列  &amp;lt;?xml version = &amp;quot;1.0&amp;quot; encoding = &amp;quot;UTF-8&amp;quot; standalone = &amp;quot;yes&amp;quot; ?&amp;gt; version：该属性必须存在 encoding：该属性不是必须的 &amp;mdash; 打开当前xml文件的时候应该是使用什么字符编码表 standalone：该属性不是必须的，描述XML文件是否依赖其他的XML文件，取值为yes/no      必须存在一个跟标签，有且只能有一个
+  XML文件中可以定义注释信息
+  XML文件可以存在以下特殊字符：
+ &amp;amp;lt:	&amp;lt;	小于 &amp;amp;gt: &amp;gt; 大于 &amp;amp;amp: &amp;amp; 和号 &amp;amp;apos: &#39; 单引号 &amp;amp;quot: &amp;quot; 引号    XML文件中可以存在CDATA区</description>
+    </item>
+    
+  </channel>
+</rss>

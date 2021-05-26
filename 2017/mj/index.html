@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="pengSite">
+  
+  
+  
+  <link rel="prev" href="/2017/fs/" />
+  <link rel="next" href="/2017/xml/" />
+  <link rel="canonical" href="/2017/mj/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           java枚举 | PengSite
+       
+  </title>
+  <meta name="title" content="java枚举 | PengSite">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "\/"
+    },
+    "articleSection" : "posts",
+    "name" : "java枚举",
+    "headline" : "java枚举",
+    "description" : "枚举   是将变量的值一一列出来，变量的值只限于列举出来的值得范围内\n  为了间接的表示一些固定的值，java就给我们提供了枚举\n  枚举的格式\n  定义枚举类需要用到关键字enum\npublic enum s{ 枚举1，枚举2，枚举3; }   练习\n  定义一个枚举类，用来表示春、夏、春、冬这四个固定值\npublic enum Season { SPRING,SUMMER,AUTUMN,WINTER; }   枚举的特点\n  所有枚举类都是Enum的子类\n  我们可以通过\u0026quot;枚举类名.枚举项名称\u0026quot;去访问指定的枚举项\n  每一个枚举项其实就是该枚举的一个对象\n  枚举也是一个类，也可以去定义成员变量\n  枚举类的第一行上必须是枚举项，最后一个枚举项后的分号是可以省略的，但是如果枚举类有其他的东西，这个分号就不能省略，建议不要省略\n  枚举类可以有构造器，但是必须是private的，他默认也是private的，枚举项的用法比较特殊：枚举(\u0026quot;\u0026quot;);\n  枚举类也可以有抽象方法，但是枚举项必须重写该方法\n  测试类\npublic class EnumDemo { public static void main(String[] args) { \/\/所有枚举类都是Enum的子类 \/\/我们可以通过\u0026quot;枚举类名.枚举项名称\u0026quot;去访问指定的枚举项 System.out.println(Season.AUTUMN); System.",
+    "inLanguage" : "zh-CN",
+    "author" : "PengSite",
+    "creator" : "PengSite",
+    "publisher": "PengSite",
+    "accountablePerson" : "PengSite",
+    "copyrightHolder" : "PengSite",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-10-21 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-10-21 00:00:00 \u002b0000 UTC",
+    "url" : "\/2017\/mj\/",
+    "wordCount" : "413",
+    "keywords" : [ "java","枚举", "PengSite"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java枚举</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="/" rel="author">PengSite</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-10-21 itemprop="datePublished">October 21, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="/categories/uncategorized/"> Uncategorized </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h3 id="枚举">枚举</h3>
+<ul>
+<li>
+<p>是将变量的值一一列出来，变量的值只限于列举出来的值得范围内</p>
+</li>
+<li>
+<p>为了间接的表示一些固定的值，java就给我们提供了枚举</p>
+</li>
+<li>
+<p>枚举的格式</p>
+</li>
+<li>
+<p>定义枚举类需要用到关键字enum</p>
+<pre><code>public enum s{
+	枚举1，枚举2，枚举3;
+}
+</code></pre></li>
+<li>
+<p>练习</p>
+</li>
+<li>
+<p>定义一个枚举类，用来表示春、夏、春、冬这四个固定值</p>
+<pre><code>public enum Season {
+    SPRING,SUMMER,AUTUMN,WINTER;
+}
+</code></pre></li>
+<li>
+<p>枚举的特点</p>
+<ul>
+<li>
+<p>所有枚举类都是Enum的子类</p>
+</li>
+<li>
+<p>我们可以通过&quot;枚举类名.枚举项名称&quot;去访问指定的枚举项</p>
+</li>
+<li>
+<p>每一个枚举项其实就是该枚举的一个对象</p>
+</li>
+<li>
+<p>枚举也是一个类，也可以去定义成员变量</p>
+</li>
+<li>
+<p>枚举类的第一行上必须是枚举项，最后一个枚举项后的分号是可以省略的，但是如果枚举类有其他的东西，这个分号就不能省略，建议不要省略</p>
+</li>
+<li>
+<p>枚举类可以有构造器，但是必须是private的，他默认也是private的，枚举项的用法比较特殊：枚举(&quot;&quot;);</p>
+</li>
+<li>
+<p>枚举类也可以有抽象方法，但是枚举项必须重写该方法</p>
+</li>
+<li>
+<p>测试类</p>
+<pre><code>public class EnumDemo {
+    public static void main(String[] args) {
+        //所有枚举类都是Enum的子类
+        //我们可以通过&quot;枚举类名.枚举项名称&quot;去访问指定的枚举项
+        System.out.println(Season.AUTUMN);
+        System.out.println(Season.SPRING);
+        System.out.println(Season.SUMMER);
+        System.out.println(Season.WINTER);
+        //每一个枚举项其实就是该枚举的一个对象
+        Season autumn = Season.AUTUMN;
+        //枚举也是一个类，也可以去定义成员变量
+        //枚举类的第一行上必须是枚举项，最后一个枚举项后的分号是可以省略的，但是如果枚举类有其他的东西，这个分号就不能省略，建议不要省略
+        //枚举类可以有构造器，但是必须是private的，他默认也是private的，枚举项的用法比较特殊：枚举(&quot;&quot;);
+        //枚举类也可以有抽象方法，但是枚举项必须重写该方法
+    }
+}
+</code></pre></li>
+<li>
+<p>枚举类</p>
+<pre><code>public enum Season {
+    SPRING(&quot;春&quot;){
+        @Override
+        public void show() {
+    
+        }
+    },
+    SUMMER(&quot;夏&quot;){
+        @Override
+        public void show() {
+    
+        }
+    },
+    AUTUMN(&quot;秋&quot;){
+        @Override
+        public void show() {
+    
+        }
+    },
+    WINTER(&quot;冬&quot;){
+        @Override
+        public void show() {
+    
+        }
+    };
+    
+    private String name;
+    //无参构造
+    //private Season(){}
+    //有参构造
+    private Season(String name){
+        this.name=name;
+    }
+    //抽象方法
+    public abstract void show();
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>枚举常见的方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String name()</td>
+<td>获取枚举项的名称</td>
+</tr>
+<tr>
+<td>int ordinal()</td>
+<td>返回枚举项在枚举类中的索引值</td>
+</tr>
+<tr>
+<td>int compareTo(E o)</td>
+<td>比较两个枚举项，返回的是索引值的差值</td>
+</tr>
+<tr>
+<td>String toString()</td>
+<td>返回枚举类常量的名称</td>
+</tr>
+<tr>
+<td>static<!-- raw HTML omitted --> TvalueOf(Class<!-- raw HTML omitted --> type,String name)</td>
+<td>获取指定枚举类中的指定名称的枚举值</td>
+</tr>
+<tr>
+<td>values()</td>
+<td>获得所有的枚举项</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>测试类</p>
+<pre><code>public class EnumDemo {
+    public static void main(String[] args) {
+//        String name()获取枚举项的名称
+        String name = Season.SPRING.name();
+        System.out.println(name);
+        System.out.println(&quot;----------------&quot;);
+//        int ordinal()返回枚举项在枚举类中的索引值
+        int ordinal = Season.AUTUMN.ordinal();
+        System.out.println(ordinal);
+//        int compareTo(E o)比较两个枚举项，返回的是索引值的差值
+        int i = Season.SPRING.compareTo(Season.WINTER);
+        System.out.println(i);
+//        String toString()返回枚举类常量的名称
+        String s = Season.SPRING.toString();
+        System.out.println(s);
+//        static&lt;T&gt; T valueOf(Class&lt;T&gt; type,String name)获取指定枚举类中的指定名称的枚举值
+        Season season = Enum.valueOf(Season.class, &quot;SPRING&quot;);
+        System.out.println(season);
+        System.out.println(Season.SPRING == season);
+//        values()获得所有的枚举项
+        Season[] values = Season.values();
+        for (Season value : values) {
+            System.out.println(value);
+        }
+    }
+}
+</code></pre></li>
+<li>
+<p>Season类</p>
+<pre><code>public enum Season {
+    SPRING,
+    SUMMER,
+    AUTUMN,
+    WINTER;
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>注解</p>
+<ul>
+<li>
+<p>什么是注解</p>
+<ul>
+<li>对我们的程序进行标注和解释
+<table>
+<thead>
+<tr>
+<th>注解名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Override</td>
+<td>描述子类重写父类的方法</td>
+</tr>
+<tr>
+<td>@Deprecated</td>
+<td>描述方法过时</td>
+</tr>
+<tr>
+<td>@SuppressWarnings</td>
+<td>压制警告</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>自定义注解</p>
+<ul>
+<li>
+<p>格式</p>
+<pre><code>public @interface 注解名称{
+	public 属性类型 属性名 () default 默认值;
+}
+</code></pre></li>
+<li>
+<p>例</p>
+<pre><code>public @interface Test{
+public int a () default 23;
+}
+</code></pre></li>
+<li>
+<p>代码演示</p>
+<pre><code>public @interface Anno1 {
+      
+    //定义一个基本类型的属性
+    int a () default 23;
+      
+    //定义一个String类型的属性
+    public String name();
+      
+    //定义一个Class类型的属性
+    public Class clazz() default Anno2.class;
+      
+    //定义一个注解类型的属性
+    public Anno2 anno2() default @Anno2;
+      
+    //定义一个枚举类型的属性
+    public Season season() default Season.SPRING;
+      
+    //以上类型的一维数组
+    //int数组
+    public int[] arr() default {1,2,3,4,5};
+      
+    //枚举数组
+    public Season[] season1() default {Season.SPRING,Season.SUMMER};
+}
+</code></pre></li>
+<li>
+<p>特殊属性value</p>
+<ul>
+<li>后期我们在使用注解的时候，如果我们只需要给注解的value的属性赋值，那么value就可以省略</li>
+<li>public String value();</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>自定义注解练习</p>
+<ul>
+<li>
+<p>自定义一个注解(@Test)，用于指定类的方法上，如果某一个类的方法上使用了该注解，就执行该方法。</p>
+</li>
+<li>
+<p>isAnnotationPresent(Class&lt;? extends Annotation&gt; annotationClass)</p>
+<ul>
+<li>判断当前方法上是否有指定的注解</li>
+<li>参数：注解的字节码文件对象</li>
+<li>返回值是boolean</li>
+</ul>
+</li>
+<li>
+<p>测试类</p>
+<pre><code>public class AnnoDemo {
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        //1.通过反射获取UseTest类的字节码文件对象
+        Class aClass = Class.forName(&quot;com.itheima.myanno1.UseTest&quot;);
+        //创建对象
+        UseTest useTest = (UseTest) aClass.newInstance();
+      
+        //2.通过反射获取这个类里面所有的方法对象
+        Method[] declaredMethods = aClass.getDeclaredMethods();
+        //遍历数组
+        for (Method declaredMethod : declaredMethods) {
+            //declaredMethod表示每一个方法对象
+            //isAnnotationPresent(Class&lt;? extends Annotation&gt; annotationClass)
+            //判断当前方法上是否有指定的注解
+            //参数：注解的字节码文件对象
+            //返回值是boolean
+            if (declaredMethod.isAnnotationPresent(Test.class)){
+                declaredMethod.invoke(useTest);
+            }
+        }
+    }
+}
+</code></pre></li>
+<li>
+<p>注解</p>
+<pre><code>//表示Test这个注解的存活时间
+@Retention(value = RetentionPolicy.RUNTIME)
+public @interface Test {
+      
+}
+</code></pre></li>
+<li>
+<p>UseTest类</p>
+<pre><code>public class UseTest {
+    //没有使用Test注解
+    public void show(){
+        System.out.println(&quot;UseTest...show...&quot;);
+    }
+      
+    //使用Test注解
+    @Test
+    public void method(){
+        System.out.println(&quot;UseTest...method...&quot;);
+    }
+      
+    //没有使用Test注解
+    @Test
+    public void function(){
+        System.out.println(&quot;UerTest...function...&quot;);
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>元注解</p>
+<ul>
+<li>描述注解的注解
+<table>
+<thead>
+<tr>
+<th>元注解名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Target</td>
+<td>指定了注解能在哪里使用</td>
+</tr>
+<tr>
+<td>@Retention</td>
+<td>可以理解为保留时间(生命周期)</td>
+</tr>
+<tr>
+<td>@Inherited</td>
+<td>表示修饰的自定义注解可以被子类继承</td>
+</tr>
+<tr>
+<td>@Documented</td>
+<td>表示该自定义注解，会出现在API文档里面</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>pengSite </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=/2017/mj/>/2017/mj/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="/tags/java/">
+                    #java</a></span>
+            
+            <span class="tag"><a href="/tags/%E6%9E%9A%E4%B8%BE/">
+                    #枚举</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="/2017/fs/" class="prev" rel="prev" title="java反射"><i class="iconfont icon-left"></i>&nbsp;java反射</a>
+         
+        
+        <a href="/2017/xml/" class="next" rel="next" title="XML">XML&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="/">pengSite</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

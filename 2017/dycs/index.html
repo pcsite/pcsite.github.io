@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="pengSite">
+  
+  
+  
+  <link rel="prev" href="/2017/xml/" />
+  <link rel="next" href="/2017/linuxxit/" />
+  <link rel="canonical" href="/2017/dycs/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           java单元测试 | PengSite
+       
+  </title>
+  <meta name="title" content="java单元测试 | PengSite">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "\/"
+    },
+    "articleSection" : "posts",
+    "name" : "java单元测试",
+    "headline" : "java单元测试",
+    "description" : "单元测试   以前的测试方式\n 我们都是将代码全部写完再进行测试，其实这样并不是很好，在以后的工作的时候，都是写完一部分代码，就测试一部分。这样代码中的问题可以得到及时的修复，也避免了由于代码过多，从而无法准确定位到错误的代码    Junit概述\n 是一个java编程语言的单元测试工具，JUnit是一个非常重要的测试工具 JUnit是一个开放源代码的测试工具 提高注解来识别测试方法 JUnit测试可以让你编写代码更快，并能提高质量 JUnit优雅简洁，没那么复杂，花费时间较少 JUnit在一个条中显示进度，如果运行良好则是绿色，如果运行失败则是红色    JUnit使用的基本流程\n  将junit的jar包导入到工程中\n  编写测试方法该测试方法必须是公共的无参数无返回值的非静态方法\n  在测试方法上使用@Test注解标注该方法是一个测试方法\n  选中测试方法右键通过junit运行该方法\n  代码演示\npublic class JunitDemo1 { public static void main(String[] args) { } @Test public void add(){ int a = 10; int b = 20; int sum = a\u002bb; System.out.println(sum); } }     常用注解介绍",
+    "inLanguage" : "zh-CN",
+    "author" : "PengSite",
+    "creator" : "PengSite",
+    "publisher": "PengSite",
+    "accountablePerson" : "PengSite",
+    "copyrightHolder" : "PengSite",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-10-27 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-10-27 00:00:00 \u002b0000 UTC",
+    "url" : "\/2017\/dycs\/",
+    "wordCount" : "187",
+    "keywords" : [ "java","单元测试", "PengSite"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java单元测试</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="/" rel="author">PengSite</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-10-27 itemprop="datePublished">October 27, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="/categories/uncategorized/"> Uncategorized </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h3 id="单元测试">单元测试</h3>
+<ul>
+<li>
+<p>以前的测试方式</p>
+<ul>
+<li>我们都是将代码全部写完再进行测试，其实这样并不是很好，在以后的工作的时候，都是写完一部分代码，就测试一部分。这样代码中的问题可以得到及时的修复，也避免了由于代码过多，从而无法准确定位到错误的代码</li>
+</ul>
+</li>
+<li>
+<p>Junit概述</p>
+<ul>
+<li>是一个java编程语言的单元测试工具，JUnit是一个非常重要的测试工具</li>
+<li>JUnit是一个开放源代码的测试工具</li>
+<li>提高注解来识别测试方法</li>
+<li>JUnit测试可以让你编写代码更快，并能提高质量</li>
+<li>JUnit优雅简洁，没那么复杂，花费时间较少</li>
+<li>JUnit在一个条中显示进度，如果运行良好则是绿色，如果运行失败则是红色</li>
+</ul>
+</li>
+<li>
+<p>JUnit使用的基本流程</p>
+<ul>
+<li>
+<p>将junit的jar包导入到工程中</p>
+</li>
+<li>
+<p>编写测试方法该测试方法必须是公共的无参数无返回值的非静态方法</p>
+</li>
+<li>
+<p>在测试方法上使用@Test注解标注该方法是一个测试方法</p>
+</li>
+<li>
+<p>选中测试方法右键通过junit运行该方法</p>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>public class JunitDemo1 {
+    public static void main(String[] args) {
+    
+    }
+    @Test
+    public void add(){
+        int a = 10;
+        int b = 20;
+        int sum = a+b;
+        System.out.println(sum);
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>常用注解介绍</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Test</td>
+<td>表示测试该方法</td>
+</tr>
+<tr>
+<td>@Before</td>
+<td>在测试的方法前运行</td>
+</tr>
+<tr>
+<td>@After</td>
+<td>在测试的方法后运行</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>日志技术</p>
+<ul>
+<li>
+<p>输出语句的弊端</p>
+<ul>
+<li>想取消记录的信息需要修改代码才可以完成</li>
+<li>信息只能展示在控制台，不能将其记录到其它的位置(文件、数据库)</li>
+</ul>
+</li>
+<li>
+<p>程序中的日志可以用来记录程序在运行的时候点点滴滴，并可以进行永久存储</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>输出语句</th>
+<th>日志技术</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>取消日志</td>
+<td>需要修改代码，灵活性比较差</td>
+<td>不需要修改代码，灵活性比较好</td>
+</tr>
+<tr>
+<td>输出位置</td>
+<td>只能是控制台</td>
+<td>可以将日志信息写入到文件或者数据库中</td>
+</tr>
+<tr>
+<td>多线程</td>
+<td>和业务代码处于一个线程中</td>
+<td>多线程方式记录日志，不影响业务代码的性能</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>日志技术的体系结构</p>
+<ul>
+<li>JCL</li>
+<li>slf4js</li>
+<li>实现类
+<ul>
+<li>Log4j
+<ul>
+<li>可以控制日志信息输送的目的地时控制台、文件等位置</li>
+<li>可以控制每一条日志的输出格式</li>
+<li>通过定义每一条日志信息的级别，我们能够更加细致的控制日志的生成过程</li>
+<li>可以通过配置文件来灵活的配置，而不需要修改应用代码</li>
+</ul>
+</li>
+<li>JUL(java.util.loggiing)</li>
+<li>Logback</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Log4j开发流程</p>
+<ul>
+<li>
+<p>导入log4j的相关jar包</p>
+</li>
+<li>
+<p>编写log4j配置文件</p>
+</li>
+<li>
+<p>在代码中获取日志的对象</p>
+</li>
+<li>
+<p>按照级别设置记录日志信息</p>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>//使用log4j的api来获取日志的对象
+//弊端：如果以后我们更换日志的实现类,那么下面的代码就需要跟着该
+//不推荐使用
+public class Log4jTest1 {
+    //1.导入jar包
+    //2.编写配置文件
+    //3.在代码中获取日志的对象
+    //使用log4j的api来获取日志的对象
+    //弊端：如果以后我们更换日志的实现类,那么下面的代码就需要跟着该
+    //不推荐使用
+    //private static final Logger LOGGER = Logger.getLogger(Log4jTest1.class);
+    //使用slf4j里面的api来获取日志的对象
+    //好处：如果以后我们更换日志的实现类，那么下面的代码不需要跟着修改
+    private static final Logger LOGGER = LoggerFactory.getLogger(Log4jTest1.class);
+      
+    public static void main(String[] args) {
+        //4.按照日志级别设置日志信息
+        LOGGER.debug(&quot;debug级别的日志&quot;);
+        LOGGER.info(&quot;info级别的日志&quot;);
+        LOGGER.warn(&quot;warn级别的日志&quot;);
+        LOGGER.error(&quot;error级别的日志&quot;);
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Log4j核心内容</p>
+<ul>
+<li>
+<p>Loggers(记录器) &mdash; 日志级别</p>
+<ul>
+<li>Loggers组件在此系统中常见的五个级别：DEBUG、INFO、WARN、ERROR和FATAL</li>
+<li>DEBUG：打印开发中的基本信息</li>
+<li>INFO：打印一些重要的信息</li>
+<li>WARN：警告,表示可能出现问题，不是错误信息，需要给程序员提示</li>
+<li>ERROR：发生错误，但是不影响系统运行</li>
+<li>FATAL：严重的错误，表示程序停止</li>
+<li>DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL</li>
+<li>Log4j有一个规则：只输出级别不低于设定级别的日志信息（包含本身及以上）</li>
+</ul>
+</li>
+<li>
+<p>Appenders(输出源) &mdash; 日志要输出的地方</p>
+<ul>
+<li>把日志输出到不同的地方：控制台(Console)、文件(Files)等。</li>
+<li>org.apache.log4j.ConsoleAppender(控制台)</li>
+<li>org.apache.log4j.FileAppender(文件)</li>
+</ul>
+</li>
+<li>
+<p>Layouts(布局) &mdash; 日志输出的格式</p>
+<ul>
+<li>
+<p>可以根据自己的喜好规定日志输出的格式</p>
+<ul>
+<li>
+<p>常用的布局管理器</p>
+</li>
+<li>
+<p>org.apache.log4j.patternLayout(可以灵活的指定布局模式) &mdash; （常用）</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CDesktop%5CPatternLayout%E5%B8%B8%E7%94%A8%E7%9A%84%E9%80%89%E9%A1%B9.png" alt="PatternLayout常用的选项"></p>
+</li>
+<li>
+<p>org.apache.log4j.SimpleLayout(包含日志信息的级别和信息字符串)</p>
+</li>
+<li>
+<p>org.apache.log4j.TTCCLayout(包含日志产生的时间，线程，类别等信息)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Log4j配置文件</p>
+<ul>
+<li>配置根Logger
+<ul>
+<li>格式：<code>log4j.rootLogger=日志级别,appenderName1,appenderName2,...</code></li>
+<li>日志级别：OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL或者自定义级别</li>
+<li>OFF：关闭日志</li>
+<li>ALL：所有级别的日志全部展示出来</li>
+<li>appenderName1：指定的日志信息要输出到哪里，可以同时指定多个输出目的地，用逗号隔开。例如：log4j.rootLogger = INFO,ca,fa</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>ConsoleAppender常用的选项</p>
+<ul>
+<li><code>ImmediateFlush=true</code>：表示所有消息都会被立即输出，设为false则不输出，默认值是true</li>
+<li><code>Target=System.err(利用错误流输出打印是红色)</code>：默认值是System.out(打印出是黑色)</li>
+</ul>
+</li>
+<li>
+<p>FileAppender常用的选项</p>
+<ul>
+<li><code>ImmediateFlush=true</code>：表示所有消息都会被立即输出，设为false则不输出，默认值是ture</li>
+<li><code>Append=false</code>：true表示将消息添加到指定文件中，原来的消息不覆盖，false则将消息覆盖指定的文件内容，默认是true</li>
+<li><code>File=&quot;D:/logs/logging.log4j&quot;</code>：指定消息输出到logging.log4j文件中</li>
+</ul>
+</li>
+<li>
+<p>Log4j应用</p>
+<ul>
+<li>导入相关的依赖</li>
+<li>将资料中的properties配置文件复制到src目录下</li>
+<li>在代码中获取日志的对象</li>
+<li>按照级别设置记录日志信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>pengSite </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=/2017/dycs/>/2017/dycs/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="/tags/java/">
+                    #java</a></span>
+            
+            <span class="tag"><a href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+                    #单元测试</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="/2017/xml/" class="prev" rel="prev" title="XML"><i class="iconfont icon-left"></i>&nbsp;XML</a>
+         
+        
+        <a href="/2017/linuxxit/" class="next" rel="next" title="Linux系统与设置命令">Linux系统与设置命令&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="/">pengSite</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

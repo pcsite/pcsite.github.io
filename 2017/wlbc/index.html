@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="pengSite">
+  
+  
+  
+  <link rel="prev" href="/2017/duoxianc/" />
+  <link rel="next" href="/2017/jiazaiqi/" />
+  <link rel="canonical" href="/2017/wlbc/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           java网络编程 | PengSite
+       
+  </title>
+  <meta name="title" content="java网络编程 | PengSite">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "\/"
+    },
+    "articleSection" : "posts",
+    "name" : "java网络编程",
+    "headline" : "java网络编程",
+    "description" : "网络编程   网络编程概述\n 在网络通信协议下，不同计算机上运行的程序，可以进行数据传输    网络编程三要素\n IP地址  设备在网络中的地址，是唯一的标识   端口  应用程序在设备中的唯一标识 端口号：用两个字节表示的整数，它的取值范围是0~65535，其中0~1023之间的端口号用于一些知名的网络服务或者应用，我们自己使用1024以上的端口号就可以了 一个端口号只能被一个应用程序使用   协议  数据在网络中传输的规则，常见的协议有UDP协议和TCP协议 UDP协议  用户数据报协议 UDP是面向无连接通信协议 速度快，有大小限制一次最多发送64K，数据不安全，易丢失数据     TCP协议  传输控制协议 TCP协议是面向连接的通信协议，速度慢，没有大小限制，数据安全      IP概述\n 全称\u0026quot;互联网协议地址\u0026quot;，也称为IP地址，是分配给上网设备的数字标签，常见的IP分类为:ipv4和ipv6    IPv4 : 32bit(4字节) \u0026mdash; 点分十进制表示法\n  IPv6 : 采用128bit，每16个字节一组，一共分为8组 \u0026mdash; 冒分十六进制表示法\n  IP地址常见命令\n ipconfig:查看本机IP地址 ping IP地址:检查网络是否连通    InetAddress的使用",
+    "inLanguage" : "zh-CN",
+    "author" : "PengSite",
+    "creator" : "PengSite",
+    "publisher": "PengSite",
+    "accountablePerson" : "PengSite",
+    "copyrightHolder" : "PengSite",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-10-12 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-10-12 00:00:00 \u002b0000 UTC",
+    "url" : "\/2017\/wlbc\/",
+    "wordCount" : "187",
+    "keywords" : [ "java","网络编程", "PengSite"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">java网络编程</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="/" rel="author">PengSite</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-10-12 itemprop="datePublished">October 12, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="/categories/uncategorized/"> Uncategorized </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h3 id="网络编程">网络编程</h3>
+<ul>
+<li>
+<p>网络编程概述</p>
+<ul>
+<li>在网络通信协议下，不同计算机上运行的程序，可以进行数据传输</li>
+</ul>
+</li>
+<li>
+<p>网络编程三要素</p>
+<ul>
+<li>IP地址
+<ul>
+<li>设备在网络中的地址，是唯一的标识</li>
+</ul>
+</li>
+<li>端口
+<ul>
+<li>应用程序在设备中的唯一标识</li>
+<li>端口号：用两个字节表示的整数，它的取值范围是0~65535，其中0~1023之间的端口号用于一些知名的网络服务或者应用，我们自己使用1024以上的端口号就可以了</li>
+<li>一个端口号只能被一个应用程序使用</li>
+</ul>
+</li>
+<li>协议
+<ul>
+<li>数据在网络中传输的规则，常见的协议有UDP协议和TCP协议</li>
+<li>UDP协议
+<ul>
+<li>用户数据报协议</li>
+<li>UDP是面向无连接通信协议</li>
+<li>速度快，有大小限制一次最多发送64K，数据不安全，易丢失数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TCP协议
+<ul>
+<li>传输控制协议</li>
+<li>TCP协议是面向连接的通信协议，速度慢，没有大小限制，数据安全</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>IP概述</p>
+<ul>
+<li>全称&quot;互联网协议地址&quot;，也称为IP地址，是分配给上网设备的数字标签，常见的IP分类为:ipv4和ipv6</li>
+</ul>
+</li>
+<li>
+<p>IPv4 : 32bit(4字节)  &mdash; 点分十进制表示法</p>
+</li>
+<li>
+<p>IPv6 : 采用128bit，每16个字节一组，一共分为8组  &mdash;  冒分十六进制表示法</p>
+</li>
+<li>
+<p>IP地址常见命令</p>
+<ul>
+<li><code>ipconfig</code>:查看本机IP地址</li>
+<li><code>ping IP地址</code>:检查网络是否连通</li>
+</ul>
+</li>
+<li>
+<p>InetAddress的使用</p>
+<ul>
+<li>
+<p>此类表示Internet协议(ip)地址</p>
+</li>
+<li>
+<p><code>static InetAddress getByName(String host)</code> : 获取主机名称的IP地址。主机名称可以是机器名称，也可以是IP地址</p>
+</li>
+<li>
+<p><code>String getHostName()</code>:获取此IP地址的主机名</p>
+</li>
+<li>
+<p><code>String getHostAddress()</code>:返回文本显示中的IP地址字符串</p>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>    public static void main(String[] args) throws UnknownHostException {
+        //static InetAddress getByName(String host)获取主机名称的IP地址。主机名称可以是机器名称，也可以是IP地址
+        InetAddress address = InetAddress.getByName(&quot;MacBook-Air.local&quot;);
+        //String getHostName():获取此IP地址的主机名
+        String hostName = address.getHostName();
+        System.out.println(&quot;主机名为&quot;+hostName);
+        //String getHostAddress():返回文本显示中的IP地址字符串
+        String hostAddress = address.getHostAddress();
+        System.out.println(&quot;IP为&quot;+hostAddress);
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>UDP通讯程序</p>
+<ul>
+<li>
+<p>UDP的三种通讯方式</p>
+<ul>
+<li>
+<p>单播</p>
+</li>
+<li>
+<p>组播</p>
+<ul>
+<li>
+<p>组播地址：224.0.0.0~239.255.255.255;其中224.0.0.0~224.0.0.255为预留的组播地址</p>
+</li>
+<li>
+<p>发送端步骤</p>
+<ul>
+<li>
+<p>创建发送端的DaragramSocket对象</p>
+</li>
+<li>
+<p>创建数据，并把数据打包(DatagramPacket)</p>
+</li>
+<li>
+<p>调用DatagramSocket对象的方法发送数据，发送给组播地址</p>
+</li>
+<li>
+<p>释放资源</p>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>    public static void main(String[] args) throws IOException {
+        DatagramSocket ds = new DatagramSocket();
+        String s = &quot;hello 组播&quot;;
+        byte[] bytes = s.getBytes();
+        InetAddress address = InetAddress.getByName(&quot;224.0.1.0&quot;);
+        int port =10000;
+        DatagramPacket dp = new DatagramPacket(bytes,bytes.length,address,port);
+        ds.send(dp);
+        ds.close();
+    }
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>接收端步骤</p>
+<ul>
+<li>
+<p>创建接收端的DaragramSocket对象</p>
+<ul>
+<li>MulticastSocket ms = new MulticastSocket(10086);</li>
+</ul>
+</li>
+<li>
+<p>创建箱子，用于接收数据</p>
+<ul>
+<li>DatagramPacket dp = new DatagramPacket(new byte[1024],1024);</li>
+</ul>
+</li>
+<li>
+<p>把电脑添加到组中</p>
+</li>
+<li>
+<p>调用DatagramSocket的方法接受数据并将数据放入箱子中</p>
+</li>
+<li>
+<p>解析数据包，并把数据在控制台显示</p>
+</li>
+<li>
+<p>释放资源</p>
+</li>
+<li>
+<p>代码演示</p>
+<pre><code>        MulticastSocket ms = new MulticastSocket(10000);
+        DatagramPacket dp = new DatagramPacket(new byte[1024],1024);
+        ms.joinGroup(InetAddress.getByName(&quot;224.0.1.0&quot;));
+        ms.receive(dp);
+        byte[] data = dp.getData();
+        int length = dp.getLength();
+        System.out.println(new String(data,0,length));
+        ms.close();
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>广播</p>
+</li>
+</ul>
+</li>
+<li>
+<p>发送数据步骤</p>
+<ul>
+<li>创建发送端的DaragramSocket对象</li>
+<li>创建数据，并把数据打包(DatagramPacket)</li>
+<li>调用DatagramSocket对象的方法发送数据</li>
+<li>释放资源</li>
+</ul>
+</li>
+<li>
+<p>接受数据步骤</p>
+<ul>
+<li>创建接收端的DaragramSocket对象</li>
+<li>创建箱子，用于接收数据</li>
+<li>调用DatagramSocket的方法接受数据并将数据放入箱子中</li>
+<li>解析数据包，并把数据在控制台显示</li>
+<li>释放资源</li>
+<li>&mdash;注意点&mdash;</li>
+<li>要先运行接收端，在运行发送端</li>
+<li>如果接收端在启动之后，没有接收到数据，那么会一直等待(阻塞)</li>
+<li>在接受数据的时候，需要调用getLength方法，表示接受到了多少字节</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>pengSite </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=/2017/wlbc/>/2017/wlbc/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="/tags/java/">
+                    #java</a></span>
+            
+            <span class="tag"><a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+                    #网络编程</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="/2017/duoxianc/" class="prev" rel="prev" title="java多线程知识总结"><i class="iconfont icon-left"></i>&nbsp;java多线程知识总结</a>
+         
+        
+        <a href="/2017/jiazaiqi/" class="next" rel="next" title="java类加载器">java类加载器&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="/">pengSite</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
