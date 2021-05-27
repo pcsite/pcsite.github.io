@@ -37,6 +37,20 @@ ls -l a.txt     使用 touch 创建批量空文件
     </item>
     
     <item>
+      <title>Linux网络与磁盘管理</title>
+      <link>/2017/linux4/</link>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/linux4/</guid>
+      <description>Linux网络与磁盘管理   ifconfig命令
+ 语法：ifconfig [参数选项]：显示或配置网络设备的命令 ifconfig：显示激活的网卡信息 ifconfig 网卡名称 down：关闭网卡 ifconfig 网卡名称 up：启动网卡 ifconfig 网卡名称 ip：配置ip地址 ifconfig 网卡名称 ip 子网掩码：配置ip地址和子网掩码    ping命令
+ 语法：ifconfig [参数选项]：检查是否与主机连通 参数选项  -c &amp;lt;完成次数&amp;gt;：设置完成要求回应的次数      netstat命令
+ 语法：netstat [参数选项]：显示网络状态 参数选项  -a：显示所有连线中的Socket -i：显示网卡列表      lsblk命令
+ 语法：lsblk [参数选项]：列出硬盘的使用情况 参数选项  -f：显示系统信息      df命令
+ 语法：df [参数选项]：显示目前在Linux系统上，硬盘的使用情况 参数选项  --total：显示所有的信息 -h：换算成KB,MB,GB等形式进行展示      mount命令</description>
+    </item>
+    
+    <item>
       <title>Linux的目录管理</title>
       <link>/2017/linux1/</link>
       <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="pengSite">
+  
+  
+  
+  <link rel="prev" href="/2017/linux1/" />
+  <link rel="next" href="/2017/linux2/" />
+  <link rel="canonical" href="/2017/linux4/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Linux网络与磁盘管理 | PengSite
+       
+  </title>
+  <meta name="title" content="Linux网络与磁盘管理 | PengSite">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Linux网络与磁盘管理",
+    "headline" : "Linux网络与磁盘管理",
+    "description" : "Linux网络与磁盘管理   ifconfig命令\n 语法：ifconfig [参数选项]：显示或配置网络设备的命令 ifconfig：显示激活的网卡信息 ifconfig 网卡名称 down：关闭网卡 ifconfig 网卡名称 up：启动网卡 ifconfig 网卡名称 ip：配置ip地址 ifconfig 网卡名称 ip 子网掩码：配置ip地址和子网掩码    ping命令\n 语法：ifconfig [参数选项]：检查是否与主机连通 参数选项  -c \u0026lt;完成次数\u0026gt;：设置完成要求回应的次数      netstat命令\n 语法：netstat [参数选项]：显示网络状态 参数选项  -a：显示所有连线中的Socket -i：显示网卡列表      lsblk命令\n 语法：lsblk [参数选项]：列出硬盘的使用情况 参数选项  -f：显示系统信息      df命令\n 语法：df [参数选项]：显示目前在Linux系统上，硬盘的使用情况 参数选项  --total：显示所有的信息 -h：换算成KB,MB,GB等形式进行展示      mount命令",
+    "inLanguage" : "zh-CN",
+    "author" : "PengSite",
+    "creator" : "PengSite",
+    "publisher": "PengSite",
+    "accountablePerson" : "PengSite",
+    "copyrightHolder" : "PengSite",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-11-06 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-11-06 00:00:00 \u002b0000 UTC",
+    "url" : "\/2017\/linux4\/",
+    "wordCount" : "113",
+    "keywords" : [ "java","Linux网络与磁盘管理", "PengSite"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Linux网络与磁盘管理</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="/" rel="author">PengSite</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-11-06 itemprop="datePublished">November 6, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="/categories/uncategorized/"> Uncategorized </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h3 id="linux网络与磁盘管理">Linux网络与磁盘管理</h3>
+<ul>
+<li>
+<p><code>ifconfig</code>命令</p>
+<ul>
+<li>语法：<code>ifconfig [参数选项]</code>：显示或配置网络设备的命令</li>
+<li><code>ifconfig</code>：显示激活的网卡信息</li>
+<li><code>ifconfig 网卡名称 down</code>：关闭网卡</li>
+<li><code>ifconfig 网卡名称 up</code>：启动网卡</li>
+<li><code>ifconfig 网卡名称 ip</code>：配置ip地址</li>
+<li><code>ifconfig 网卡名称 ip 子网掩码</code>：配置ip地址和子网掩码</li>
+</ul>
+</li>
+<li>
+<p><code>ping</code>命令</p>
+<ul>
+<li>语法：<code>ifconfig [参数选项]</code>：检查是否与主机连通</li>
+<li>参数选项
+<ul>
+<li><code>-c &lt;完成次数&gt;</code>：设置完成要求回应的次数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>netstat</code>命令</p>
+<ul>
+<li>语法：<code>netstat [参数选项]</code>：显示网络状态</li>
+<li>参数选项
+<ul>
+<li><code>-a</code>：显示所有连线中的Socket</li>
+<li><code>-i</code>：显示网卡列表</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>lsblk</code>命令</p>
+<ul>
+<li>语法：<code>lsblk [参数选项]</code>：列出硬盘的使用情况</li>
+<li>参数选项
+<ul>
+<li><code>-f</code>：显示系统信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>df</code>命令</p>
+<ul>
+<li>语法：<code>df [参数选项]</code>：显示目前在Linux系统上，硬盘的使用情况</li>
+<li>参数选项
+<ul>
+<li><code>--total</code>：显示所有的信息</li>
+<li><code>-h</code>：换算成KB,MB,GB等形式进行展示</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>mount</code>命令</p>
+<ul>
+<li>语法：<code>mount [参数选项] 目录</code>：用于挂载Linux系统外的设备</li>
+<li><code>挂载点</code>的目录需要以下几个要求：
+<ul>
+<li>目录事先存在，可以用<code>mkdir</code>命令新建目录</li>
+<li>挂载点目录不可被其他进程使用到</li>
+<li>挂载点下原有文件将被隐藏</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>yum</code></p>
+<ul>
+<li>在linux当中，如果我们想要查找、安装、下载或者卸载另外的软件，就需要通过yum来进行操作</li>
+<li>1.列出所有可更新的软件清单命令：yum check-update</li>
+<li>2.更新所有软件命令：yum update</li>
+<li>3.仅安装指定的软件命令：yum install &lt;package_name&gt;</li>
+<li>4.仅更新指定的软件命令：yum update &lt;package_name&gt;</li>
+<li>5.列出所有可安裝的软件清单命令：yum list</li>
+<li>6.删除软件包命令：yum remove &lt;package_name&gt;</li>
+<li>7.查找软件包 命令：yum search <!-- raw HTML omitted --></li>
+<li>8.清除缓存命令:
+<ul>
+<li>yum clean packages: 清除缓存目录下的软件包</li>
+<li>yum clean headers: 清除缓存目录下的 headers</li>
+<li>yum clean oldheaders: 清除缓存目录下旧的 headers</li>
+<li>yum clean, yum clean all (= yum clean packages; yum clean oldheaders) :清除缓存目录下的软件包及旧的headers</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>yum</code>源</p>
+<ul>
+<li><code>yum install wget</code>：安装下载工具wget</li>
+<li><code>wget -O CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</code>：下载阿里云的Centos-7.repo文件</li>
+<li><code>yum clean all</code>：清理之前的缓存，并重新加载yum</li>
+<li><code>yum makecache</code>：建立一个缓存文件</li>
+<li><code>yum search tomcat</code>：查找软件，验证阿里云的yum源是否可以正常使用</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>pengSite </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=/2017/linux4/>/2017/linux4/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="/tags/java/">
+                    #java</a></span>
+            
+            <span class="tag"><a href="/tags/linux%E7%BD%91%E7%BB%9C%E4%B8%8E%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/">
+                    #Linux网络与磁盘管理</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="/2017/linux1/" class="prev" rel="prev" title="Linux的目录管理"><i class="iconfont icon-left"></i>&nbsp;Linux的目录管理</a>
+         
+        
+        <a href="/2017/linux2/" class="next" rel="next" title="Linux的文件管理">Linux的文件管理&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="/">pengSite</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
