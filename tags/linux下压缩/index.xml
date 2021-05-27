@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux下压缩 on PengSite</title>
+    <link>/tags/linux%E4%B8%8B%E5%8E%8B%E7%BC%A9/</link>
+    <description>Recent content in Linux下压缩 on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 09 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/linux%E4%B8%8B%E5%8E%8B%E7%BC%A9/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux下解压缩</title>
+      <link>/2017/linux3/</link>
+      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/linux3/</guid>
+      <description>Linux下解压缩   gzip命令
+ 语法：gzip [参数选项] [文件]：压缩文件 gzip a.txt：压缩文件 gzip *：压缩当前目录下所有文件 gzip -dv *：解压文件并列出详细信息    gunzip命令
+ 语法：gunzip [参数][文件]：解压文件    tar命令
+ 语法：tar [必要参数][选择参数][文件]：打包、压缩和解压（文件/文件夹） tar本身不具有压缩功能。他是调用压缩功能实现的 参数选项  -c：建立新的压缩文件 -v：显示指令执行过程 -f：&amp;lt;备份文件&amp;gt;指定压缩文件 -z：通过gzip指令处理压缩文件 -t：列出压缩文件中的内容 -x：表示解压   tar -cvf 打包文件名 文件名：打包文件并指定打包之后的文件名（仅打包不压缩） tar -zcvf 压缩文件名 文件名/文件夹名：压缩文件或者文件夹并指定压缩文件名（打包压缩） tar -ztvf 压缩文件名：查看压缩文件中有哪些文件 tar -zxvf 压缩文件名：解压    zip命令
+ 语法：zip [必要参数][选择参数][文件]：压缩 zip是个使用广泛的压缩程序，文件经它压缩后会另外产生具有.zip扩展名的压缩文件 参数选项  -q：不显示指令执行过程 -r：递归处理，将指定目录下的所有文件和子目录一并处理      unzip命令</description>
+    </item>
+    
+  </channel>
+</rss>

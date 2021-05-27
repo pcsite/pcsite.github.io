@@ -6,7 +6,53 @@
     <description>Recent content in java on PengSite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux下解压缩</title>
+      <link>/2017/linux3/</link>
+      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/linux3/</guid>
+      <description>Linux下解压缩   gzip命令
+ 语法：gzip [参数选项] [文件]：压缩文件 gzip a.txt：压缩文件 gzip *：压缩当前目录下所有文件 gzip -dv *：解压文件并列出详细信息    gunzip命令
+ 语法：gunzip [参数][文件]：解压文件    tar命令
+ 语法：tar [必要参数][选择参数][文件]：打包、压缩和解压（文件/文件夹） tar本身不具有压缩功能。他是调用压缩功能实现的 参数选项  -c：建立新的压缩文件 -v：显示指令执行过程 -f：&amp;lt;备份文件&amp;gt;指定压缩文件 -z：通过gzip指令处理压缩文件 -t：列出压缩文件中的内容 -x：表示解压   tar -cvf 打包文件名 文件名：打包文件并指定打包之后的文件名（仅打包不压缩） tar -zcvf 压缩文件名 文件名/文件夹名：压缩文件或者文件夹并指定压缩文件名（打包压缩） tar -ztvf 压缩文件名：查看压缩文件中有哪些文件 tar -zxvf 压缩文件名：解压    zip命令
+ 语法：zip [必要参数][选择参数][文件]：压缩 zip是个使用广泛的压缩程序，文件经它压缩后会另外产生具有.zip扩展名的压缩文件 参数选项  -q：不显示指令执行过程 -r：递归处理，将指定目录下的所有文件和子目录一并处理      unzip命令</description>
+    </item>
+    
+    <item>
+      <title>Linux的文件管理</title>
+      <link>/2017/linux2/</link>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/linux2/</guid>
+      <description>Linux文件管理   touch命令
+  touch命令用于创建文件、修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。
+  语法：touch [参数选项] 文件名：如果文件不存在就创建文件，如果存在就修改时间属性
+ a 改变档案的读取时间记录。 m 改变档案的修改时间记录。 c 假如目的档案不存在，不会建立新的档案。与 &amp;ndash;no-create 的效果一样。 f 不使用，是为了与其他 unix 系统的相容性而保留。 r 使用参考档的时间记录，与 &amp;ndash;file 的效果一样。 d 设定时间与日期，可以使用各种不同的格式。 t 设定档案的时间记录，格式与 date 指令相同。 &amp;ndash;no-create 不会建立新档案。 &amp;ndash;help 列出指令格式。 &amp;ndash;version 列出版本讯息。    使用 touch 创建一个空文件
+  在 Linux 系统上使用 touch 命令创建空文件，键入 touch，然后输入文件名。如下所示
+touch a.txt 查看
+ls -l a.txt     使用 touch 创建批量空文件
+在实际的开发过程中可能会出现一些情况，我们必须为某些测试创建大量空文件，这可以使用 touch 命令轻松实现</description>
+    </item>
+    
+    <item>
+      <title>Linux的目录管理</title>
+      <link>/2017/linux1/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/linux1/</guid>
+      <description>Linux的目录管理   目录常用命令
+   常见命令 作用     ls 列出目录   cd 切换目录   pwd 显示当前的目录   mkdir 创建新目录   rmdir 删除空目录   cp 复制文件或目录   rm 删除文件或目录   mv 移动文件或目录修改文件或者目录的名字      ls：ls相当于在windows系统中打开文件夹，看到的目录以及文件的明细
+  语法
+  ls [参数选项] 目录名称：列出目录里的内容
+  参数选项
+  -a：显示所有文件或目录（包含隐藏）
+  -d：仅列出目录本身，而不是列出目录内的文件数据（常用）
+  -l：长数据串列出，包含文件的属性与权限等等数据（常用）
+  -al：显示所有文件与文件夹的详细信息</description>
+    </item>
+    
     <item>
       <title>Linux系统与设置命令</title>
       <link>/2017/linuxxit/</link>

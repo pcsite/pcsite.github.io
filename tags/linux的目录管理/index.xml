@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux的目录管理 on PengSite</title>
+    <link>/tags/linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/</link>
+    <description>Recent content in Linux的目录管理 on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 03 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux的目录管理</title>
+      <link>/2017/linux1/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/linux1/</guid>
+      <description>Linux的目录管理   目录常用命令
+   常见命令 作用     ls 列出目录   cd 切换目录   pwd 显示当前的目录   mkdir 创建新目录   rmdir 删除空目录   cp 复制文件或目录   rm 删除文件或目录   mv 移动文件或目录修改文件或者目录的名字      ls：ls相当于在windows系统中打开文件夹，看到的目录以及文件的明细
+  语法
+  ls [参数选项] 目录名称：列出目录里的内容
+  参数选项
+  -a：显示所有文件或目录（包含隐藏）
+  -d：仅列出目录本身，而不是列出目录内的文件数据（常用）
+  -l：长数据串列出，包含文件的属性与权限等等数据（常用）
+  -al：显示所有文件与文件夹的详细信息</description>
+    </item>
+    
+  </channel>
+</rss>
