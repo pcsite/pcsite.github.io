@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell on PengSite</title>
+    <link>/tags/shell/</link>
+    <description>Recent content in shell on PengSite</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 15 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>shell</title>
+      <link>/2017/shell/</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/shell/</guid>
+      <description>Shell   在计算机科学中，shell就是一个命令解释器
+  shell是位于操作系统和应用程序之间，是他们二者最主要的接口
+  shell负责把应用程序的输入命令信息解释给操作系统，将操作系统指令处理后的结果解释给应用程序
+  默认使用bash
+  echo $SHELL：查看默认shell
+  编写第一个shell
+  新建一个文件后缀名为sh
+  书写内容
+#!/bin/bash #这是第一个脚本文件 echo &amp;quot;pc&amp;quot; echo &amp;quot;ninhao&amp;quot;   执行：./a.sh
+    shell注释
+ 单行注释  #注释内容   多行注释  :&amp;lt;&amp;lt;!内容! :&amp;lt;&amp;lt;字符 注释内容 字符      shell变量
+  定义变量
+  普通变量
+  变量名=变量值
+ 变量值必须是一个整体，中间没有特殊字符    变量名=&#39;变量值&#39;</description>
+    </item>
+    
+  </channel>
+</rss>

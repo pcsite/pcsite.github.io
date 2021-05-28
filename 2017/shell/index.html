@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="pengSite">
+  
+  
+  
+  <link rel="prev" href="/2017/linux4/" />
+  
+  <link rel="canonical" href="/2017/shell/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           shell | PengSite
+       
+  </title>
+  <meta name="title" content="shell | PengSite">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "\/"
+    },
+    "articleSection" : "posts",
+    "name" : "shell",
+    "headline" : "shell",
+    "description" : "Shell   在计算机科学中，shell就是一个命令解释器\n  shell是位于操作系统和应用程序之间，是他们二者最主要的接口\n  shell负责把应用程序的输入命令信息解释给操作系统，将操作系统指令处理后的结果解释给应用程序\n  默认使用bash\n  echo $SHELL：查看默认shell\n  编写第一个shell\n  新建一个文件后缀名为sh\n  书写内容\n#!\/bin\/bash #这是第一个脚本文件 echo \u0026quot;pc\u0026quot; echo \u0026quot;ninhao\u0026quot;   执行：.\/a.sh\n    shell注释\n 单行注释  #注释内容   多行注释  :\u0026lt;\u0026lt;!内容! :\u0026lt;\u0026lt;字符 注释内容 字符      shell变量\n  定义变量\n  普通变量\n  变量名=变量值\n 变量值必须是一个整体，中间没有特殊字符    变量名=\u0027变量值\u0027",
+    "inLanguage" : "zh-CN",
+    "author" : "PengSite",
+    "creator" : "PengSite",
+    "publisher": "PengSite",
+    "accountablePerson" : "PengSite",
+    "copyrightHolder" : "PengSite",
+    "copyrightYear" : "2017",
+    "datePublished": "2017-11-15 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2017-11-15 00:00:00 \u002b0000 UTC",
+    "url" : "\/2017\/shell\/",
+    "wordCount" : "681",
+    "keywords" : [ "java","shell", "PengSite"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="/">PengSite</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">博客</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">关于</a>
+                
+                <a class="menu-item" href="/about/" title="About Hugo">About Hugo</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">shell</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="/" rel="author">PengSite</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2017-11-15 itemprop="datePublished">November 15, 2017</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="/categories/uncategorized/"> Uncategorized </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h3 id="shell">Shell</h3>
+<ul>
+<li>
+<p>在计算机科学中，shell就是一个命令解释器</p>
+</li>
+<li>
+<p>shell是位于操作系统和应用程序之间，是他们二者最主要的接口</p>
+</li>
+<li>
+<p>shell负责把应用程序的输入命令信息解释给操作系统，将操作系统指令处理后的结果解释给应用程序</p>
+</li>
+<li>
+<p>默认使用<code>bash</code></p>
+</li>
+<li>
+<p><code>echo $SHELL</code>：查看默认shell</p>
+</li>
+<li>
+<p>编写第一个shell</p>
+<ul>
+<li>
+<p>新建一个文件后缀名为sh</p>
+</li>
+<li>
+<p>书写内容</p>
+<pre><code>#!/bin/bash
+#这是第一个脚本文件
+echo &quot;pc&quot;
+echo &quot;ninhao&quot;
+</code></pre></li>
+<li>
+<p>执行：<code>./a.sh</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>shell</code>注释</p>
+<ul>
+<li>单行注释
+<ul>
+<li><code>#注释内容</code></li>
+</ul>
+</li>
+<li>多行注释
+<ul>
+<li><code>:&lt;&lt;!内容!</code></li>
+<li><code>:&lt;&lt;字符 注释内容 字符</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>shell</code>变量</p>
+<ul>
+<li>
+<p>定义变量</p>
+<ul>
+<li>
+<p>普通变量</p>
+<ul>
+<li>
+<p><code>变量名=变量值</code></p>
+<ul>
+<li>变量值必须是一个整体，中间没有特殊字符</li>
+</ul>
+</li>
+<li>
+<p><code>变量名='变量值'</code></p>
+<ul>
+<li>单引号的内容原样赋值</li>
+</ul>
+</li>
+<li>
+<p><code>变量名=&quot;变量值&quot;</code></p>
+<ul>
+<li>如果双引号里面有其他变量，会把变量的结果进行拼接，然后赋值</li>
+</ul>
+</li>
+<li>
+<p>数字不加引号，其他默认加双引号</p>
+</li>
+<li>
+<p>举例</p>
+<pre><code>number=10
+echo $number
+        
+a='$number'
+echo $a
+        
+b=&quot;$number&quot;
+echo $b
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>命令变量</p>
+<ul>
+<li><code>变量名=命令</code>：命令用反引号括起来</li>
+<li><code>变量名=$(命令)</code>
+<ul>
+<li>执行流程：1、执行`或者$()范围内的命令 2、将命令执行后的结果，赋值给变量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>使用变量</p>
+<ul>
+<li><code>$变量名</code>：非标准写法</li>
+<li><code>&quot;$变量名&quot;</code>：非标准写法</li>
+<li><code>${变量名}</code>：在双引号里面要使用的变量值</li>
+<li><code>&quot;${变量名}&quot;</code>：标准使用方式</li>
+</ul>
+</li>
+<li>
+<p>只读变量</p>
+<ul>
+<li><code>readonly 变量名</code></li>
+</ul>
+</li>
+<li>
+<p>删除变量</p>
+<ul>
+<li><code>unset 变量名</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>shell</code>数组</p>
+<ul>
+<li>定义数组
+<ul>
+<li>语法：<code>数组名=(值1 值2 ... 值n)</code>：arr=(1 2 3 4 5)</li>
+</ul>
+</li>
+<li>给数组的元素赋值
+<ul>
+<li>语法：<code>数组名[索引]=值</code>：arr[0]=1</li>
+</ul>
+</li>
+<li>获取元素
+<ul>
+<li>语法：<code>${数组名[下标]}</code>：${arr[0]}</li>
+</ul>
+</li>
+<li>获取长度
+<ul>
+<li>语法：<code>${#数组名[*]}</code>：${#arr[*]}</li>
+<li>语法：<code>${#数组名[@]}</code>：${#arr[@]}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>shell</code>算术运算符</p>
+<p>下表列出了常用的算术运算符，假定变量 a 为 10，变量 b 为 20：</p>
+<table>
+<thead>
+<tr>
+<th><strong>运算符</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>举例</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>加法</td>
+<td><code>expr $a + $b</code> 结果为 30。</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减法</td>
+<td><code>expr $a - $b</code> 结果为 -10。</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘法</td>
+<td><code>expr $a \* $b</code> 结果为  200。</td>
+</tr>
+<tr>
+<td>/</td>
+<td>除法</td>
+<td><code>expr $b / $a</code> 结果为 2。</td>
+</tr>
+<tr>
+<td>%</td>
+<td>取余</td>
+<td><code>expr $b % $a</code> 结果为 0。</td>
+</tr>
+<tr>
+<td>=</td>
+<td>赋值</td>
+<td>a=$b 将把变量 b 的值赋给 a。</td>
+</tr>
+<tr>
+<td>==</td>
+<td>相等。用于比较两个数字，相同则返回 true。</td>
+<td>[ $a == $b ] 返回 false。</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不相等。用于比较两个数字，不相同则返回 true。</td>
+<td>[ $a != $b ] 返回 true。</td>
+</tr>
+</tbody>
+</table>
+<p>**注意：**条件表达式要放在方括号之间，并且要有空格，例如: <strong>[$a==$b]</strong> 是错误的，必须写成 <strong>[ $a == $b ]</strong>。</p>
+</li>
+<li>
+<p><code>shell</code>字符串运算符</p>
+<ul>
+<li><code>$?</code>：可以获取上一条语句的执行结果</li>
+<li><code>${#a}</code>：获取字符串的长度</li>
+<li>下表列出了常用的字符串运算符，假定变量 a 为 &ldquo;abc&rdquo;，变量 b 为 &ldquo;efg&rdquo;：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">=</td>
+<td style="text-align:left">检测两个字符串是否相等，相等返回 true。</td>
+<td style="text-align:left">[ $a = $b ] 返回 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">!=</td>
+<td style="text-align:left">检测两个字符串是否不相等，不相等返回 true。</td>
+<td style="text-align:left">[ $a != $b ] 返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:left">-z</td>
+<td style="text-align:left">检测字符串长度是否为0，为0返回 true。</td>
+<td style="text-align:left">[ -z $a ] 返回 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">-n</td>
+<td style="text-align:left">检测字符串长度是否不为0，不为0返回 true。</td>
+<td style="text-align:left">[ -n &ldquo;$a&rdquo; ] 返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">检测字符串是否为空，不为空返回 true。</td>
+<td style="text-align:left">[ $a ] 返回 true。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>shell</code>关系运算符</p>
+<ul>
+<li>
+<p>关系运算符只支持数字，不支持字符串，除非字符串的值是数字。</p>
+</li>
+<li>
+<p>下表列出了常用的关系运算符，假定变量 a 为 10，变量 b 为 20：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-eq</td>
+<td style="text-align:left">检测两个数是否相等，相等返回 true。</td>
+<td style="text-align:left">[ $a -eq $b ] 返回 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">-ne</td>
+<td style="text-align:left">检测两个数是否不相等，不相等返回 true。</td>
+<td style="text-align:left">[ $a -ne $b ] 返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:left">-gt</td>
+<td style="text-align:left">检测左边的数是否大于右边的，如果是，则返回 true。</td>
+<td style="text-align:left">[ $a -gt $b ] 返回 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">-lt</td>
+<td style="text-align:left">检测左边的数是否小于右边的，如果是，则返回 true。</td>
+<td style="text-align:left">[ $a -lt $b ] 返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:left">-ge</td>
+<td style="text-align:left">检测左边的数是否大于等于右边的，如果是，则返回 true。</td>
+<td style="text-align:left">[ $a -ge $b ] 返回 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">-le</td>
+<td style="text-align:left">检测左边的数是否小于等于右边的，如果是，则返回 true。</td>
+<td style="text-align:left">[ $a -le $b ] 返回 true。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p><code>shell</code>布尔运算</p>
+<ul>
+<li>下表列出了常用的布尔运算符，假定变量 a 为 10，变量 b 为 20：
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">!</td>
+<td style="text-align:left">非运算，表达式为 true 则返回 false，否则返回 true。</td>
+<td style="text-align:left">[ ! false ] 返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:left">-o</td>
+<td style="text-align:left">或运算，有一个表达式为 true 则返回 true。</td>
+<td style="text-align:left">[ $a -lt 20 -o $b -gt 100 ] 返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:left">-a</td>
+<td style="text-align:left">与运算，两个表达式都为 true 才返回 true。</td>
+<td style="text-align:left">[ $a -lt 20 -a $b -gt 100 ] 返回 false。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p><code>shell</code>逻辑运算符</p>
+<ul>
+<li>假定变量 a 为 10，变量 b 为 20:
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运算符</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&amp;&amp;</td>
+<td style="text-align:left">逻辑的 AND</td>
+<td style="text-align:left">[[ $a -lt 100 &amp;&amp; $b -gt 100 ]] 返回 false</td>
+</tr>
+<tr>
+<td style="text-align:left">||</td>
+<td style="text-align:left">逻辑的 OR</td>
+<td style="text-align:left">[[ $a -lt 100 || $b -gt 100 ]] 返回 true</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p><code>shell</code>判断语句</p>
+<ul>
+<li>
+<p>if 语句：</p>
+</li>
+<li>
+<p>主要用于判断，相当于javase中的if，我们还是采用之前的例子test-shell.sh</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">if</span> condition
+<span style="color:#66d9ef">then</span>
+    command1 
+    command2
+    ...
+    commandN 
+<span style="color:#66d9ef">fi</span>
+</code></pre></div><p>比如，我们现在通过前面学习的知识查找一个进程，如果进程存在就打印true</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#66d9ef">$(</span>ps -ef | grep -c <span style="color:#e6db74">&#34;ssh&#34;</span><span style="color:#66d9ef">)</span> -gt <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span> echo <span style="color:#e6db74">&#34;true&#34;</span>; <span style="color:#66d9ef">fi</span>
+</code></pre></div><blockquote>
+<p>注意</p>
+<p>末尾的fi就是if倒过来拼写</p>
+</blockquote>
+</li>
+<li>
+<p>if else 语句：</p>
+</li>
+<li>
+<p>主要用于判断，相当于java se中的if else，我们还是采用之前的例子test-shell.sh。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">if</span> condition
+<span style="color:#66d9ef">then</span>
+    command1 
+    command2
+    ...
+    commandN
+<span style="color:#66d9ef">else</span>
+    command
+<span style="color:#66d9ef">fi</span>
+</code></pre></div><p>上接上面的例子，如果找不到sshAAA（此处可以随便输入一个）进程，我们就打印false</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#66d9ef">$(</span>ps -ef | grep -c <span style="color:#e6db74">&#34;sshAAA&#34;</span><span style="color:#66d9ef">)</span> -gt <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span> echo <span style="color:#e6db74">&#34;true&#34;</span>;  <span style="color:#66d9ef">else</span> echo <span style="color:#e6db74">&#34;false&#34;</span>; <span style="color:#66d9ef">fi</span>
+</code></pre></div></li>
+<li>
+<p>if else-if else 语句：</p>
+</li>
+<li>
+<p>主要用于判断，相当于java se中的if else-if else</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">if</span> condition1
+<span style="color:#66d9ef">then</span>
+    command1
+<span style="color:#66d9ef">elif</span> condition2 
+<span style="color:#66d9ef">then</span> 
+    command2
+<span style="color:#66d9ef">else</span>
+    commandN
+<span style="color:#66d9ef">fi</span>
+</code></pre></div><p>以下实例判断两个变量是否相等</p>
+<p>我们继续使用上面的例子（test-shell.sh ）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">a<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>
+b<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $a <span style="color:#f92672">==</span> $b <span style="color:#f92672">]</span>
+<span style="color:#66d9ef">then</span>
+   echo <span style="color:#e6db74">&#34;a 等于 b&#34;</span>
+<span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> $a -gt $b <span style="color:#f92672">]</span>
+<span style="color:#66d9ef">then</span>
+   echo <span style="color:#e6db74">&#34;a 大于 b&#34;</span>
+<span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> $a -lt $b <span style="color:#f92672">]</span>
+<span style="color:#66d9ef">then</span>
+   echo <span style="color:#e6db74">&#34;a 小于 b&#34;</span>
+<span style="color:#66d9ef">else</span>
+   echo <span style="color:#e6db74">&#34;没有符合的条件&#34;</span>
+<span style="color:#66d9ef">fi</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><code>shell</code>选择语句</p>
+<ul>
+<li>
+<p>主要用于分支条件选择，相当于java se中的switch case循环</p>
+</li>
+<li>
+<p>case &hellip; esac与其他语言中的 switch &hellip; case 语句类似，是一种多分枝选择结构，每个 case 分支用右圆括号开始，用两个分号 <strong>;;</strong> 表示 break，即执行结束，跳出整个 case &hellip; esac 语句，esac（就是 case 反过来）作为结束标记。还是采用之前的例子test-shell.sh</p>
+</li>
+<li>
+<p>case &hellip; esac 语法格式如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">case</span> 值 in
+模式1<span style="color:#f92672">)</span>
+    command1
+    command2
+    command3
+    ;;
+模式2）
+    command1
+    command2
+    command3
+    ;;
+*<span style="color:#f92672">)</span>
+    command1
+    command2
+    command3
+    ;;
+<span style="color:#66d9ef">esac</span>
+</code></pre></div><p>case 后为取值，值可以为变量或常数。</p>
+<p>值后为关键字 in，接下来是匹配的各种模式，每一模式最后必须以右括号结束，模式支持正则表达式。</p>
+<p>下面通过v的值进行case&ndash;esac</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">v<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;czbk&#34;</span>
+    
+<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$v<span style="color:#e6db74">&#34;</span> in
+   <span style="color:#e6db74">&#34;czbk&#34;</span><span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;传智播客&#34;</span>
+   ;;
+   <span style="color:#e6db74">&#34;baidu&#34;</span><span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;baidu 搜索&#34;</span>
+   ;;
+   <span style="color:#e6db74">&#34;google&#34;</span><span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;google 搜索&#34;</span>
+   ;;
+<span style="color:#66d9ef">esac</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><code>for</code>循环</p>
+<ul>
+<li>
+<p>主要用于循环，相当于java se中的for循环，我们还是采用之前的例子test-shell.sh</p>
+</li>
+<li>
+<p>for循环格式为：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">for</span> var in item1 item2 ... itemN
+<span style="color:#66d9ef">do</span>
+    command1
+    command2
+    ...
+    commandN
+<span style="color:#66d9ef">done</span>
+</code></pre></div><p>顺序输出当前列表中的字母：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">for</span> loop in A B C D E F G 
+<span style="color:#66d9ef">do</span>
+    echo <span style="color:#e6db74">&#34;顺序输出字母为: </span>$loop<span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">done</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><code>while</code>循环</p>
+<ul>
+<li>
+<p>主要用于循环，相当于java se中的while循环</p>
+</li>
+<li>
+<p>while循环用于不断执行一系列命令，也用于从输入文件中读取数据</p>
+</li>
+<li>
+<p>语法格式为：</p>
+<pre><code>while condition
+do
+    command
+done
+</code></pre><p>以下是一个基本的while循环，测试条件是：如果int小于等于10，那么条件返回真。int从0开始，每次循环处理时，int加1。</p>
+<p>还是采用之前的例子test-shell.sh</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>int<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">while</span><span style="color:#f92672">((</span> $int&lt;<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">))</span>
+<span style="color:#66d9ef">do</span>
+    echo <span style="color:#e6db74">&#34;输出的值为：&#34;</span>$int
+    let <span style="color:#e6db74">&#34;int++&#34;</span>
+<span style="color:#66d9ef">done</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><code>shell</code>函数</p>
+<ul>
+<li>
+<p>无参无返回值</p>
+<pre><code>函数名(){
+        函数体
+}
+</code></pre><ul>
+<li>
+<p>举例</p>
+<pre><code>czbk(){
+      echo &quot;函数!&quot;
+}
+echo &quot;----这里是函数开始执行----&quot;
+czbk
+echo &quot;----这里是函数执行完毕----&quot;
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>有参无返回值</p>
+<pre><code>czbk(){
+        echo &quot;第一个参数$1&quot;
+        echo &quot;第二个参数$2&quot;
+}
+czbk a b
+</code></pre></li>
+<li>
+<p>有参有返回值</p>
+<pre><code>czbk(){
+        echo &quot;接收到参数$1和$2&quot;
+        return $(($1 + $2))
+}
+    
+czbk 10 20
+echo $?
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><code>read 变量名</code>：表示把键盘录入的数据复制给这个变量</p>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>pengSite </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=/2017/shell/>/2017/shell/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="/tags/java/">
+                    #java</a></span>
+            
+            <span class="tag"><a href="/tags/shell/">
+                    #shell</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="/2017/linux4/" class="prev" rel="prev" title="Linux网络与磁盘管理"><i class="iconfont icon-left"></i>&nbsp;Linux网络与磁盘管理</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="/">pengSite</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
